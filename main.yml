@@ -1,0 +1,13 @@
+---
+- name: "Workstation setup"
+  connection: local
+  hosts:
+    - me
+  roles:
+    - git
+    - dein
+    - neovim
+    - vim
+  vars:
+    dein_dir: "{{ lookup('env', 'HOME') }}/.dein"
+    neovim_dir: "{{ lookup('env', 'HOME') }}/.config/nvim"

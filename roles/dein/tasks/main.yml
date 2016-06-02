@@ -1,0 +1,2 @@
+- name: install dein
+  git: repo=https://github.com/Shougo/dein.vim dest={{ dein_dir }}/repos/github.com/Shougo/dein.vim

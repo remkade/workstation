@@ -1,0 +1,10 @@
+[user]
+  name = Kyle Leaders
+  email = kyle.leaders@gmail.com
+[push]
+  default = simple
+[color]
+  ui = auto
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f 

@@ -1,0 +1,46 @@
+if &compatible
+  set nocompatible
+endif
+set runtimepath^={{ dein_dir }}/repos/github.com/Shougo/dein.vim
+
+call dein#begin(expand('~/.cache/dein'))
+
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('flazz/vim-colorschemes')
+call dein#add('blerins/flattown')
+call dein#add('bling/vim-airline')
+call dein#add('wting/rust.vim')
+call dein#add('fatih/vim-go')
+call dein#add('scwood/vim-hybrid')
+call dein#add('mhartington/oceanic-next')
+call dein#add('ryanoasis/vim-devicons')
+
+" Required:
+call dein#end()
+
+if dein#check_install()
+  call dein#install()
+endif
+
+" Required:
+filetype plugin indent on
+
+syntax on
+colorscheme flattown
+
+"folding settings
+set foldmethod=syntax   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+"File type based indentation
+filetype plugin indent on
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+set wildignore+=*/target/*
+set backspace=2
+set mouse-=a

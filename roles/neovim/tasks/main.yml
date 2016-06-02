@@ -1,0 +1,10 @@
+---
+- name: neovim ppa
+  apt_repository: repo='ppa:neovim/unstable'
+  when: ansible_pkg_mgr == 'apt'
+- name: install neovim
+  package: name=neovim state=latest
+- name: neovim config dir
+  file: dest={{ neovim_dir }} state=directory owner={{ansible_user_id}} mode=0755
+- name: neovim init.vim
+  template: dest={{ neovim_dir }}/init.vim src=init.vim.j2 owner={{ansible_user_id}} mode=0644
