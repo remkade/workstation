@@ -6,7 +6,7 @@ set runtimepath^={{ dein_dir }}/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.cache/dein'))
 
 call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/deoplete.nvim')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('flazz/vim-colorschemes')
 call dein#add('blerins/flattown')
@@ -16,6 +16,7 @@ call dein#add('fatih/vim-go')
 call dein#add('scwood/vim-hybrid')
 call dein#add('mhartington/oceanic-next')
 call dein#add('ryanoasis/vim-devicons')
+call dein#add('neomake/neomake')
 
 " Required:
 call dein#end()
@@ -41,6 +42,24 @@ filetype plugin indent on
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+" Set leader to ,
+let mapleader = ","
+
+" Ignore rust/go specific build stuff
 set wildignore+=*/target/*
 set backspace=2
+
+" disable mouse
 set mouse-=a
+
+" Deocomplete
+let g:deoplete#enable_at_startup = 1
+
+" Linters
+autocmd Filetype ruby set makeprg=rubocop
+autocmd Filetype ruby set sts=2 sw=2 noet
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
+" Run neomake to do linters or whatever
+noremap <leader>l :Neomake!<enter>
