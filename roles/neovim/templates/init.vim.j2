@@ -17,6 +17,7 @@ call dein#add('scwood/vim-hybrid')
 call dein#add('mhartington/oceanic-next')
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('neomake/neomake')
+call dein#add('ekalinin/Dockerfile.vim')
 
 " Required:
 call dein#end()
@@ -57,7 +58,10 @@ let g:deoplete#enable_at_startup = 1
 
 " Linters
 autocmd Filetype ruby set makeprg=rubocop
-autocmd Filetype ruby set sts=2 sw=2 noet
+autocmd Filetype ruby set sts=2 sw=2 et
+autocmd Filetype yaml set sts=2 sw=2 et
+autocmd Filetype json set sts=2 sw=2 et
+autocmd Filetype Dockerfile set makeprg="docker -t ". expand('%:h:t') ." build ."
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
