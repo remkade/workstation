@@ -4,10 +4,12 @@
   hosts:
     - me
   roles:
-    - git
-    - dein
-    - neovim
-    - vim
+    - {name: git, tags: ['git'] }
+    - {name: dein, tags: ['dein'] }
+    - {name: neovim, tags: ['neovim'] }
+    - {name: powerline, tags: ['powerline'] }
+    - {name: tmux, tags: ['tmux'] }
   vars:
+    home: "{{ lookup('env', 'HOME') }}"
     dein_dir: "{{ lookup('env', 'HOME') }}/.dein"
     neovim_dir: "{{ lookup('env', 'HOME') }}/.config/nvim"

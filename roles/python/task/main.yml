@@ -1,0 +1,9 @@
+---
+- name: Install python 2.7
+  package: name=python state=latest
+  when: ansible_distribution == "MacOSX"
+- name: Install python 2.7
+  package: name=python27 state=latest
+  when: ansible_distribution == "Ubuntu"
+- name: Install pip
+  pip: name=pip state=latest

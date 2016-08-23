@@ -1,0 +1,6 @@
+---
+- name: Load launchd agent
+  command: launchctl load {{ home }}/Library/LaunchAgents/powerline.plist
+  notify: start powerline
+- name: start powerline
+  command: launchctl start powerline

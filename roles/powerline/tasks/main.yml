@@ -1,0 +1,14 @@
+---
+- name: Install powerline
+  pip: name=powerline-status state=latest
+- name: Create Launch Agents Dir
+  file: path={{ home }}/Library/LaunchAgents state=directory owner=kyle_leaders
+  when: ansible_distribution == "MacOSX"
+- name: Add Powerline Launch Agent
+  template:
+    src: powerline.plist.j2
+    dest: "{{ home }}/Library/LaunchAgents/powerline.plist"
+    owner: kyle_leaders
+  when: ansible_distribution == "MacOSX"
+  notify:
+    - Load launchd agent
