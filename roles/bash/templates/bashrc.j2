@@ -2,8 +2,10 @@ export CLICOLOR=1
 export POWERLINE_BASH_CONTINUATION=1
 export POWERLINE_BASH_SELECT=1
 {% if ansible_distribution == "MacOSX" %}
+export GOPATH=(( home }}/Documents/go
 source /usr/local/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
 {% else %}
+export GOPATH=(( home }}/go
 source /usr/lib/python/site-packages/powerline/bindings/bash/powerline.sh
 {% endif %}
 
