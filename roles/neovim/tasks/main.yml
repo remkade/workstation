@@ -4,6 +4,8 @@
   when: ansible_pkg_mgr == 'apt'
 - name: install neovim
   package: name=neovim state=latest
+- name: install neovim pip module
+  pip: name=neovim state=latest executable=/usr/local/bin/pip3
 - name: neovim config dir
   file: dest={{ neovim_dir }} state=directory owner={{ansible_user_id}} mode=0755
 - name: neovim init.vim

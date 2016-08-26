@@ -9,6 +9,8 @@
     - {name: neovim, tags: ['neovim'] }
     - {name: powerline, tags: ['powerline'] }
     - {name: tmux, tags: ['tmux'] }
+    - {name: go, tags: ['go'] }
+    - {name: bash, tags: ['bash'] }
   vars:
     home: "{{ lookup('env', 'HOME') }}"
     dein_dir: "{{ lookup('env', 'HOME') }}/.dein"

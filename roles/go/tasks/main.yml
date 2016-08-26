@@ -1,0 +1,7 @@
+---
+- name: Install Go
+  package: name=golang state=present
+  when: ansible_distribution == "MacOSX"
+- name: Setup GOPATH
+  file: path={{ home }}/Documents/go state=directory owner=kyle_leaders
+  when: ansible_distribution == "MacOSX"

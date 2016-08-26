@@ -1,0 +1,3 @@
+---
+- name: Setup bashrc
+  tempalte: src=bashrc.j2 dest={{ home }}/.bashrc
