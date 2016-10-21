@@ -10,3 +10,7 @@ source /usr/lib/python/site-packages/powerline/bindings/bash/powerline.sh
 {% endif %}
 
 alias vim=`which nvim`
+
+function push_key {
+  ssh $1 "(test -d ~/.ssh || mkdir ~/.ssh) && echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
+}
