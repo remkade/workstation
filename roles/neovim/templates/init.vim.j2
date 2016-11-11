@@ -18,6 +18,7 @@ call dein#add('mhartington/oceanic-next')
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('neomake/neomake')
 call dein#add('ekalinin/Dockerfile.vim')
+call dein#add('mileszs/ack.vim')
 
 " Required:
 call dein#end()
@@ -64,6 +65,10 @@ autocmd Filetype json set sts=2 sw=2 et
 autocmd Filetype Dockerfile set makeprg="docker -t ". expand('%:h:t') ." build ."
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
+
+if executable('rg')
+  let g:ackprg = 'rg --no-heading --vimgrep'
+endif
 
 " Run neomake to do linters or whatever
 noremap <leader>l :Neomake!<enter>
