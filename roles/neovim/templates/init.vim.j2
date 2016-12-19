@@ -48,25 +48,28 @@ let g:airline_powerline_fonts = 1
 " Set leader to ,
 let mapleader = ","
 
-" Ignore rust/go specific build stuff
-set wildignore+=*/target/*
-set backspace=2
-
 " disable mouse
 set mouse-=a
 
 " Deocomplete
 let g:deoplete#enable_at_startup = 1
 
-" Linters
-autocmd Filetype ruby set makeprg=rubocop
-autocmd Filetype ruby set sts=2 sw=2 et
-autocmd Filetype rust set makeprg='cargo build'
-autocmd Filetype yaml set sts=2 sw=2 et
-autocmd Filetype json set sts=2 sw=2 et
-autocmd Filetype Dockerfile set makeprg="docker -t ". expand('%:h:t') ." build ."
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
+" Linters                                                                                                                                                                            
+autocmd! BufWritePost * Neomake
+autocmd Filetype ruby set sts=2 sw=2 et                                                                                                                                              
+                                                                                                                                                                                     
+autocmd Filetype yaml set sts=2 sw=2 et                                                                                                                                              
+autocmd Filetype json set sts=2 sw=2 et                                                                                                                                              
+                                                                                                                                                                                     
+autocmd Filetype Dockerfile set makeprg="docker -t ". expand('%:h:t') ." build ."                                                                                                    
+autocmd QuickFixCmdPost [^l]* nested cwindow                                                                                                                                         
+autocmd QuickFixCmdPost    l* nested lwindow                                                                                                                                         
+                                                                                                                                                                                     
+" Rust                                                                                                                                                                               
+autocmd BufWritePost *.rs NeomakeProject cargo                                                                                                                                       
+" Ignore rust/go specific build stuff                                                                                                                                                
+set wildignore+=*/target/*                                                                                                                                                           
+set backspace=2
 
 if executable('rg')
   let g:ackprg = 'rg --no-heading --vimgrep'
