@@ -1,3 +1,4 @@
+" vim: ft=vim
 if &compatible
   set nocompatible
 endif
@@ -60,6 +61,7 @@ let g:deoplete#enable_at_startup = 1
 " Linters
 autocmd Filetype ruby set makeprg=rubocop
 autocmd Filetype ruby set sts=2 sw=2 et
+autocmd Filetype rust set makeprg='cargo build'
 autocmd Filetype yaml set sts=2 sw=2 et
 autocmd Filetype json set sts=2 sw=2 et
 autocmd Filetype Dockerfile set makeprg="docker -t ". expand('%:h:t') ." build ."

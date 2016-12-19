@@ -14,3 +14,7 @@ alias vim=`which nvim`
 function push_key {
   ssh $1 "(test -d ~/.ssh || mkdir ~/.ssh) && echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
 }
+
+function get_ips() {
+	aws ec2 describe-instances | jq '.Reservations|map({"id": .Instances[0].InstanceId, "ip": .Instances[0].PublicIpAddress, "name": .Instances[0].Tags[0].Value, "image": .Instances[0].ImageId})'
+}
