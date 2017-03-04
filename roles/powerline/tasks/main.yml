@@ -1,6 +1,10 @@
 ---
 - name: Install powerline
   pip: name=powerline-status state=latest
+  when: ansible_distribution != "Gentoo"
+- name: Install powerline on Gentoo
+  pip: name=powerline-status state=latest extra_args='--user'
+  when: ansible_distribution == "Gentoo"
 - name: Create Launch Agents Dir
   file: path={{ home }}/Library/LaunchAgents state=directory owner=kyle_leaders
   when: ansible_distribution == "MacOSX"

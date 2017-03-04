@@ -1,9 +1,15 @@
+# vim: set ft=shell
 export CLICOLOR=1
 export POWERLINE_BASH_CONTINUATION=1
 export POWERLINE_BASH_SELECT=1
 {% if ansible_distribution == "MacOSX" %}
 export GOPATH=${HOME}/Documents/go
 source /usr/local/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
+{% elif ansible_distribution == "Gentoo" %}
+export PATH="${HOME}/.local/bin/:${PATH}"
+export GOPATH=${HOME}/Documents/go
+source ~/.local/lib64/python3.4/site-packages/powerline/bindings/bash/powerline.sh
+powerline-daemon -q
 {% else %}
 export GOPATH=${HOME}/go
 source /usr/lib/python/site-packages/powerline/bindings/bash/powerline.sh
@@ -12,7 +18,7 @@ source /usr/lib/python/site-packages/powerline/bindings/bash/powerline.sh
 alias vim=`which nvim`
 
 function push_key {
-  ssh $1 "(test -d ~/.ssh || mkdir ~/.ssh) && echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
+	ssh $1 "(test -d ~/.ssh || mkdir ~/.ssh) && echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
 }
 
 function get_ips() {
