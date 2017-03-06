@@ -12,7 +12,7 @@ call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('flazz/vim-colorschemes')
 call dein#add('blerins/flattown')
 call dein#add('bling/vim-airline')
-call dein#add('wting/rust.vim')
+call dein#add('rust-lang/rust.vim')
 call dein#add('fatih/vim-go')
 call dein#add('scwood/vim-hybrid')
 call dein#add('mhartington/oceanic-next')
@@ -21,6 +21,7 @@ call dein#add('neomake/neomake')
 call dein#add('ekalinin/Dockerfile.vim')
 call dein#add('mileszs/ack.vim')
 call dein#add('hashivim/vim-terraform')
+call dein#add('cespare/vim-toml')
 
 " Required:
 call dein#end()
@@ -68,6 +69,7 @@ autocmd QuickFixCmdPost    l* nested lwindow
                                                                                                                                                                                      
 " Rust                                                                                                                                                                               
 autocmd BufWritePost *.rs NeomakeProject cargo                                                                                                                                       
+
 " Ignore rust/go specific build stuff                                                                                                                                                
 set wildignore+=*/target/*                                                                                                                                                           
 set backspace=2

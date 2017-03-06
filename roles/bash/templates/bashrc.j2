@@ -4,6 +4,7 @@ export POWERLINE_BASH_CONTINUATION=1
 export POWERLINE_BASH_SELECT=1
 {% if ansible_distribution == "MacOSX" %}
 export GOPATH=${HOME}/Documents/go
+export PATH="${PATH}:${GOPATH}/bin"
 source /usr/local/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
 {% elif ansible_distribution == "Gentoo" %}
 export PATH="${HOME}/.local/bin/:${PATH}"
@@ -15,6 +16,7 @@ export GOPATH=${HOME}/go
 source /usr/lib/python/site-packages/powerline/bindings/bash/powerline.sh
 {% endif %}
 
+alias be='bundle exec'
 alias vim=`which nvim`
 
 function push_key {
@@ -24,3 +26,14 @@ function push_key {
 function get_ips() {
 	aws ec2 describe-instances | jq '.Reservations|map({"id": .Instances[0].InstanceId, "ip": .Instances[0].PublicIpAddress, "name": .Instances[0].Tags[0].Value, "image": .Instances[0].ImageId})'
 }
+
+count_instances() {
+        aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" | jq -r '[.Reservations[].Instances[] | { "type": .InstanceType, "state": .State.Name}] | group_by(.type) | map ({"instance": .[0].type, "count": length})'
+}
+
+gitlabmr () {
+        URL=$(git remote show `git rev-parse --abbrev-ref --symbolic-full-name @{u} | cut -d/ -f1` | awk -F: '/Fetch URL/ { gsub(".git", "", $3); print "http://gitlab.corp.avvo.com/" $3 }')
+        open $URL
+}
+
+[ -f /usr/local/bin/rbenv ] && eval "$(rbenv init -)"
