@@ -19,11 +19,11 @@ source `pip show powerline-status | awk '$1 == "Location:" { print $2 }'`/bindin
 export EDITOR=$(which nvim)
 if [ -f ~/.rustup/toolchains/nightly-*/bin/cargo ]
 then
-	$P = $(ls -ld ~/.rustup/toolchains/nightly-*/bin/cargo)
+	$P = $(ls -d ~/.rustup/toolchains/nightly-*/bin/cargo)
 	export PATH="${PATH}:${P}"
 elif [ -f ~/.rustup/toolchains/stable-*/bin/cargo ]
 then
-	$P = $(ls -ld ~/.rustup/toolchains/nightly-*/bin/cargo)
+	$P = $(ls -d ~/.rustup/toolchains/nightly-*/bin/cargo)
 	export PATH="${PATH}:${P}"
 fi
 
