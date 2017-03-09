@@ -16,8 +16,19 @@ export GOPATH=${HOME}/go
 source `pip show powerline-status | awk '$1 == "Location:" { print $2 }'`/bindings/bash/powerline.sh
 {% endif %}
 
+export EDITOR=$(which nvim)
+if [ -f ~/.rustup/toolchains/nightly-*/bin/cargo ]
+then
+	$P = $(ls -ld ~/.rustup/toolchains/nightly-*/bin/cargo)
+	export PATH="${PATH}:${P}"
+elif [ -f ~/.rustup/toolchains/stable-*/bin/cargo ]
+then
+	$P = $(ls -ld ~/.rustup/toolchains/nightly-*/bin/cargo)
+	export PATH="${PATH}:${P}"
+fi
+
 alias be='bundle exec'
-alias vim=`which nvim`
+alias vim=$(which nvim)
 
 function push_key {
 	ssh $1 "(test -d ~/.ssh || mkdir ~/.ssh) && echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
