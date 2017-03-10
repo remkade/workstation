@@ -27,6 +27,8 @@ then
 	export PATH="${PATH}:${P}"
 fi
 
+[ -d ~/.cargo/bin ] && export PATH="${HOME}/.cargo/bin/:${PATH}"
+
 alias be='bundle exec'
 alias vim=$(which nvim)
 
