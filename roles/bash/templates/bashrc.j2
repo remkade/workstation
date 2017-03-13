@@ -1,3 +1,4 @@
+#!/bin/bash
 # vim: set ft=shell
 export CLICOLOR=1
 export POWERLINE_BASH_CONTINUATION=1
@@ -5,7 +6,7 @@ export POWERLINE_BASH_SELECT=1
 {% if ansible_distribution == "MacOSX" %}
 export GOPATH=${HOME}/Documents/go
 export PATH="${PATH}:${GOPATH}/bin"
-source `pip show powerline-status | awk '$1 == "Location:" { print $2 }'`/powerline/bindings/bash/powerline.sh
+source "$(pip show powerline-status | awk '$1 == "Location:" { print $2 }')/powerline/bindings/bash/powerline.sh"
 {% elif ansible_distribution == "Gentoo" %}
 export PATH="${HOME}/.local/bin/:${PATH}"
 export GOPATH=${HOME}/Documents/go
@@ -13,27 +14,19 @@ source ~/.local/lib64/python3.4/site-packages/powerline/bindings/bash/powerline.
 powerline-daemon -q
 {% else %}
 export GOPATH=${HOME}/go
-source `pip show powerline-status | awk '$1 == "Location:" { print $2 }'`/bindings/bash/powerline.sh
+source "$(pip show powerline-status | awk '$1 == "Location:" { print $2 }')/bindings/bash/powerline.sh"
 {% endif %}
 
-export EDITOR=$(which nvim)
-if [ -f ~/.rustup/toolchains/nightly-*/bin/cargo ]
-then
-	$P = $(ls -d ~/.rustup/toolchains/nightly-*/bin/cargo)
-	export PATH="${PATH}:${P}"
-elif [ -f ~/.rustup/toolchains/stable-*/bin/cargo ]
-then
-	$P = $(ls -d ~/.rustup/toolchains/nightly-*/bin/cargo)
-	export PATH="${PATH}:${P}"
-fi
+EDITOR=$(which nvim)
+export EDITOR=$EDITOR
 
 [ -d ~/.cargo/bin ] && export PATH="${HOME}/.cargo/bin/:${PATH}"
 
 alias be='bundle exec'
-alias vim=$(which nvim)
+alias vim="$(which nvim)"
 
 function push_key {
-	ssh $1 "(test -d ~/.ssh || mkdir ~/.ssh) && echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
+	ssh "$1" "(test -d ~/.ssh || mkdir ~/.ssh) && echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
 }
 
 function get_ips() {
@@ -41,12 +34,13 @@ function get_ips() {
 }
 
 count_instances() {
-        aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" | jq -r '[.Reservations[].Instances[] | { "type": .InstanceType, "state": .State.Name}] | group_by(.type) | map ({"instance": .[0].type, "count": length})'
+	aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" | jq -r '[.Reservations[].Instances[] | { "type": .InstanceType, "state": .State.Name}] | group_by(.type) | map ({"instance": .[0].type, "count": length})'
 }
 
 gitlabmr () {
-        URL=$(git remote show `git rev-parse --abbrev-ref --symbolic-full-name @{u} | cut -d/ -f1` | awk -F: '/Fetch URL/ { gsub(".git", "", $3); print "http://gitlab.corp.avvo.com/" $3 }')
-        open $URL
+	REV="$(git rev-parse --abbrev-ref --symbolic-full-name @\{u\} | cut -d/ -f1)"
+	URL="$(git remote show \"$REV\" | awk -F: '/Fetch URL/ { gsub(\".git\", \"\", $3); print \"http://gitlab.corp.avvo.com/\" $3 }')"
+	open "$URL"
 }
 
 [ -f /usr/local/bin/rbenv ] && eval "$(rbenv init -)"
