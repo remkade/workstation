@@ -39,7 +39,7 @@ count_instances() {
 
 gitlabmr () {
 	REV="$(git rev-parse --abbrev-ref --symbolic-full-name @\{u\} | cut -d/ -f1)"
-	URL="$(git remote show \"$REV\" | awk -F: '/Fetch URL/ { gsub(\".git\", \"\", $3); print \"http://gitlab.corp.avvo.com/\" $3 }')"
+	URL="$(git remote show \"$REV\" | awk -F: '/Fetch URL/ { gsub(".git", "", $3); print "http://gitlab.corp.avvo.com/" $3 }')"
 	open "$URL"
 }
 
