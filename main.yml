@@ -5,6 +5,7 @@
     - me
   roles:
     - {name: git, tags: ['git'] }
+    - {name: mecurial, tags: ['mercurial'] }
     - {name: dein, tags: ['dein'] }
     - {name: neovim, tags: ['neovim'] }
     - {name: powerline, tags: ['powerline'] }

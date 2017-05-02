@@ -1,0 +1,13 @@
+---
+- name: install mecurial
+  package: name=mecurial state=latest
+  when: ansible_distribution != "Gentoo"
+- name: install mecurial on Gentoo
+  package: name=mecurial state=installed
+  when: ansible_distribution == "Gentoo"
+- name: install hglib
+  pip: name=hglib state=latest
+  when: ansible_distribution != "Gentoo"
+- name: install hglib on Gentoo
+  package: name=hglib state=installed
+  when: ansible_distribution == "Gentoo"
