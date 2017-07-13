@@ -6,7 +6,7 @@
   package: name=mercurial state=installed
   when: ansible_distribution == "Gentoo"
 - name: install hglib
-  pip: name=hglib state=latest
+  pip: name=python-hglib state=latest
   when: ansible_distribution != "Gentoo"
 - name: install hglib on Gentoo
   package: name=hglib state=installed

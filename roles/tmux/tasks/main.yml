@@ -3,3 +3,13 @@
   package: name=tmux state=present
 - name: Configure tmux
   template: src=tmux.conf.j2 dest={{ home }}/.tmux.conf
+- name: Add tmux dir
+  file:
+    state: directory
+    dest: '{{ home }}/.tmux'
+    mode: '0755'
+- name: Add tmux pane file
+  copy:
+    dest: '{{ home }}/.tmux/base.conf'
+    mode: '0644'
+    src: 'base.conf'
