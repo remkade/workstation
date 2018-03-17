@@ -6,4 +6,8 @@
   package: name=git state=installed
   when: 'ansible_distribution == "Gentoo"'
 - name: gitconfig
-  file: src=gitconfig dest={{ lookup('env','HOME') }}/.gitconfig owner={{ansible_user_id}} mode=0644
+  copy:
+    src: gitconfig
+    dest: "{{ lookup('env','HOME') }}/.gitconfig"
+    owner: "{{ ansible_user_id }}"
+    mode: "0644"

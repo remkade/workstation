@@ -4,3 +4,10 @@
   notify: start powerline
 - name: start powerline
   command: launchctl start powerline
+
+- name: Enable systemd agent
+  systemd:
+    user: true
+    enabled: true
+    state: started
+    name: "powerline.service"

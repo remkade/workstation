@@ -2,12 +2,21 @@
 - name: Install powerline
   pip: name=powerline-status state=latest
   when: ansible_distribution != "Gentoo"
+  become: true
 - name: Install powerline on Gentoo
   pip: name=powerline-status state=latest extra_args='--user'
   when: ansible_distribution == "Gentoo"
 - name: Create Launch Agents Dir
-  file: path={{ home }}/Library/LaunchAgents state=directory owner=kyle_leaders
+  file: path={{ home }}/Library/LaunchAgents state=directory owner={{ ansible_user_id }}
   when: ansible_distribution == "MacOSX"
+
+- name: Create Launch Agents Dir
+  file: path={{ home }}/.config/systemd state=directory owner={{ ansible_user_id }}
+  when: ansible_service_mgr == "systemd"
+- name: Create Launch Agents Dir
+  file: path={{ home }}/.config/systemd/user state=directory owner={{ ansible_user_id }}
+  when: ansible_service_mgr == "systemd"
+
 - name: Add Powerline Launch Agent
   template:
     src: powerline.plist.j2
@@ -16,3 +25,12 @@
   when: ansible_distribution == "MacOSX"
   notify:
     - Load launchd agent
+
+- name: Add Powerline Systemd Agent
+  template:
+    src: powerline.service.j2
+    dest: "{{ home }}/.config/systemd/user/powerline.service"
+    owner: kyle
+  when: ansible_service_mgr == "systemd"
+  notify:
+    - Enable systemd agent

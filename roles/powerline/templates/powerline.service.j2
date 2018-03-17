@@ -1,0 +1,11 @@
+[Unit]
+Description=Powerline Agent
+
+[Service]
+Type=simple
+Environment=LC_ALL=en_US.utf8
+Environment=LANG=en_US.utf8
+ExecStart=/usr/local/bin/powerline-daemon --quiet
+
+[Install]
+WantedBy=default.target
