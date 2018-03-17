@@ -15,7 +15,7 @@ powerline-daemon -q
 {% else %}
 export GOPATH=${HOME}/go
 export PATH="${HOME}/.local/bin/:${PATH}:${GOPATH}/bin"
-source "$(pip show powerline-status | awk '$1 == "Location:" { print $2 }')/powerlin/bindings/bash/powerline.sh"
+source "$(pip show powerline-status | awk '$1 == "Location:" { print $2 }')/powerline/bindings/bash/powerline.sh"
 {% endif %}
 
 EDITOR=$(which nvim)
