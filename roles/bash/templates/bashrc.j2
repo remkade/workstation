@@ -16,6 +16,7 @@ powerline-daemon -q
 export GOPATH=${HOME}/go
 export PATH="${HOME}/.local/bin/:${PATH}:${GOPATH}/bin"
 source "$(pip show powerline-status | awk '$1 == "Location:" { print $2 }')/powerline/bindings/bash/powerline.sh"
+export SSH_AUTH_SOCK="/run/user/$(id -u)/ssh-agent.socket"
 {% endif %}
 
 EDITOR=$(which nvim)
