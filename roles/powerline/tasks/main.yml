@@ -6,7 +6,7 @@
 - name: Install powerline
   pip: name=powerline-status state=installed
   when: ansible_distribution == "ArchLinux"
-  become: true
+  become: "{{ need_sudo }}"
 
 - name: Install powerline on Gentoo
   pip: name=powerline-status state=latest extra_args='--user'

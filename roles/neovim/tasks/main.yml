@@ -4,28 +4,21 @@
   when: ansible_pkg_mgr == 'apt'
 
 - name: install neovim
-  package: name=neovim state=installed
-  when: 'ansible_distribution != "MacOSX"'
-  become: true
-- name: install neovim-ruby-client
-  package: name=neovim-ruby-client state=installed
-  when: 'ansible_distribution != "MacOSX"'
-  become: true
-- name: install neovim-python-client
-  package: name=neovim-python-client state=installed
-  when: 'ansible_distribution != "MacOSX"'
-  become: true
-- name: install ripgrep
-  package: name=ripgrep state=installed
-  when: 'ansible_distribution != "MacOSX"'
-  become: true
+  package: name=neovim state={{ install_state }}
+  become: "{{ need_sudo }}"
 
-- name: install neovim
-  package: name=neovim state=latest
-  when: 'ansible_distribution == "MacOSX"'
+- name: install neovim clients
+  package: name=neovim-{{ item }}-client state={{ install_state }}
+  when: 'ansible_distribution == "Gentoo"'
+  become: "{{ need_sudo }}"
+  with_items:
+    - ruby
+    - python
+
 - name: install ripgrep
-  package: name=ripgrep state=latest
-  when: 'ansible_distribution == "MacOSX"'
+  package: name=ripgrep state={{ install_state }}
+  become: "{{ need_sudo }}"
+
 - name: install neovim pip module
   pip: name=neovim state=latest executable=pip3
   when: 'ansible_distribution == "MacOSX"'

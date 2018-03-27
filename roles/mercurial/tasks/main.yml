@@ -6,7 +6,7 @@
 - name: install mercurial on Gentoo
   package: name=mercurial state=installed
   when: ansible_distribution != "MacOSX"
-  become: true
+  become: "{{ need_sudo }}"
 
 - name: install hglib
   pip: name=python-hglib state=latest
@@ -15,4 +15,4 @@
 - name: install hglib on Gentoo
   package: name=hglib state=installed
   when: ansible_distribution != "MacOSX"
-  become: true
+  become: "{{ need_sudo }}"
