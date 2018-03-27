@@ -5,35 +5,40 @@
 
 - name: install neovim
   package: name=neovim state=installed
-  when: 'ansible_distribution == "Gentoo"'
+  when: 'ansible_distribution != "MacOSX"'
   become: true
 - name: install neovim-ruby-client
   package: name=neovim-ruby-client state=installed
-  when: 'ansible_distribution == "Gentoo"'
+  when: 'ansible_distribution != "MacOSX"'
   become: true
 - name: install neovim-python-client
   package: name=neovim-python-client state=installed
-  when: 'ansible_distribution == "Gentoo"'
+  when: 'ansible_distribution != "MacOSX"'
   become: true
 - name: install ripgrep
   package: name=ripgrep state=installed
-  when: 'ansible_distribution == "Gentoo"'
+  when: 'ansible_distribution != "MacOSX"'
   become: true
 
 - name: install neovim
   package: name=neovim state=latest
-  when: 'ansible_distribution != "Gentoo"'
-  become: true
+  when: 'ansible_distribution == "MacOSX"'
 - name: install ripgrep
   package: name=ripgrep state=latest
-  when: 'ansible_distribution != "Gentoo"'
-  become: true
+  when: 'ansible_distribution == "MacOSX"'
 - name: install neovim pip module
   pip: name=neovim state=latest executable=pip3
-  when: 'ansible_distribution != "Gentoo"'
-  become: true
+  when: 'ansible_distribution == "MacOSX"'
 
 - name: neovim config dir
-  file: dest={{ neovim_dir }} state=directory owner={{ansible_user_id}} mode=0755
+  file:
+    dest: "{{ neovim_dir }}"
+    state: directory
+    owner: "{{ansible_user_id}}"
+    mode: 0755
 - name: neovim init.vim
-  template: dest={{ neovim_dir }}/init.vim src=init.vim.j2 owner={{ansible_user_id}} mode=0644
+  template:
+    dest: "{{ neovim_dir }}/init.vim"
+    src: init.vim.j2
+    owner: "{{ansible_user_id}}"
+    mode: 0644

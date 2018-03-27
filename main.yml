@@ -4,14 +4,16 @@
   hosts:
     - me
   roles:
-    - {name: git, tags: ['git'] }
-    - {name: mercurial, tags: ['mercurial'] }
-    - {name: dein, tags: ['dein'] }
-    - {name: neovim, tags: ['neovim'] }
-    - {name: powerline, tags: ['powerline'] }
-    - {name: tmux, tags: ['tmux'] }
-    - {name: go, tags: ['go'] }
-    - {name: bash, tags: ['bash'] }
+    - {name: variables, tags: ['variables']}
+    - {name: git, tags: ['git']}
+    - {name: mercurial, tags: ['mercurial']}
+    - {name: dein, tags: ['dein']}
+    - {name: neovim, tags: ['neovim']}
+    - {name: vim, tags: ['vim']}
+    - {name: powerline, tags: ['powerline']}
+    - {name: tmux, tags: ['tmux']}
+    - {name: go, tags: ['go']}
+    - {name: bash, tags: ['bash']}
   vars:
     home: "{{ lookup('env', 'HOME') }}"
     dein_dir: "{{ lookup('env', 'HOME') }}/.dein"

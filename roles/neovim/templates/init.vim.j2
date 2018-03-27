@@ -8,6 +8,11 @@ call dein#begin(expand('~/.cache/dein'))
 
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/deoplete.nvim')
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+call dein#add('Shougo/denite.nvim')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('flazz/vim-colorschemes')
 call dein#add('blerins/flattown')
@@ -22,6 +27,10 @@ call dein#add('ekalinin/Dockerfile.vim')
 call dein#add('mileszs/ack.vim')
 call dein#add('hashivim/vim-terraform')
 call dein#add('cespare/vim-toml')
+call dein#add('othree/html5.vim')
+call dein#add('Glench/Vim-Jinja2-Syntax')
+call dein#add('elmcast/elm-vim')
+call dein#add('dag/vim-fish')
 
 " Required:
 call dein#end()
@@ -59,22 +68,32 @@ set mouse-=a
 " Deocomplete
 let g:deoplete#enable_at_startup = 1
 
-" Linters                                                                                                                                                                            
-autocmd! BufWritePost * Neomake
-autocmd Filetype ruby set sts=2 sw=2 et                                                                                                                                              
-                                                                                                                                                                                     
-autocmd Filetype yaml set sts=2 sw=2 et                                                                                                                                              
-autocmd Filetype json set sts=2 sw=2 et                                                                                                                                              
-                                                                                                                                                                                     
-autocmd Filetype Dockerfile set makeprg="docker -t ". expand('%:h:t') ." build ."                                                                                                    
-autocmd QuickFixCmdPost [^l]* nested cwindow                                                                                                                                         
-autocmd QuickFixCmdPost    l* nested lwindow                                                                                                                                         
-                                                                                                                                                                                     
-" Rust                                                                                                                                                                               
-autocmd BufWritePost *.rs NeomakeProject cargo                                                                                                                                       
+" Deinite
+" Ripgrep command on grep source
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default_opts',
+                      \ ['--vimgrep', '--no-heading'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
 
-" Ignore rust/go specific build stuff                                                                                                                                                
-set wildignore+=*/target/*                                                                                                                                                           
+" Linters
+autocmd! BufWritePost * Neomake
+autocmd Filetype ruby set sts=2 sw=2 et
+
+autocmd Filetype yaml set sts=2 sw=2 et
+autocmd Filetype json set sts=2 sw=2 et
+
+autocmd Filetype Dockerfile set makeprg="docker -t ". expand('%:h:t') ." build ."
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
+" Rust
+autocmd BufWritePost *.rs NeomakeProject cargo
+
+" Ignore rust/go specific build stuff
+set wildignore+=*/target/*
 set backspace=2
 
 if executable('rg')
