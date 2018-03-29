@@ -52,10 +52,10 @@ syntax on
 
 function! RandomColorscheme()
 python3 << EOF
-  import vim
-  import random
-  schemes = ['flattown', 'OceanicNext', 'spring-next']
-  vim.command("colorscheme %s" % random.choice(schemes))
+import vim
+import random
+schemes = ['flattown', 'OceanicNext', 'spring-night', 'hybrid']
+vim.command("colorscheme %s" % random.choice(schemes))
 EOF
 endfunction
 
@@ -118,3 +118,7 @@ endif
 
 " Run neomake to do linters or whatever
 noremap <leader>l :Neomake!<enter>
+
+" Swap between buffers easy
+noremap <leader>n :bn<enter>
+noremap <leader>p :bp<enter>
