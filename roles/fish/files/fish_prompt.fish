@@ -1,7 +1,7 @@
 function fish_prompt
-  set_color 87ff87
-  echo -n (prompt_pwd)
+  set arrow_right (printf "\uf061")
+  bubble_text --bg ffafaf --fg 000 (prompt_pwd)
   set_color 0af
-  echo -n " ► "
+  echo -n " $arrow_right "
   set_color normal
 end

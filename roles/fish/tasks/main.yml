@@ -8,6 +8,11 @@
     owner: "{{ ansible_user }}"
     state: directory
     recurse: true
+- name: Bubble Text function
+  copy:
+    owner: "{{ ansible_user }}"
+    src: bubble_text.fish
+    dest: "{{ home }}/.config/fish/functions/bubble_text.fish"
 - name: Fish Command Prompt
   copy:
     owner: "{{ ansible_user }}"
