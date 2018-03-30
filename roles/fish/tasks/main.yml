@@ -1,0 +1,15 @@
+---
+- name: Install Fish
+  package: name=fish state={{ install_state }}
+  become: "{{ need_sudo }}"
+- name: Fish Command Prompt
+  file:
+    path: "{{ home }}/.config/fish/functions"
+    owner: "{{ ansible_user }}"
+    state: directory
+    recurse: true
+- name: Fish Command Prompt
+  copy:
+    owner: "{{ ansible_user }}"
+    src: fish_prompt.fish
+    dest: "{{ home }}/.config/fish/functions/fish_prompt.fish"

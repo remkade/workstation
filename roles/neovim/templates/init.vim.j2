@@ -20,6 +20,7 @@ call dein#add('ryanoasis/vim-devicons')
 call dein#add('neomake/neomake')
 call dein#add('mileszs/ack.vim')
 call dein#add('tpope/vim-fugitive')
+call dein#add('autozimu/LanguageClient-neovim')
 
 " Languages
 call dein#add('Glench/Vim-Jinja2-Syntax')
@@ -59,6 +60,7 @@ vim.command("colorscheme %s" % random.choice(schemes))
 EOF
 endfunction
 
+set background=dark
 call RandomColorscheme()
 
 "folding settings
@@ -106,6 +108,7 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 " Rust
+let g:autofmt_autosave = 1
 autocmd BufWritePost *.rs NeomakeProject cargo
 
 " Ignore rust/go specific build stuff
