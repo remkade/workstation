@@ -1,0 +1,5 @@
+---
+- name: install mercurial on Gentoo
+  package: name=mercurial state=installed
+- name: install hglib on Gentoo
+  package: name=hglib state=installed

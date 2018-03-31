@@ -1,18 +1,2 @@
 ---
-- name: install mercurial
-  package: name=mercurial state=latest
-  when: ansible_distribution != "Gentoo"
-  become: true
-
-- name: install mercurial on Gentoo
-  package: name=mercurial state=installed
-  when: ansible_distribution == "Gentoo"
-
-- name: install hglib
-  pip: name=python-hglib state=latest
-  when: ansible_distribution != "Gentoo"
-  become: true
-
-- name: install hglib on Gentoo
-  package: name=hglib state=installed
-  when: ansible_distribution == "Gentoo"
+- include_tasks: "{{ ansible_distribution }}.yml"
