@@ -1,0 +1,11 @@
+---
+- name: install vim
+  package: "name=vim state={{ install_state }}"
+  become: "{{ need_sudo }}"
+
+- name: create vimrc
+  file:
+    path: "{{ home }}/.vimrc"
+    src: "{{ neovim_dir }}/init.vim"
+    owner: "{{ ansible_user_id }}"
+    state: link
