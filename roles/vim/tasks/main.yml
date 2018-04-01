@@ -9,3 +9,10 @@
     src: "{{ neovim_dir }}/init.vim"
     owner: "{{ ansible_user_id }}"
     state: link
+
+- name: Create gvimrc
+  copy:
+    dest: "{{ home }}/.gvimrc"
+    content: "set guifont=Hack\ Nerd\ Font\ Regular:h12"
+    owner: "{{ ansible_user_id }}"
+    mode: "0644"

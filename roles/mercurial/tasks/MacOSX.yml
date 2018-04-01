@@ -2,4 +2,4 @@
 - name: install mercurial
   package: name=mercurial state=latest
 - name: install hglib
-  pip: name=python-hglib state=latest
+  pip: name=python-hglib state=latest executable=pip3
