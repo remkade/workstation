@@ -1,0 +1,7 @@
+---
+- name: install mercurial
+  package: name=mercurial state=latest
+  become: true
+- name: install hglib
+  pip: name=python-hglib state=latest
+  become: true

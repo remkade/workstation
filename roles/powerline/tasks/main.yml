@@ -1,6 +1,6 @@
 ---
 - name: Install powerline
-  pip: name=powerline-status state=latest
+  pip: name=powerline-status state=latest executable=pip3
   when: ansible_distribution == "MacOSX"
 
 - name: Install powerline
