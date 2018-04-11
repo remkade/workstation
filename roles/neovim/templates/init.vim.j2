@@ -80,8 +80,10 @@ let mapleader = ","
 " Setup python3
 let g:python_host_prog = '/usr/local/bin/python3'
 
-" disable mouse
-set mouse-=a
+" disable mouse on command line
+if !has("gui_running") 
+  set mouse-=a
+end
 
 " Deocomplete
 let g:deoplete#enable_at_startup = 1
@@ -95,6 +97,14 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ }
+
 
 " Linters
 autocmd! BufWritePost * Neomake
