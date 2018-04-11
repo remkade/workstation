@@ -5,16 +5,16 @@ export POWERLINE_BASH_CONTINUATION=1
 export POWERLINE_BASH_SELECT=1
 {% if ansible_distribution == "MacOSX" %}
 export GOPATH=${HOME}/Documents/go
-export PATH="${PATH}:${GOPATH}/bin"
+export PATH="${PATH}:${GOPATH}/bin:${HOME}/node_modules/.bin"
 source "$(pip show powerline-status | awk '$1 == "Location:" { print $2 }')/powerline/bindings/bash/powerline.sh"
 {% elif ansible_distribution == "Gentoo" %}
 export GOPATH=${HOME}/Documents/go
-export PATH="${HOME}/.local/bin/:${PATH}:${GOPATH}/bin"
+export PATH="${HOME}/.local/bin/:${PATH}:${GOPATH}/bin:${HOME}/node_modules/.bin"
 source ~/.local/lib64/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 powerline-daemon -q
 {% else %}
 export GOPATH=${HOME}/go
-export PATH="${HOME}/.local/bin/:${PATH}:${GOPATH}/bin"
+export PATH="${HOME}/.local/bin/:${PATH}:${GOPATH}/bin:${HOME}/node_modules/.bin"
 source "$(pip show powerline-status | awk '$1 == "Location:" { print $2 }')/powerline/bindings/bash/powerline.sh"
 export SSH_AUTH_SOCK="/run/user/$(id -u)/ssh-agent.socket"
 {% endif %}
