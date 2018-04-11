@@ -26,6 +26,7 @@ export EDITOR=$EDITOR
 
 alias be='bundle exec'
 alias vim="$(which nvim)"
+alias macvim="open -a MacVim.app"
 
 function push_key {
 	ssh "$1" "(test -d ~/.ssh || mkdir ~/.ssh) && echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
