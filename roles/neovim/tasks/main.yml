@@ -29,6 +29,7 @@
     state: directory
     owner: "{{ansible_user_id}}"
     mode: 0755
+
 - name: neovim init.vim
   template:
     dest: "{{ neovim_dir }}/init.vim"
