@@ -1,28 +1,33 @@
 function fish_prompt
-  set primary 005fff
+  set primary 5fafff
   if test "$status" = "0"
-    set secondary ff0
+    set secondary ffaf5f
   else
     set secondary ff8700
   end
+  set tertiary ff5f5f
 
-  set arrow_right (printf "\uf061")
+  set git_dir (printf "\ue725")
   set filled_top_left (printf "\ue0bc")
   set filled_bottom_right (printf "\ue0ba")
   set right_triangle (printf "\ue0b0")
-  set forward_slash (printf "\ue0bb")
 
   set_color -b $primary
   set_color fff
-  echo -n " "(prompt_pwd)" "
-  set_color normal
+  echo -n " "(pwd | xargs basename)" "
+  set_color -b $tertiary
   set_color $primary
   echo -n $filled_top_left
   set_color $secondary
   echo -n " "
   echo -n $filled_bottom_right
   set_color -b $secondary
-  echo -n ' '
+  if test -d .git; or git rev-parse --git-dir ^/dev/null
+    set_color fff
+    echo -n " $git_dir" (git symbolic-ref --quiet --short HEAD; or git rev-parse --short HEAD)
+  else
+    echo -n ' '
+  end
   set_color normal
   set_color $secondary
   echo -n "$right_triangle "
