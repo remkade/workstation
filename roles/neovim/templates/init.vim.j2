@@ -20,7 +20,7 @@ call dein#add('ryanoasis/vim-devicons')
 call dein#add('neomake/neomake')
 call dein#add('mileszs/ack.vim')
 call dein#add('tpope/vim-fugitive')
-call dein#add('autozimu/LanguageClient-neovim')
+" call dein#add('autozimu/LanguageClient-neovim')
 
 " Languages
 call dein#add('Glench/Vim-Jinja2-Syntax')
@@ -38,6 +38,9 @@ call dein#add('blerins/flattown')
 call dein#add('mhartington/oceanic-next')
 call dein#add('scwood/vim-hybrid')
 call dein#add('rhysd/vim-color-spring-night')
+call dein#add('Yggdroot/duoduo')
+call dein#add('ajmwagar/vim-deus')
+call dein#add('nightsense/vrunchbang')
 
 " Required:
 call dein#end()
@@ -55,7 +58,13 @@ function! RandomColorscheme()
 python3 << EOF
 import vim
 import random
-schemes = ['flattown', 'OceanicNext', 'spring-night', 'hybrid']
+schemes = ['flattown',
+	'OceanicNext',
+	'spring-night',
+	'deus',
+	'vrunchbang-dark',
+	'duoduo',
+	'hybrid']
 vim.command("colorscheme %s" % random.choice(schemes))
 EOF
 endfunction

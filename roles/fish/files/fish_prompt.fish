@@ -22,7 +22,7 @@ function fish_prompt
   echo -n " "
   echo -n $filled_bottom_right
   set_color -b $secondary
-  if test -d .git; or git rev-parse --git-dir ^/dev/null
+  if test -d .git; or git rev-parse --git-dir ^/dev/null >/dev/null
     set_color fff
     echo -n " $git_dir" (git symbolic-ref --quiet --short HEAD; or git rev-parse --short HEAD)
   else
