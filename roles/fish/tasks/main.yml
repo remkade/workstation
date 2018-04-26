@@ -18,3 +18,9 @@
     owner: "{{ ansible_user }}"
     src: fish_prompt.fish
     dest: "{{ home }}/.config/fish/functions/fish_prompt.fish"
+- name: Fish Config File
+  template:
+    owner: "{{ ansible_user }}"
+    mode: '0644'
+    src: config.fish.j2
+    dest: "{{ home }}/.config/fish/config.fish"

@@ -1,0 +1,5 @@
+# vim: ft=fish
+if [ -d $HOME/.rbenv/shims -a -d $HOME/.cargo/bin ]
+  set PATH $HOME/.rbenv/shims $HOME/.cargo/bin $PATH
+  rbenv rehash >/dev/null ^&1
+end
