@@ -2,17 +2,31 @@
 - name: Install Fish
   package: name=fish state={{ install_state }}
   become: "{{ need_sudo }}"
-- name: Fish Command Prompt
+
+- name: Fish Function dir
   file:
     path: "{{ home }}/.config/fish/functions"
     owner: "{{ ansible_user }}"
     state: directory
     recurse: true
-- name: Bubble Text function
+
+- name: 
+  template:
+    dest: "{{ home }}/.config/fish/config.fish"
+    owner: "{{ ansible_user }}"
+    src: config.fish.j2
+    mode: "0644"
+
+- name: Install Fish Functions
   copy:
     owner: "{{ ansible_user }}"
-    src: bubble_text.fish
-    dest: "{{ home }}/.config/fish/functions/bubble_text.fish"
+    src: "{{item}}.fish"
+    dest: "{{ home }}/.config/fish/functions/{{ item }}.fish"
+  with_items:
+    - macvim
+    - bubble_text
+    - list_instances
+
 - name: Fish Command Prompt
   copy:
     owner: "{{ ansible_user }}"
