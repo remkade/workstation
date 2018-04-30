@@ -10,10 +10,8 @@
     - {name: dein, tags: ['dein']}
     - {name: neovim, tags: ['neovim']}
     - {name: vim, tags: ['vim']}
-    - {name: powerline, tags: ['powerline']}
     - {name: tmux, tags: ['tmux']}
     - {name: go, tags: ['go']}
-    - {name: bash, tags: ['bash']}
     - {name: fish, tags: ['fish']}
   vars:
     home: "{{ lookup('env', 'HOME') }}"
