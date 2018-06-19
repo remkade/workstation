@@ -14,7 +14,7 @@ function fish_prompt
 
   set_color -b $primary
   set_color fff
-  echo -n " "(pwd | xargs basename)" "
+  echo -n " "(pwd | rev | cut -d/ -f1 | rev)" "
   set_color -b $tertiary
   set_color $primary
   echo -n $filled_top_left
