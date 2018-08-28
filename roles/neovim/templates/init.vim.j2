@@ -14,6 +14,8 @@ if !has('nvim')
   call dein#add('roxma/vim-hug-neovim-rpc')
 endif
 call dein#add('Shougo/denite.nvim')
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('bling/vim-airline')
 call dein#add('ryanoasis/vim-devicons')
@@ -98,6 +100,9 @@ end
 " Deocomplete
 let g:deoplete#enable_at_startup = 1
 
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
 " Deinite
 " Ripgrep command on grep source
 call denite#custom#var('grep', 'command', ['rg'])
@@ -116,11 +121,12 @@ let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start'],
     \ }
 
+" Neomake config
+call neomake#configure#automake('w', 750)
+let g:neomake_open_list = 0
 
-" Linters
-autocmd! BufWritePost * Neomake
+" File indentation
 autocmd Filetype ruby set sts=2 sw=2 et
-
 autocmd Filetype yaml set sts=2 sw=2 et
 autocmd Filetype json set sts=2 sw=2 et
 
@@ -128,9 +134,8 @@ autocmd Filetype Dockerfile set makeprg="docker -t ". expand('%:h:t') ." build .
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
-" Rust
+" Auto format
 let g:autofmt_autosave = 1
-autocmd BufWritePost *.rs NeomakeProject cargo
 
 " Ignore rust/go specific build stuff
 set wildignore+=*/target/*
