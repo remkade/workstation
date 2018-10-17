@@ -13,6 +13,7 @@
     - {name: tmux, tags: ['tmux']}
     - {name: go, tags: ['go']}
     - {name: fish, tags: ['fish']}
+    - {name: alacritty, tags: ['alacritty']}
   vars:
     home: "{{ lookup('env', 'HOME') }}"
     dein_dir: "{{ lookup('env', 'HOME') }}/.dein"
