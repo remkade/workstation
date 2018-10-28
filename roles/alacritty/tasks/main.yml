@@ -2,12 +2,11 @@
 - name: create alacritty config dir
   file:
     path: "{{ home }}/.config/alacritty"
-    src: alacritty.yml
     owner: "{{ ansible_user_id }}"
     state: directory
 - name: create alacritty.yml
-  file:
-    path: "{{ home }}/.config/alacritty/alacritty.yml"
+  copy:
+    dest: "{{ home }}/.config/alacritty/alacritty.yml"
     src: alacritty.yml
     owner: "{{ ansible_user_id }}"
     state: present
