@@ -6,7 +6,7 @@
   package: name=go state=present
   when: 'ansible_distribution != "MacOSX"'
 - name: Setup GOPATH
-  file: path={{ home }}/Documents/go state=directory owner=kyle_leaders
+  file: path={{ home }}/Documents/go state=directory owner={{ ansible_user_id }}
   when: ansible_distribution == "MacOSX"
 - name: Setup GOPATH
   file: path={{ home }}/Documents/go state=directory owner=kyle
