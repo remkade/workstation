@@ -2,6 +2,12 @@
 - name: Install Fish
   package: name=fish state={{ install_state }}
   become: "{{ need_sudo }}"
+- name: Fish Base dir
+  file:
+    path: "{{ home }}/.config/fish"
+    owner: "{{ ansible_user }}"
+    state: directory
+    recurse: true
 - name: Fish Config File
   template:
     owner: "{{ ansible_user }}"

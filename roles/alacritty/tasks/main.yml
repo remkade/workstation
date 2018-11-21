@@ -9,4 +9,3 @@
     dest: "{{ home }}/.config/alacritty/alacritty.yml"
     src: alacritty.yml
     owner: "{{ ansible_user_id }}"
-    state: present

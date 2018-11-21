@@ -37,7 +37,7 @@
   template:
     src: powerline.plist.j2
     dest: "{{ home }}/Library/LaunchAgents/powerline.plist"
-    owner: kyle_leaders
+    owner: "{{ ansible_user_id }}"
   when: ansible_distribution == "MacOSX"
   notify:
     - Load launchd agent

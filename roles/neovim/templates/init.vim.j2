@@ -124,16 +124,11 @@ let g:LanguageClient_serverCommands = {
 
 " Neomake config
 call neomake#configure#automake('w', 750)
-let g:neomake_open_list = 0
 
 " File indentation
 autocmd Filetype ruby set sts=2 sw=2 et
 autocmd Filetype yaml set sts=2 sw=2 et
 autocmd Filetype json set sts=2 sw=2 et
-
-autocmd Filetype Dockerfile set makeprg="docker -t ". expand('%:h:t') ." build ."
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
 
 " Auto format
 let g:autofmt_autosave = 1
