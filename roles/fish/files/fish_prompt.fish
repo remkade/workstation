@@ -14,6 +14,12 @@ function fish_prompt
     set secondary_normal 7F3A0F
     set secondary_error d00
     set tertiary 2B8815 
+  case cool
+    set primary 20bf55
+    set text fff
+    set secondary_normal 01baef
+    set secondary_error 757575
+    set tertiary 0b4f6c 
   case '*'
     set primary 5fafff
     set text fff
