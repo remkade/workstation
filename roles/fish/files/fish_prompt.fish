@@ -1,33 +1,31 @@
 function fish_prompt
   set last_status $status
 
-  if test "$COLOR_SCHEME" = 'rad'
+  switch "$COLOR_SCHEME"
+  case rad
     set primary EF476f
     set text 000
-    if test "$last_status" = '0'
-      set secondary 06d6a0
-    else
-      set secondary 118ab2
-    end
+    set secondary_normal 06d6a0
+    set secondary_error 118ab2
     set tertiary ffd166
-  else if test "$COLOR_SCHEME" = 'starbucks'
+  case starbucks
     set primary 006341
     set text fff
-    if test "$last_status" = '0'
-      set secondary 7F3A0F
-    else
-      set secondary d00
-    end
+    set secondary_normal 7F3A0F
+    set secondary_error d00
     set tertiary 2B8815 
-  else
+  case '*'
     set primary 5fafff
     set text fff
-    if test "$last_status" = '0'
-      set secondary ffaf5f
-    else
-      set secondary ff8700
-    end
+    set secondary_normal ffaf5f
+    set secondary_error ff8700
     set tertiary ff5f5f
+  end
+
+  if test "$last_status" = '0'
+    set secondary $secondary_normal
+  else
+    set secondary $secondary_error
   end
 
   set git_dir (printf '\ue25')
