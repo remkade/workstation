@@ -2,6 +2,7 @@
 - name: install vim
   package: "name=vim state={{ install_state }}"
   become: "{{ need_sudo }}"
+  when: 'ansible_distribution != "MacOSX"'
 
 - name: create vimrc
   file:
