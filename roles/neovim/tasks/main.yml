@@ -1,7 +1,8 @@
 ---
 - name: neovim ppa
-  apt_repository: repo='ppa:neovim/unstable'
+  apt_repository: repo='ppa:neovim-ppa/unstable'
   when: ansible_pkg_mgr == 'apt'
+  become: true
 
 - name: install neovim
   package: name=neovim state={{ install_state }}
@@ -18,6 +19,7 @@
 - name: install ripgrep
   package: name=ripgrep state={{ install_state }}
   become: "{{ need_sudo }}"
+  when: 'ansible_distribution != "Ubuntu"'
 
 - name: install neovim pip module
   pip: name=neovim state=latest executable=pip3

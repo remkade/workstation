@@ -1,10 +1,7 @@
 ---
-- name: "Install git"
-  package: name=git state=latest
-  when: 'ansible_distribution != "Gentoo"'
-- name: "Install git"
-  package: name=git state=installed
-  when: 'ansible_distribution == "Gentoo"'
+- name: Install git
+  package: name=git state={{ install_state }}
+  become: "{{ need_sudo }}"
 - name: gitconfig
   copy:
     src: gitconfig
