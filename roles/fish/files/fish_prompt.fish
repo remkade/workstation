@@ -34,7 +34,7 @@ function fish_prompt
     set secondary $secondary_error
   end
 
-  set git_dir (printf '\ue25')
+  set git_dir (printf '\ue725')
   set filled_top_left (printf '\ue0bc')
   set filled_bottom_right (printf '\ue0ba')
   set right_triangle (printf '\ue0b0')
