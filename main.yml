@@ -2,7 +2,7 @@
 - name: "Workstation setup"
   connection: local
   hosts:
-    - me
+    - localhost
   roles:
     - {name: variables, tags: ['variables']}
     - {name: git, tags: ['git']}
