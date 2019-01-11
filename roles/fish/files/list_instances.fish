@@ -1,11 +1,3 @@
 function list_instances
-	aws ec2 describe-instances | \
-		jq '[.Reservations[] | .Instances[] |
-			{
-				id: .InstanceId,
-				ip: .PublicIpAddress,
-				image: .ImageId,
-				tags: .Tags | from_entries
-			}
-		]'
+  aws ec2 describe-instances --query 'Reservations[*].Instances[0].{ID:InstanceId,Name:Tags[?Key==`Name`].Value | [0],IP:PublicIpAddress,AMI:ImageId,Type:InstanceType}' --output table --color=off
 end
