@@ -1,13 +1,14 @@
 ---
 - name: Install Go
   package: name=golang state=present
-  when: ansible_distribution == "MacOSX"
+  when: 'ansible_distribution == "MacOSX" or ansible_distribution == "Ubuntu"'
+  become: "{{ need_sudo }}"
 - name: Install Go
   package: name=go state=present
-  when: 'ansible_distribution != "MacOSX"'
+  when: 'ansible_distribution != "MacOSX" and ansible_distribution != "Ubuntu"'
 - name: Setup GOPATH
   file: path={{ home }}/Documents/go state=directory owner={{ ansible_user_id }}
   when: ansible_distribution == "MacOSX"
 - name: Setup GOPATH
-  file: path={{ home }}/Documents/go state=directory owner=kyle
+  file: path={{ home }}/Documents/go state=directory owner={{ ansible_user_id }}
   when: 'ansible_distribution != "MacOSX"'
