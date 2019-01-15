@@ -29,4 +29,5 @@
   loop:
     - bubble_text
     - fish_prompt
+    - fish_mode_prompt
     - genpass
