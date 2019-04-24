@@ -5,6 +5,6 @@
 - name: gitconfig
   copy:
     src: gitconfig
-    dest: "{{ lookup('env','HOME') }}/.gitconfig"
+    dest: "{{ ansible_user_dir }}/.gitconfig"
     owner: "{{ ansible_user_id }}"
     mode: "0644"

@@ -15,6 +15,6 @@
     - {name: fish, tags: ['fish']}
     - {name: alacritty, tags: ['alacritty']}
   vars:
-    home: "{{ lookup('env', 'HOME') }}"
-    dein_dir: "{{ lookup('env', 'HOME') }}/.dein"
-    neovim_dir: "{{ lookup('env', 'HOME') }}/.config/nvim"
+    home: "{{ ansible_user_dir }}"
+    dein_dir: "{{ ansible_user_dir }}/.dein"
+    neovim_dir: "{{ ansible_user_dir }}/.config/nvim"
