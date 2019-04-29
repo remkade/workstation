@@ -45,6 +45,8 @@ call dein#add('Yggdroot/duoduo')
 call dein#add('ajmwagar/vim-deus')
 call dein#add('Siphalor/vim-atomified')
 call dein#add('tjammer/blayu.vim')
+call dein#add('chase/focuspoint-vim')
+call dein#add('wmvanvliet/vim-blackboard')
 
 " Required:
 call dein#end()
@@ -69,6 +71,8 @@ schemes = ['flattown',
 	'duoduo',
 	'atomified',
 	'blayu',
+	'focuspoint',
+	'blackboard',
 	'hybrid']
 vim.command("colorscheme %s" % random.choice(schemes))
 EOF
