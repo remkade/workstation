@@ -1,4 +1,8 @@
 ---
+- name: Get python3 location
+  shell: which python3
+  register: python_bin
+
 - name: neovim ppa
   apt_repository: repo='ppa:neovim-ppa/unstable'
   when: ansible_pkg_mgr == 'apt'

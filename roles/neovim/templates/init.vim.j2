@@ -22,7 +22,7 @@ call dein#add('ryanoasis/vim-devicons')
 call dein#add('neomake/neomake')
 call dein#add('wincent/ferret')
 call dein#add('tpope/vim-fugitive')
-" call dein#add('autozimu/LanguageClient-neovim')
+call dein#add('autozimu/LanguageClient-neovim')
 
 " Languages
 call dein#add('Glench/Vim-Jinja2-Syntax')
@@ -96,7 +96,7 @@ let g:airline_powerline_fonts = 1
 let mapleader = ","
 
 " Setup python3
-let g:python_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '{{ python_bin.stdout }}'
 
 " disable mouse on command line
 if !has("gui_running") 
@@ -112,8 +112,7 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 " Deinite
 " Ripgrep command on grep source
 call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts',
-                      \ ['--vimgrep', '--no-heading'])
+call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
@@ -123,7 +122,7 @@ call denite#custom#var('grep', 'final_opts', [])
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'sh': ['bash-language-server', 'start'],
     \ }
 
