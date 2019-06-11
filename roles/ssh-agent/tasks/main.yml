@@ -1,0 +1,19 @@
+---
+- name: Setup systemd directory
+  file:
+    dest: '{{ home }}/.config/systemd/user'
+    state: directory
+    owner: '{{ansible_user_id}}'
+    mode: '0755'
+  when: 'ansible_distribution == "Ubuntu"'
+- name: Add ssh-agent service file
+  copy:
+    dest: '{{ home }}/.config/systemd/user/ssh-agent.service'
+    mode: '0644'
+    src: ssh-agent.service
+- name: Start ssh-agent service
+  systemd:
+    name: ssh-agent
+    enabled: true
+    scope: user
+    state: started
