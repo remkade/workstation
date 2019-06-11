@@ -22,7 +22,7 @@ call dein#add('ryanoasis/vim-devicons')
 call dein#add('neomake/neomake')
 call dein#add('wincent/ferret')
 call dein#add('tpope/vim-fugitive')
-call dein#add('autozimu/LanguageClient-neovim')
+call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
 
 " Languages
 call dein#add('Glench/Vim-Jinja2-Syntax')
@@ -123,7 +123,12 @@ set hidden
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-    \ 'sh': ['bash-language-server', 'start'],
+    \ 'yaml': ['yaml-language-server', '--stdio'],
+    \ 'json': ['json-language-server', '--stdio'],
+    \ 'js': ['javascript-typescript-stdio'],
+    \ 'ts': ['javascript-typescript-stdio'],
+    \ 'python': ['pyls'],
+    \ 'ruby': ['solargraph', 'stdio'],
     \ }
 
 " Neomake config
@@ -146,7 +151,7 @@ if executable('rg')
 endif
 
 " Run neomake to do linters or whatever
-noremap <leader>l :Neomake!<enter>
+noremap <leader>l :Neomake<enter>
 
 " Swap between buffers easy
 noremap <leader>n :bn<enter>
