@@ -19,8 +19,6 @@ function fish_prompt
   set right_triangle (printf '\ue0b0')
   set error_icon (printf '\ue780')
 
-  echo "Primary: $primary, Secondary: $secondary, Text: $text"
-
   set_color -b $primary
   set_color $text
   echo -n ' '(pwd | rev | cut -d/ -f1 | rev)' '
