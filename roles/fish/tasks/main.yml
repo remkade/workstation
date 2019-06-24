@@ -20,7 +20,13 @@
     owner: "{{ ansible_user }}"
     state: directory
     recurse: true
-- name: Fish Command Prompt
+- name: Fish Functions
+  copy:
+    owner: "{{ ansible_user }}"
+    mode: "0644"
+    src: color_schemes.yaml
+    dest: "{{ home }}/.config/fish/color_schemes.yaml"
+- name: Fish Functions
   copy:
     owner: "{{ ansible_user }}"
     mode: "0644"
@@ -28,7 +34,8 @@
     dest: "{{ home }}/.config/fish/functions/{{ item }}.fish"
   loop:
     - bubble_text
-    - fish_prompt
     - fish_mode_prompt
+    - fish_prompt
     - genpass
     - list_instances
+    - random_color_scheme

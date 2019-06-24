@@ -1,31 +1,10 @@
 function fish_prompt
   set last_status $status
 
-  switch "$COLOR_SCHEME"
-  case rad
-    set primary EF476f
-    set text 000
-    set secondary_normal 06d6a0
-    set secondary_error 118ab2
-    set tertiary ffd166
-  case starbucks
-    set primary 006341
-    set text fff
-    set secondary_normal 7F3A0F
-    set secondary_error d00
-    set tertiary 2B8815 
-  case cool
-    set primary 20bf55
-    set text fff
-    set secondary_normal 01baef
-    set secondary_error 757575
-    set tertiary 0b4f6c 
-  case '*'
-    set primary 5fafff
-    set text fff
-    set secondary_normal ffaf5f
-    set secondary_error ff8700
-    set tertiary ff5f5f
+  set color_scheme_file "$HOME/.config/fish/color_schemes.yaml"
+
+  if test -z $COLOR_SCHEME
+    eval (random_color_scheme)
   end
 
   if test "$last_status" = '0'
@@ -39,6 +18,8 @@ function fish_prompt
   set filled_bottom_right (printf '\ue0ba')
   set right_triangle (printf '\ue0b0')
   set error_icon (printf '\ue780')
+
+  echo "Primary: $primary, Secondary: $secondary, Text: $text"
 
   set_color -b $primary
   set_color $text
