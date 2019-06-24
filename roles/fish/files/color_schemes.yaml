@@ -23,3 +23,21 @@ default:
   secondary_normal: ffaf5f
   secondary_error: ff8700
   tertiary: ff5f5f
+summer:
+  primary: '5BC0EB'
+  secondary_normal: 'FDE74C'
+  secondary_error: 'FA7921'
+  text: '000'
+  tertiary: '9BC53D'
+summer_alt:
+  tertiary: '5BC0EB'
+  secondary_normal: 'FDE74C'
+  secondary_error: 'FA7921'
+  text: '000'
+  primary: '9BC53D'
+serious:
+  primary: 'E71D36'
+  secondary_normal: '2EC4B6'
+  secondary_error: 'FF9F1C'
+  text: 'fff'
+  tertiary: 'FDFFFC'

@@ -20,7 +20,7 @@
     owner: "{{ ansible_user }}"
     state: directory
     recurse: true
-- name: Fish Functions
+- name: Fish Color Schemes Yaml
   copy:
     owner: "{{ ansible_user }}"
     mode: "0644"

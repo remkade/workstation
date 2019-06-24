@@ -12,10 +12,13 @@ function fish_prompt
   else
     set secondary $secondary_error
   end
-
+				# slash     pixel  thick pix  hexagon  rounded
+  set divider_left (random choice '\ue0c4' '\ue0bc' '\ue0c6' '\ue0cc' '\ue0b4')
+				# slash     pixel    thick pix  rounded
+  set divider_right (random choice '\ue0c5' '\ue0ba' '\ue0c7' '\ue0b6')
   set git_dir (printf '\ue725')
-  set filled_top_left (printf '\ue0bc')
-  set filled_bottom_right (printf '\ue0ba')
+  set filled_top_left (printf $divider_left)
+  set filled_bottom_right (printf $divider_right)
   set right_triangle (printf '\ue0b0')
   set error_icon (printf '\ue780')
 
