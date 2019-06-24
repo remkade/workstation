@@ -23,8 +23,8 @@ set -g escape-time 10
 set-window-option -g mode-keys vi
 
 # Setup 'v' to begin selection as in Vim
-bind-key vi-copy v begin-selection
 {% if ansible_distribution == "MacOSX" %}
+bind-key vi-copy v begin-selection
 set-option -g default-command "exec reattach-to-user-namespace -l fish"
 bind-key vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
 
@@ -32,3 +32,11 @@ bind-key vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
 unbind vi-copy Enter
 bind-key vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
 {% endif %}
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'odedlaz/tmux-onedark-theme'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'

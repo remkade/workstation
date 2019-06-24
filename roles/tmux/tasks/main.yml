@@ -1,6 +1,7 @@
 ---
 - name: Install tmux
   package: name=tmux state=present
+  become: "{{ need_sudo }}"
 - name: Configure tmux
   template: src=tmux.conf.j2 dest={{ home }}/.tmux.conf
 - name: Add tmux dir
@@ -8,8 +9,24 @@
     state: directory
     dest: '{{ home }}/.tmux'
     mode: '0755'
+    owner: '{{ ansible_user_id }}'
+- name: Add tmux plugin dir
+  file:
+    state: directory
+    dest: '{{ home }}/.tmux/plugins'
+    mode: '0755'
+    owner: '{{ ansible_user_id }}'
+
 - name: Add tmux pane file
   copy:
     dest: '{{ home }}/.tmux/base.conf'
     mode: '0644'
     src: 'base.conf'
+    owner: '{{ ansible_user_id }}'
+
+- name: Install TPM
+  git:
+    dest: '{{ home }}/.tmux/plugins/tpm'
+    clone: true
+    update: true
+    repo: https://github.com/tmux-plugins/tpm
