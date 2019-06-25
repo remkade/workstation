@@ -12,14 +12,46 @@ function fish_prompt
   else
     set secondary $secondary_error
   end
-				# slash     pixel  thick pix  hexagon  rounded
-  set divider_left (random choice '\ue0c4' '\ue0bc' '\ue0c6' '\ue0cc' '\ue0b4')
-				# slash     pixel    thick pix  rounded
-  set divider_right (random choice '\ue0c5' '\ue0ba' '\ue0c7' '\ue0b6')
+  
+  if test -z $divider_left
+    set -g pixel '\ue0c4' '\ue0c5'
+    set -g rounded '\ue0b4' '\ue0b6'
+    set -g slashes '\ue0bc' '\ue0ba'
+    set -g thixel '\ue0c6' '\ue0c7'
+    set -g hexagon '\ue0cc' '\ue0cc'
+    set -g trapezoid '\ue0d2' '\ue0d4'
+
+    set divider_type (random choice 'rounded_facing' 'slash' 'pixel' 'hexagon' 'random')
+    switch $divider_type
+    case 'slash'
+      set -gx divider_left (printf $slashes[1])
+      set -gx divider_right (printf $slashes[2])
+    case 'rounded_facing'
+      set -gx divider_left (printf $rounded[1])
+      set -gx divider_right (printf $rounded[2])
+    case 'pixel'
+      set -gx divider_left (printf $thixel[1])
+      set -gx divider_right (printf $thixel[2])
+    case 'hexagon'
+      set -gx divider_left (printf $hexagon[1])
+      set -gx divider_right (printf $hexagon[2])
+    case 'trapezoid'
+      set -gx divider_left (printf $trapezoid[1])
+      set -gx divider_right (printf $trapezoid[2])
+    case '*'
+      set left (random choice '\ue0c4' '\ue0bc' '\ue0c6' '\ue0cc' '\ue0b4')
+      set right (random choice '\ue0c5' '\ue0ba' '\ue0c7' '\ue0cc' '\ue0b6')
+      set -gx divider_left (printf $left)
+      set -gx divider_right (printf $right)
+    end
+  end
+
+  if test -z $endcap
+    set cap (random choice '\ue0b0' '\ue0b4' '\ue0cc')
+    set -gx endcap (printf $cap)
+  end
+
   set git_dir (printf '\ue725')
-  set filled_top_left (printf $divider_left)
-  set filled_bottom_right (printf $divider_right)
-  set right_triangle (printf '\ue0b0')
   set error_icon (printf '\ue780')
 
   set_color -b $primary
@@ -27,10 +59,10 @@ function fish_prompt
   echo -n ' '(pwd | rev | cut -d/ -f1 | rev)' '
   set_color -b $tertiary
   set_color $primary
-  echo -n $filled_top_left
+  echo -n $divider_left
   set_color $secondary
   echo -n ' '
-  echo -n $filled_bottom_right
+  echo -n $divider_right
   set_color -b $secondary
   if test -d .git; or git rev-parse --git-dir ^/dev/null >/dev/null
     set_color $text
@@ -45,6 +77,6 @@ function fish_prompt
   end
   set_color normal
   set_color $secondary
-  echo -n "$right_triangle "
+  echo -n "$endcap "
   set_color normal
 end
