@@ -34,6 +34,7 @@
     name: '{{ item }}'
     state: latest
     global: true
+  become: "{{ need_sudo }}"
   with_items:
     - yaml-language-server
     - vscode-json-languageserver
@@ -51,6 +52,7 @@
       - python-language-server
     state: latest
     executable: pip3
+    extra_args: --user
 
 - name: neovim config dir
   file:
