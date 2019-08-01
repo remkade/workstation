@@ -77,13 +77,15 @@ schemes = ['flattown',
 	'atomified',
 	'blayu',
 	'focuspoint',
-	'blackboard',
+	'edge',
+	'eighties',
 	'hybrid']
 vim.command("colorscheme %s" % random.choice(schemes))
 EOF
 endfunction
 
 set background=dark
+set termguicolors
 call RandomColorscheme()
 
 "folding settings
