@@ -38,4 +38,5 @@
     - fish_prompt
     - genpass
     - list_instances
+    - list_snapshots
     - random_color_scheme
