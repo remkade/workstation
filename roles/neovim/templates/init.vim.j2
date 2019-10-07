@@ -39,19 +39,20 @@ call dein#add('rust-lang/rust.vim')
 call dein#add('vlaadbrain/gnuplot.vim')
 
 " Color Schemes
-call dein#add('blerins/flattown')
-call dein#add('mhartington/oceanic-next')
-call dein#add('scwood/vim-hybrid')
-call dein#add('rhysd/vim-color-spring-night')
+call dein#add('Siphalor/vim-atomified')
 call dein#add('Yggdroot/duoduo')
 call dein#add('ajmwagar/vim-deus')
-call dein#add('Siphalor/vim-atomified')
-call dein#add('tjammer/blayu.vim')
+call dein#add('arcticicestudio/nord-vim')
+call dein#add('blerins/flattown')
 call dein#add('chase/focuspoint-vim')
-call dein#add('wmvanvliet/vim-blackboard')
 call dein#add('flrnprz/plastic.vim')
-call dein#add('sainnhe/edge')
 call dein#add('lithammer/vim-eighties')
+call dein#add('mhartington/oceanic-next')
+call dein#add('rhysd/vim-color-spring-night')
+call dein#add('sainnhe/edge')
+call dein#add('scwood/vim-hybrid')
+call dein#add('tjammer/blayu.vim')
+call dein#add('wmvanvliet/vim-blackboard')
 
 " Required:
 call dein#end()
@@ -80,13 +81,13 @@ schemes = ['flattown',
 	'focuspoint',
 	'edge',
 	'eighties',
-	'hybrid']
+	'hybrid',
+	'nord']
 vim.command("colorscheme %s" % random.choice(schemes))
 EOF
 endfunction
 
 set background=dark
-set termguicolors
 call RandomColorscheme()
 
 "folding settings
