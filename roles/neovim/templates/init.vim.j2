@@ -47,11 +47,15 @@ call dein#add('ajmwagar/vim-deus')
 call dein#add('arcticicestudio/nord-vim')
 call dein#add('blerins/flattown')
 call dein#add('chase/focuspoint-vim')
+call dein#add('flrnd/candid.vim')
 call dein#add('flrnprz/plastic.vim')
 call dein#add('lithammer/vim-eighties')
 call dein#add('mhartington/oceanic-next')
 call dein#add('rhysd/vim-color-spring-night')
+call dein#add('rhysd/wallaby.vim')
+call dein#add('sainnhe/archived-colors') " Cryslominsa
 call dein#add('sainnhe/edge')
+call dein#add('sainnhe/vim-color-forest-night')
 call dein#add('scwood/vim-hybrid')
 call dein#add('tjammer/blayu.vim')
 call dein#add('wmvanvliet/vim-blackboard')
@@ -77,16 +81,20 @@ schemes = [
 	'atomified',
 	'blackboard',
 	'blayu',
+	'candid',
+	'cryslominsa',
 	'deus',
 	'duoduo',
 	'edge',
 	'eighties',
 	'flattown',
 	'focuspoint',
+        'forest-night',
 	'hybrid',
 	'nord',
 	'plastic',
-	'spring-night'
+	'spring-night',
+	'wallaby'
 	]
 vim.command("colorscheme %s" % random.choice(schemes))
 EOF
