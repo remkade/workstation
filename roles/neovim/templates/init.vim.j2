@@ -140,6 +140,8 @@ let g:LanguageClient_serverCommands = {
     \ 'ruby': ['solargraph', 'stdio'],
     \ }
 
+let g:LanguageClient_settingsPath = '~/.config/neovim/lsp_settings.json'
+
 " Neomake config
 call neomake#configure#automake('w', 750)
 

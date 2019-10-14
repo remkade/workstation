@@ -61,6 +61,12 @@
     owner: "{{ansible_user_id}}"
     mode: 0755
 
+- name: lsp configuration file
+  copy:
+    dest: "{{ neovim_dir }}/lsp_settings.json"
+    src: lsp_settings.json
+    owner: "{{ ansible_user_id }}"
+
 - name: neovim init.vim
   template:
     dest: "{{ neovim_dir }}/init.vim"
