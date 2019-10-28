@@ -146,7 +146,7 @@ set hidden
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'yaml': ['yaml-language-server', '--stdio'],
-    \ 'json': ['json-language-server', '--stdio'],
+    \ 'json': ['vscode-json-languageserver', '--stdio'],
     \ 'js': ['javascript-typescript-stdio'],
     \ 'ts': ['javascript-typescript-stdio'],
     \ 'python': ['pyls'],
@@ -163,9 +163,6 @@ autocmd Filetype ruby set sts=2 sw=2 et
 autocmd Filetype yaml set sts=2 sw=2 et
 autocmd Filetype json set sts=2 sw=2 et
 
-" Auto format
-let g:autofmt_autosave = 1
-
 " Ignore rust/go specific build stuff
 set wildignore+=*/target/*
 set backspace=2
@@ -176,6 +173,15 @@ endif
 
 " Run neomake to do linters or whatever
 noremap <leader>l :Neomake<enter>
+
+" Format code
+noremap <leader>f :call LanguageClient_textDocument_formatting()<enter>
+
+" Jump to definition
+noremap <leader>f :call LanguageClient_textDocument_definition()<enter>
+
+" Rename
+noremap <leader>r :call LanguageClient_textDocument_rename()<enter>
 
 " Swap between buffers easy
 noremap <leader>n :bn<enter>
