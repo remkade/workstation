@@ -25,7 +25,7 @@
     extra_args: --user
 
 - name: Install go language server
-  command: go get golang.org/x/tools/gopls@latest
+  command: go get -u golang.org/x/tools/gopls
 
 - name: lsp configuration file
   copy:
