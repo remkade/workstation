@@ -24,6 +24,9 @@
     executable: pip3
     extra_args: --user
 
+- name: Install go language server
+  command: go get golang.org/x/tools/gopls@latest
+
 - name: lsp configuration file
   copy:
     dest: "{{ neovim_dir }}/lsp_settings.json"

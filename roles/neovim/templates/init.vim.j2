@@ -150,19 +150,26 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'typescript': ['javascript-typescript-stdio'],
     \ 'python': ['pyls'],
+    \ 'go': ['gopls'],
     \ 'ruby': ['solargraph', 'stdio'],
     \ }
 
 let g:LanguageClient_settingsPath = '~/.config/neovim/lsp_settings.json'
 
-" Neomake config
-call neomake#configure#automake('w', 750)
+" Disable some vim-go stuff handled by lsp
+let g:go_code_completion_enabled = 0
+let g:go_fmt_autosave = 0
+let g:go_mod_fmt_autosave = 0
 
 " File indentation
 autocmd Filetype ruby set sts=2 sw=2 et
 autocmd Filetype yaml set sts=2 sw=2 et
 autocmd Filetype json set sts=2 sw=2 et
 autocmd Filetype js set sts=2 sw=2 et
+
+" Run format on save
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+autocmd BufWritePre *.rs :call LanguageClient#textDocument_formatting_sync()
 
 " Ignore rust/go specific build stuff
 set wildignore+=*/target/*
