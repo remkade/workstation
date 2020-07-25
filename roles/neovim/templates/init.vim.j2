@@ -39,6 +39,7 @@ call dein#add('hashivim/vim-terraform')
 call dein#add('othree/html5.vim')
 call dein#add('rust-lang/rust.vim')
 call dein#add('vlaadbrain/gnuplot.vim')
+call dein#add('PProvost/vim-ps1')
 
 " Color Schemes
 call dein#add('Siphalor/vim-atomified')
@@ -125,7 +126,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 " Set leader to ,
-let mapleader = ","
+let mapleader = " "
 
 " Setup python3
 let g:python_host_prog = '{{ python_bin.stdout }}'
@@ -152,6 +153,9 @@ call denite#custom#var('grep', 'final_opts', [])
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
+
+" Fix for mac
+set pyxversion=3
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
@@ -209,6 +213,23 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+" Denite define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
 " Run neomake to do linters or whatever
 noremap <leader>l :Neomake<enter>
 
@@ -224,3 +245,11 @@ noremap <leader>r :call LanguageClient_textDocument_rename()<enter>
 " Swap between buffers easy
 noremap <leader>n :bn<enter>
 noremap <leader>p :bp<enter>
+
+{% if ansible_system == 'Windows' -%}
+" Use Powershell on Windows
+set shell=powershell.exe
+set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+set shellpipe=|
+set shellredir=>
+{% endif %}
