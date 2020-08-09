@@ -132,7 +132,11 @@ let mapleader = " "
 let g:python_host_prog = '{{ python_bin.stdout }}'
 
 " disable mouse on command line
-if !has("gui_running") 
+if has("gui_running") 
+  set mouse=a
+  Guifont FiraCode Nerd Font Mono:h12
+  let guifont=FiraCode\ Nerd\ Font\ Mono:h12
+else
   set mouse-=a
 end
 
