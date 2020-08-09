@@ -6,15 +6,15 @@
   roles:
     - {name: variables, tags: ['variables']}
     - {name: git, tags: ['git']}
-    - {name: mercurial, tags: ['mercurial']}
     - {name: dein, tags: ['dein']}
+    - {name: go, tags: ['go']}
+    - {name: fish, tags: ['fish']}
+    - {name: nodejs, tags: ['nodejs']}
+    - {name: ruby, tags: ['ruby']}
+    - {name: ssh-agent, tags: ['ssh-agent']}
     - {name: neovim, tags: ['neovim']}
     - {name: vim, tags: ['vim']}
     - {name: tmux, tags: ['tmux']}
-    - {name: go, tags: ['go']}
-    - {name: fish, tags: ['fish']}
-    - {name: alacritty, tags: ['alacritty']}
-    - {name: ssh-agent, tags: ['ssh-agent']}
   vars:
     home: "{{ ansible_user_dir }}"
     dein_dir: "{{ ansible_user_dir }}/.dein"

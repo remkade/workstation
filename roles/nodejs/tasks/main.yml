@@ -2,6 +2,6 @@
 - name: install nodejs
   package: name=nodejs state={{install_state}}
   become: "{{ need_sudo }}"
-
-- name: Upgrade npm
-  npm_module:
+- name: install npm
+  package: name=npm state={{install_state}}
+  become: "{{ need_sudo }}"
