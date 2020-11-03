@@ -41,6 +41,13 @@
     owner: "{{ansible_user_id}}"
     mode: 0755
 
+- name: GUI init file
+  copy:
+    dest: "{{ neovim_dir }}/ginit.vim"
+    src: ginit.vim
+    owner: "{{ansible_user_id}}"
+    mode: 0644
+
 - name: neovim init.vim
   template:
     dest: "{{ neovim_dir }}/init.vim"

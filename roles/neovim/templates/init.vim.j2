@@ -4,6 +4,14 @@ if &compatible
 endif
 set runtimepath^={{ dein_dir }}/repos/github.com/Shougo/dein.vim
 
+{% if ansible_system == 'Windows' -%}
+" Use Powershell on Windows
+set shell=powershell.exe
+set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+set shellpipe=|
+set shellredir=>
+{% endif %}
+
 call dein#begin(expand('~/.cache/dein'))
 
 " VIM Functionality
@@ -199,19 +207,6 @@ set hidden
 " Fix for mac
 set pyxversion=3
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-    \ 'yaml': ['yaml-language-server', '--stdio'],
-    \ 'json': ['vscode-json-languageserver', '--stdio'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'python': ['pyls'],
-    \ 'go': ['gopls'],
-    \ 'ruby': ['solargraph', 'stdio'],
-    \ }
-
-let g:LanguageClient_settingsPath = '~/.config/neovim/lsp_settings.json'
-
 " Disable some vim-go stuff handled by lsp
 let g:go_code_completion_enabled = 0
 let g:go_fmt_autosave = 0
@@ -277,23 +272,6 @@ endfunction
 " Run neomake to do linters or whatever
 noremap <leader>l :Neomake<enter>
 
-" Format code
-noremap <leader>f :call LanguageClient_textDocument_formatting()<enter>
-
-" Jump to definition
-noremap <leader>d :call LanguageClient_textDocument_definition()<enter>
-
-" Rename
-noremap <leader>r :call LanguageClient_textDocument_rename()<enter>
-
 " Swap between buffers easy
 noremap <leader>n :bn<enter>
 noremap <leader>p :bp<enter>
-
-{% if ansible_system == 'Windows' -%}
-" Use Powershell on Windows
-set shell=powershell.exe
-set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
-set shellpipe=|
-set shellredir=>
-{% endif %}
