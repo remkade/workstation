@@ -1,3 +1,3 @@
 set mouse=a
-Guifont FiraCode Nerd Font Mono:h12
-let guifont=FiraCode\ Nerd\ Font\ Mono:h12
+Guifont FiraCode\ Nerd\ Font\ Mono:h12
+set guifont=FiraCode\ Nerd\ Font\ Mono:h12

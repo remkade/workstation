@@ -10,6 +10,7 @@
     - vscode-json-languageserver
     - vscode-languageserver
     - javascript-typescript-langserver
+    - sql-language-server
 
 - name: install ruby language server
   gem:

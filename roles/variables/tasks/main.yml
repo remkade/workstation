@@ -10,3 +10,13 @@
 - set_fact:
     need_sudo: false
   when: 'ansible_distribution == "MacOSX"'
+
+- set_fact:
+    sudo_user_name: '{{ ansible_env.SUDO_USER }}'
+  when: 'ansible_user == "root"'
+
+- user:
+    name: '{{ sudo_user_name }}'
+    state: present
+  register: sudo_user
+  when: 'ansible_user == "root"'

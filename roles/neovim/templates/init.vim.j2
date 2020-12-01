@@ -34,6 +34,14 @@ call dein#add('ludovicchabant/vim-lawrencium')
 {% if ansible_system == 'Linux' -%}
 call dein#add('farseer90718/vim-taskwarrior')
 {%- endif %}
+" Collection of common configurations for the Nvim LSP client
+call dein#add('neovim/nvim-lspconfig')
+" Extensions to built-in LSP, for example, providing type inlay hints
+call dein#add('tjdevries/lsp_extensions.nvim')
+" Autocompletion framework for built-in LSP
+call dein#add('nvim-lua/completion-nvim')
+" Diagnostic navigation and settings for built-in LSP
+call dein#add('nvim-lua/diagnostic-nvim')
 
 " Languages
 call dein#add('Glench/Vim-Jinja2-Syntax')
@@ -133,14 +141,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 " Set leader to ,
-let mapleader = " "
+let mapleader = ","
 
 " Setup python3
-let g:python_host_prog = '{{ python_bin.stdout }}'
+let g:python3_host_prog = '{{ python_bin.stdout }}'
+let g:python2_host_prog = '/usr/bin/python2'
 
 " disable mouse on command line
-if has("gui_running") 
-else
+if !has("gui_running") 
   set mouse-=a
 end
 
@@ -168,10 +176,15 @@ local on_attach = function(client)
 end
 
 -- Enable rust_analyzer
+nvim_lsp.bashls.setup({})
+nvim_lsp.cssls.setup({})
+nvim_lsp.gopls.setup({})
+nvim_lsp.jsonls.setup({})
+nvim_lsp.pyls.setup({})
 nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
-nvim_lsp.cssls.setup()
-nvim_lsp.bashls.setup()
-nvim_lsp.yamlls.setup()
+nvim_lsp.solargraph.setup({})
+nvim_lsp.sqlls.setup({})
+nvim_lsp.yamlls.setup({})
 EOF
 
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -232,12 +245,12 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><TAB>
+	\ pumvisible() ? "\<C-n>" :
+	\ neosnippet#expandable_or_jumpable() ?
+	\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+	\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
@@ -263,6 +276,10 @@ endfunction
 
 " Run neomake to do linters or whatever
 noremap <leader>l :Neomake<enter>
+
+autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+autocmd BufWritePre *.rb lua vim.lsp.buf.formatting_sync(nil, 1000)
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 " Swap between buffers easy
 noremap <leader>n :bn<enter>

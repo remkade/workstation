@@ -48,6 +48,14 @@
     owner: "{{ansible_user_id}}"
     mode: 0644
 
+- name: nvim-qt init file
+  file:
+    dest: "{{ home }}/.config/nvim-qt/init.vim"
+    src: "{{ neovim_dir }}/ginit.vim"
+    owner: "{{ansible_user_id}}"
+    state: link
+    mode: 0644
+
 - name: neovim init.vim
   template:
     dest: "{{ neovim_dir }}/init.vim"
