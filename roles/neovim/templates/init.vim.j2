@@ -19,8 +19,8 @@ if dein#load_state('~/.cache/dein')
 	call dein#add('Shougo/dein.vim')
 	call dein#add('Shougo/deoplete.nvim')
 	if !has('nvim')
-	  call dein#add('roxma/nvim-yarp')
-	  call dein#add('roxma/vim-hug-neovim-rpc')
+		call dein#add('roxma/nvim-yarp')
+		call dein#add('roxma/vim-hug-neovim-rpc')
 	endif
 	call dein#add('Shougo/denite.nvim')
 	call dein#add('Shougo/neosnippet.vim')
@@ -184,6 +184,7 @@ lua <<EOF
   nvim_lsp.bashls.setup{}
   nvim_lsp.yamlls.setup{}
   nvim_lsp.solargraph.setup{}
+  nvim_lsp.intelephense.setup{}
 EOF
 
   nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
