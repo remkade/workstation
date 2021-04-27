@@ -217,10 +217,20 @@ end
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "rust_analyzer", "tsserver", "gopls", "cssls", "bashls", "yamlls", "solargraph", "intelephense" }
+local servers = { "pyright", "tsserver", "gopls", "cssls", "bashls", "yamlls", "solargraph", "intelephense" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
+nvim_lsp.rust_analyzer.setup{ 
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = 'clippy';
+      }
+    }
+  }
+}
 EOF
 endif
 
