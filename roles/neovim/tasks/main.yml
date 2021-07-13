@@ -48,12 +48,19 @@
     owner: "{{ansible_user_id}}"
     mode: 0644
 
-- name: neovim init.vim
-  template:
-    dest: "{{ neovim_dir }}/init.vim"
-    src: init.vim.j2
+- name: Neovim LUA config file
+  copy:
+    dest: "{{ neovim_dir }}/init.lua"
+    src: init.lua
     owner: "{{ansible_user_id}}"
     mode: 0644
+
+- name: neovim init.vim file
+  file:
+    dest: "{{ neovim_dir }}/init.vim"
+    state: absent
+    owner: "{{ansible_user_id}}"
+    mode: 0755
 
 - name: Language Servers
   include_tasks:
