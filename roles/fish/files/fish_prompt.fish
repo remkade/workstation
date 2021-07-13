@@ -64,7 +64,7 @@ function fish_prompt
   echo -n ' '
   echo -n $divider_right
   set_color -b $secondary
-  if test -d .git; or git rev-parse --git-dir ^/dev/null >/dev/null
+  if test -d .git -o -d ../.git -o -d ../../.git
     set_color $text
     echo -n " $git_dir" (git symbolic-ref --quiet --short HEAD; or git rev-parse --short HEAD)
   else
