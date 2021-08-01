@@ -26,15 +26,13 @@ if dein#load_state('~/.cache/dein')
 	call dein#add('Shougo/neosnippet.vim')
 	call dein#add('Shougo/neosnippet-snippets')
 	call dein#add('ctrlpvim/ctrlp.vim')
+        call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'build': 'python3 -m chadtree deps'})
 	call dein#add('bling/vim-airline')
 	call dein#add('ryanoasis/vim-devicons')
 	call dein#add('neomake/neomake')
 	call dein#add('wincent/ferret')
 	call dein#add('tpope/vim-fugitive')
 	call dein#add('ludovicchabant/vim-lawrencium')
-	{% if ansible_system == 'Linux' -%}
-	call dein#add('farseer90718/vim-taskwarrior')
-	{%- endif %}
 	" Collection of common configurations for the Nvim LSP client
 	call dein#add('neovim/nvim-lspconfig')
 	" Extensions to built-in LSP, for example, providing type inlay hints
@@ -219,10 +217,14 @@ end
 -- and map buffer local keybindings when the language server attaches
 local servers = { "pyright", "tsserver", "gopls", "cssls", "bashls", "yamlls", "solargraph", "intelephense" }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = { debounce_text_changes = 150 }
+  }
 end
 
-nvim_lsp.rust_analyzer.setup{ 
+nvim_lsp["rust_analyzer"].setup { 
+  on_attach = on_attach,
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {
