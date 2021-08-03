@@ -5,30 +5,30 @@
 - name: Fish Base dir
   file:
     path: "{{ home }}/.config/fish"
-    owner: "{{ ansible_user }}"
+    owner: "{{ ansible_user_id }}"
     state: directory
     recurse: true
 - name: Fish Config File
   template:
-    owner: "{{ ansible_user }}"
+    owner: "{{ ansible_user_id }}"
     mode: "0644"
     src: config.fish.j2
     dest: "{{ home }}/.config/fish/config.fish"
 - name: Fish Functions Dir
   file:
     path: "{{ home }}/.config/fish/functions"
-    owner: "{{ ansible_user }}"
+    owner: "{{ ansible_user_id }}"
     state: directory
     recurse: true
 - name: Fish Color Schemes Yaml
   copy:
-    owner: "{{ ansible_user }}"
+    owner: "{{ ansible_user_id }}"
     mode: "0644"
     src: color_schemes.yaml
     dest: "{{ home }}/.config/fish/color_schemes.yaml"
 - name: Fish Functions
   copy:
-    owner: "{{ ansible_user }}"
+    owner: "{{ ansible_user_id }}"
     mode: "0644"
     src: "{{ item }}.fish"
     dest: "{{ home }}/.config/fish/functions/{{ item }}.fish"

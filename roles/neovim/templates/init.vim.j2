@@ -33,6 +33,11 @@ if dein#load_state('~/.cache/dein')
 	call dein#add('wincent/ferret')
 	call dein#add('tpope/vim-fugitive')
 	call dein#add('ludovicchabant/vim-lawrencium')
+	{% if ansible_system == 'Linux' -%}
+	call dein#add('farseer90718/vim-taskwarrior')
+	{%- endif %}
+	call dein#add('tpope/vim-surround')
+
 	" Collection of common configurations for the Nvim LSP client
 	call dein#add('neovim/nvim-lspconfig')
 	" Extensions to built-in LSP, for example, providing type inlay hints
