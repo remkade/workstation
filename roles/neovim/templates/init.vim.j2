@@ -49,6 +49,7 @@ if dein#load_state('~/.cache/dein')
 
 	" Languages
 	call dein#add('Glench/Vim-Jinja2-Syntax')
+	call dein#add('PProvost/vim-ps1')
 	call dein#add('cespare/vim-toml')
 	call dein#add('dag/vim-fish')
 	call dein#add('ekalinin/Dockerfile.vim')
@@ -56,9 +57,9 @@ if dein#load_state('~/.cache/dein')
 	call dein#add('fatih/vim-go')
 	call dein#add('hashivim/vim-terraform')
 	call dein#add('othree/html5.vim')
+	call dein#add('pedrohdz/vim-yaml-folds')
 	call dein#add('rust-lang/rust.vim')
 	call dein#add('vlaadbrain/gnuplot.vim')
-	call dein#add('PProvost/vim-ps1')
 
 	" Color Schemes
 	call dein#add('Siphalor/vim-atomified')
@@ -278,6 +279,9 @@ if has('nvim')
   " Auto-format *.rs (rust) files prior to saving them
   autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
   autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
+
+  set mouse=a
+  set termguicolors
 endif
 
 " Ignore rust/go specific build stuff
