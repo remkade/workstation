@@ -1,19 +1,24 @@
 ---
 - name: Get python3 location
-  shell: which python3
+  shell: 'if test -f /usr/local/bin/python3; then echo /usr/local/bin/python3; else which python3; fi'
   register: python_bin
 
 - name: neovim ppa
-  apt_repository: repo='ppa:neovim-ppa/unstable'
+  apt_repository:
+    repo: 'ppa:neovim-ppa/unstable'
   when: ansible_pkg_mgr == 'apt'
   become: true
 
 - name: install neovim
-  package: name=neovim state={{ install_state }}
+  package:
+    name: neovim
+    state: '{{ install_state }}'
   become: "{{ need_sudo }}"
 
 - name: install neovim clients
-  package: name=neovim-{{ item }}-client state={{ install_state }}
+  package:
+    name: 'neovim-{{ item }}-client'
+    state: '{{ install_state }}'
   when: 'ansible_distribution == "Gentoo"'
   become: "{{ need_sudo }}"
   with_items:
@@ -21,17 +26,24 @@
     - python
 
 - name: install ripgrep
-  package: name=ripgrep state={{ install_state }}
+  package:
+    name: ripgrep
+    state: '{{ install_state }}'
   become: "{{ need_sudo }}"
   when: 'ansible_distribution != "Ubuntu"'
 
 - name: Install powerline fonts
-  package: name=fonts-powerline state={{ install_state }}
+  package:
+    name: 'fonts-powerline'
+    state: '{{ install_state }}'
   become: "{{ need_sudo }}"
   when: 'ansible_distribution == "Ubuntu"'
 
 - name: install neovim pip module
-  pip: name=neovim state=latest executable=pip3
+  pip:
+    name: neovim
+    state: latest
+    executable: pip3
   when: 'ansible_distribution == "MacOSX"'
 
 - name: neovim config dir
