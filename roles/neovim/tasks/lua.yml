@@ -26,3 +26,8 @@
     src: plugins.lua
     owner: "{{ansible_user_id}}"
     mode: 0644
+
+- name: Remove init.vim
+  file:
+    dest: "{{ neovim_dir }}/init.vim"
+    state: absent
