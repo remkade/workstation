@@ -1,0 +1,28 @@
+---
+- name: Setup init.lua
+  copy:
+    dest: "{{ neovim_dir }}/init.lua"
+    src: init.lua
+    owner: "{{ansible_user_id}}"
+    mode: 0644
+
+- name: Setup modules dir
+  file:
+    dest: "{{ neovim_dir }}/lua"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    mode: 0755
+
+- name: Setup lsp.lua
+  copy:
+    dest: "{{ neovim_dir }}/lua/lsp.lua"
+    src: lsp.lua
+    owner: "{{ansible_user_id}}"
+    mode: 0644
+
+- name: Setup plugins.lua
+  copy:
+    dest: "{{ neovim_dir }}/lua/plugins.lua"
+    src: plugins.lua
+    owner: "{{ansible_user_id}}"
+    mode: 0644

@@ -72,3 +72,9 @@
     file: language_servers.yml
   tags:
     - language_servers
+
+- name: Neovim LUA Config
+  include_tasks:
+    file: lua.yml
+  tags:
+    - lua
