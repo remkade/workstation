@@ -15,16 +15,6 @@
     state: '{{ install_state }}'
   become: "{{ need_sudo }}"
 
-- name: install neovim clients
-  package:
-    name: 'neovim-{{ item }}-client'
-    state: '{{ install_state }}'
-  when: 'ansible_distribution == "Gentoo"'
-  become: "{{ need_sudo }}"
-  with_items:
-    - ruby
-    - python
-
 - name: install ripgrep
   package:
     name: ripgrep
