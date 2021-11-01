@@ -13,19 +13,17 @@
     owner: "{{ ansible_user_id }}"
     mode: 0755
 
-- name: Setup lsp.lua
+- name: Setup extra lua files
   copy:
-    dest: "{{ neovim_dir }}/lua/lsp.lua"
-    src: lsp.lua
+    dest: "{{ neovim_dir }}/lua/{{ item }}"
+    src: '{{ item }}'
     owner: "{{ansible_user_id}}"
     mode: 0644
-
-- name: Setup plugins.lua
-  copy:
-    dest: "{{ neovim_dir }}/lua/plugins.lua"
-    src: plugins.lua
-    owner: "{{ansible_user_id}}"
-    mode: 0644
+  with_items:
+    - lsp.lua
+    - plugins.lua
+    - colorscheme.lua
+    - which.lua
 
 - name: Remove init.vim
   file:
