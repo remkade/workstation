@@ -53,3 +53,24 @@ local on_attach = function(client, bufnr)
 		]], false)
 	end
 end
+
+-- Use a loop to conveniently both setup defined servers 
+-- and map buffer local keybindings when the language server attaches
+local servers = { "pylsp", "tsserver", "gopls", "cssls", "bashls", "yamlls", "solargraph", "intelephense" }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = { debounce_text_changes = 150 }
+  }
+end
+
+nvim_lsp["rust_analyzer"].setup { 
+  on_attach = on_attach,
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = 'clippy';
+      }
+    }
+  }
+}
