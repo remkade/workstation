@@ -24,6 +24,7 @@
     - plugins.lua
     - colorscheme.lua
     - which.lua
+    - treesitter.lua
 
 - name: Remove init.vim
   file:

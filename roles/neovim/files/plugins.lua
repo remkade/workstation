@@ -29,8 +29,8 @@ return require('packer').startup(function()
 	use 'L3MON4D3/LuaSnip'
 
 	-- Icons
-	use 'kyazdani42/nvim-web-devicons'
 
+	-- Telescope
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {
@@ -40,35 +40,66 @@ return require('packer').startup(function()
 		config = function() require('telescope').load_extension('fzy_native') end,
 	}
 
+	-- Git
 	use {
 		'TimUntersberger/neogit',
 		requires = 'nvim-lua/plenary.nvim'
 	}
 
+	-- LSP and completion
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
-
-	-- For vsnip users.
 	use 'hrsh7th/cmp-vsnip'
 	use 'hrsh7th/vim-vsnip'
 
+	-- Live errors
+	use {
+		'folke/trouble.nvim',
+		after = 'nvim-web-devicons',
+		requires = 'kyazdani42/nvim-web-devicons'
+	}
+
+	-- Statusline
+	use {
+		'famiu/feline.nvim',
+		requires = 'kyazdani42/nvim-web-devicons',
+		setup = function() require('feline').setup() end,
+	}
+
+	-- Buffer Line
+	use {
+		'akinsho/bufferline.nvim',
+		requires = 'kyazdani42/nvim-web-devicons',
+		setup = function() require("bufferline").setup({}) end
+	}
+
+	-- Help for commands
+	use {"folke/which-key.nvim"}
+
+	-- Tree sitter
+	use {
+		"nvim-treesitter/nvim-treesitter",
+		branch = "0.5-compat",
+		event = "BufRead", 
+		config = function()
+			require('nvim-treesitter.configs').setup {
+				ensure_installed = "maintained",
+				highlight = { enable = true },
+			}
+		end,
+	}
+
+	-- Helpers
 	vim.cmd([[
 	augroup packer_user_config
 	autocmd!
 	autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 	augroup end
 	]])
-
-	use {
-		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons"
-	}
-
-	use {"folke/which-key.nvim"}
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
