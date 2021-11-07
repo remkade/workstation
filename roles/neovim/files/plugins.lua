@@ -28,8 +28,6 @@ return require('packer').startup(function()
 	use 'tjammer/blayu.vim'
 	use 'L3MON4D3/LuaSnip'
 
-	-- Icons
-
 	-- Telescope
 	use {
 		'nvim-telescope/telescope.nvim',
@@ -44,7 +42,7 @@ return require('packer').startup(function()
 	-- Git
 	use {
 		'TimUntersberger/neogit',
-		requires = 'nvim-lua/plenary.nvim'
+		requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'},
 	}
 
 	-- LSP and completion
@@ -120,14 +118,6 @@ return require('packer').startup(function()
 			}
 		end,
 	}
-
-	-- Helpers
-	vim.cmd([[
-	augroup packer_user_config
-	autocmd!
-	autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-	augroup end
-	]])
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
