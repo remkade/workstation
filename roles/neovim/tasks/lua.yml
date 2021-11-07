@@ -25,6 +25,7 @@
     - colorscheme.lua
     - which.lua
     - treesitter.lua
+    - cmp_config.lua
 
 - name: Remove init.vim
   file:

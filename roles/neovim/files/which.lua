@@ -11,6 +11,7 @@ wk.register({
 			r = { '<Cmd>lua require("telescope.builtin").lsp_references()<cr>', "Find references (LSP)", noremap=true },
 			d = { '<Cmd>lua require("telescope.builtin").lsp_definitions()<cr>', "Find definitions (LSP)", noremap=true },
 			e = { '<Cmd>lua require("telescope.builtin").lsp_workspace_diagnostics()<cr>', "Find workspace diagnostics (LSP)", noremap=true },
+			m = { '<Cmd>:Telescope media_files<cr>', "Find Media Files", noremap=true },
 		},
 		g = {
 			name = 'Neogit',

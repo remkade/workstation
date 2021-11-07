@@ -35,7 +35,8 @@ return require('packer').startup(function()
 		'nvim-telescope/telescope.nvim',
 		requires = {
 			{'nvim-lua/plenary.nvim'},
-			{'nvim-telescope/telescope-fzy-native.nvim'}
+			{'nvim-telescope/telescope-fzy-native.nvim', run='make'},
+			{'nvim-telescope/telescope-media-files.nvim'}
 		},
 		config = function() require('telescope').load_extension('fzy_native') end,
 	}
@@ -48,13 +49,40 @@ return require('packer').startup(function()
 
 	-- LSP and completion
 	use 'neovim/nvim-lspconfig'
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-cmdline'
-	use 'hrsh7th/nvim-cmp'
-	use 'hrsh7th/cmp-vsnip'
-	use 'hrsh7th/vim-vsnip'
+
+	-- Completion
+	use {
+		"rafamadriz/friendly-snippets",
+		event = "InsertEnter",
+	}
+	use {
+		"hrsh7th/nvim-cmp",
+		after = "friendly-snippets",
+	}
+	use {
+		'hrsh7th/cmp-nvim-lsp',
+		after = 'nvim-cmp'
+	}
+	use {
+		'hrsh7th/cmp-buffer',
+		after = 'nvim-cmp'
+	}
+	use {
+		'hrsh7th/cmp-path',
+		after = 'nvim-cmp'
+	}
+	use {
+		'hrsh7th/cmp-cmdline',
+		after = 'nvim-cmp'
+	}
+	use {
+		'hrsh7th/cmp-vsnip',
+		after = 'nvim-cmp'
+	}
+	use {
+		'hrsh7th/vim-vsnip',
+		after = 'nvim-cmp'
+	}
 
 	-- Live errors
 	use {
@@ -67,14 +95,14 @@ return require('packer').startup(function()
 	use {
 		'famiu/feline.nvim',
 		requires = 'kyazdani42/nvim-web-devicons',
-		setup = function() require('feline').setup() end,
+		config = function() require('feline').setup() end,
 	}
 
 	-- Buffer Line
 	use {
 		'akinsho/bufferline.nvim',
 		requires = 'kyazdani42/nvim-web-devicons',
-		setup = function() require("bufferline").setup({}) end
+		config = function() require("bufferline").setup() end
 	}
 
 	-- Help for commands
