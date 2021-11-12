@@ -50,13 +50,6 @@
     owner: "{{ansible_user_id}}"
     mode: 0644
 
-- name: neovim init.vim
-  template:
-    dest: "{{ neovim_dir }}/init.vim"
-    src: init.vim.j2
-    owner: "{{ansible_user_id}}"
-    mode: 0644
-
 - name: Language Servers
   include_tasks:
     file: language_servers.yml
