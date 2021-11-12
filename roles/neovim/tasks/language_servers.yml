@@ -16,6 +16,7 @@
   gem:
     name: solargraph
     state: latest
+  when: false
 
 - name: Install language server pip modules
   pip:

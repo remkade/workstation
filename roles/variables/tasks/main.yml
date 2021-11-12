@@ -1,12 +1,14 @@
 ---
 - set_fact:
     install_state: "latest"
+
 - set_fact:
     install_state: "installed"
   when: 'ansible_distribution == "Gentoo"'
 
 - set_fact:
     need_sudo: true
+
 - set_fact:
     need_sudo: false
   when: 'ansible_distribution == "MacOSX"'

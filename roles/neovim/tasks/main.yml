@@ -15,16 +15,6 @@
     state: '{{ install_state }}'
   become: "{{ need_sudo }}"
 
-- name: install neovim clients
-  package:
-    name: 'neovim-{{ item }}-client'
-    state: '{{ install_state }}'
-  when: 'ansible_distribution == "Gentoo"'
-  become: "{{ need_sudo }}"
-  with_items:
-    - ruby
-    - python
-
 - name: install ripgrep
   package:
     name: ripgrep
@@ -60,15 +50,14 @@
     owner: "{{ansible_user_id}}"
     mode: 0644
 
-- name: neovim init.vim
-  template:
-    dest: "{{ neovim_dir }}/init.vim"
-    src: init.vim.j2
-    owner: "{{ansible_user_id}}"
-    mode: 0644
-
 - name: Language Servers
   include_tasks:
     file: language_servers.yml
   tags:
     - language_servers
+
+- name: Neovim LUA Config
+  include_tasks:
+    file: lua.yml
+  tags:
+    - lua
