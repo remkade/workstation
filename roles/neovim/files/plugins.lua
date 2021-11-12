@@ -85,8 +85,7 @@ return require('packer').startup(function()
 	-- Live errors
 	use {
 		'folke/trouble.nvim',
-		after = 'nvim-web-devicons',
-		requires = 'kyazdani42/nvim-web-devicons'
+		config = function() require('trouble').setup {} end
 	}
 
 	-- Statusline
