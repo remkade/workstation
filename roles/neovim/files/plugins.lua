@@ -6,8 +6,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function()
-	-- Colorschemes
-	use 'rmehri01/onenord.nvim'
+	-- Colorschemes/Themes
 	use 'Siphalor/vim-atomified'
 	use 'Yggdroot/duoduo'
 	use 'ajmwagar/vim-deus'
@@ -16,17 +15,18 @@ return require('packer').startup(function()
 	use 'chase/focuspoint-vim'
 	use 'flrnd/candid.vim'
 	use 'flrnprz/plastic.vim'
+	use 'jacoborus/tender.vim'
 	use 'lithammer/vim-eighties'
 	use 'mhartington/oceanic-next'
 	use 'rhysd/vim-color-spring-night'
 	use 'rhysd/wallaby.vim'
+	use 'rmehri01/onenord.nvim'
 	use 'sainnhe/archived-colors'
 	use 'sainnhe/edge'
 	use 'sainnhe/sonokai'
 	use 'sainnhe/vim-color-forest-night'
 	use 'scwood/vim-hybrid'
 	use 'tjammer/blayu.vim'
-	use 'L3MON4D3/LuaSnip'
 
 	-- Telescope
 	use {
@@ -56,6 +56,7 @@ return require('packer').startup(function()
 	use {
 		"hrsh7th/nvim-cmp",
 		after = "friendly-snippets",
+		config = function() require('cmp_config') end
 	}
 	use {
 		'hrsh7th/cmp-nvim-lsp',
@@ -82,17 +83,28 @@ return require('packer').startup(function()
 		after = 'nvim-cmp'
 	}
 
+	use {
+		'L3MON4D3/LuaSnip',
+		config = function()
+			local present, luasnip = pcall(require, "luasnip")
+			   if not present then
+			      return
+			   end
+
+			   luasnip.config.set_config {
+				   history = true,
+				   updateevents = "TextChanged,TextChangedI",
+			   }
+
+			   -- require("luasnip/loaders/from_vscode").load { paths = {} }
+			   require("luasnip/loaders/from_vscode").load()
+		   end,
+	   }
+
 	-- Live errors
 	use {
 		'folke/trouble.nvim',
 		config = function() require('trouble').setup {} end
-	}
-
-	-- Statusline
-	use {
-		'famiu/feline.nvim',
-		requires = 'kyazdani42/nvim-web-devicons',
-		config = function() require('feline').setup() end,
 	}
 
 	-- Buffer Line
@@ -116,6 +128,36 @@ return require('packer').startup(function()
 				highlight = { enable = true },
 			}
 		end,
+	}
+
+	-- Statusline
+	use {
+		'famiu/feline.nvim',
+		-- after = 'nvim-treesitter/nvim-treesitter',
+		requires = 'kyazdani42/nvim-web-devicons',
+		setup = function() require('feline_ibhagwan') end,
+	}
+
+
+	use { 
+		"nvim-neorg/neorg",
+		config = function()
+			require('neorg').setup {
+				-- Tell Neorg what modules to load
+				load = {
+					["core.defaults"] = {}, -- Load all the default modules
+					["core.norg.concealer"] = {}, -- Allows for use of icons
+					["core.norg.dirman"] = { -- Manage your directories with Neorg
+					config = {
+						workspaces = {
+							my_workspace = "~/neorg"
+						}
+					}
+				}
+			},
+		}
+		end,
+		requires = "nvim-lua/plenary.nvim"
 	}
 
 	-- Automatically set up your configuration after cloning packer.nvim
