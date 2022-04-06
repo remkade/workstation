@@ -1,5 +1,5 @@
 ---
-- name: "Workstation setup"
+- name: 'Workstation setup'
   connection: local
   hosts:
     - localhost
@@ -7,7 +7,6 @@
     - {name: variables, tags: ['variables']}
     - {name: git, tags: ['git']}
     - {name: dein, tags: ['dein']}
-    - {name: go, tags: ['go']}
     - {name: fish, tags: ['fish']}
     - {name: nodejs, tags: ['nodejs']}
     - {name: ruby, tags: ['ruby']}
@@ -15,7 +14,8 @@
     - {name: neovim, tags: ['neovim']}
     - {name: vim, tags: ['vim']}
     - {name: tmux, tags: ['tmux']}
+    - {name: borg, tags: ['borg']}
   vars:
-    home: "{{ ansible_user_dir }}"
-    dein_dir: "{{ ansible_user_dir }}/.dein"
-    neovim_dir: "{{ ansible_user_dir }}/.config/nvim"
+    home: '{{ ansible_user_dir }}'
+    dein_dir: '{{ ansible_user_dir }}/.dein'
+    neovim_dir: '{{ ansible_user_dir }}/.config/nvim'

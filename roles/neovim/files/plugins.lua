@@ -41,10 +41,8 @@ return require('packer').startup(function()
 
 	use {
 		'Shatur/neovim-session-manager',
-		requires = {
-			{'nvim-lua/plenary.nvim'}
-		},
-		setup = function() require('telescope').load_extension('sessions') end,
+		requires = {'nvim-lua/plenary.nvim'},
+		config = function() require('session_manager').setup({}) end,
 	}
 
 	-- Git
