@@ -39,6 +39,12 @@ return require('packer').startup(function()
 		config = function() require('telescope').load_extension('fzy_native') end,
 	}
 
+	use {
+		'Shatur/neovim-session-manager',
+		requires = {'nvim-lua/plenary.nvim'},
+		config = function() require('session_manager').setup({}) end,
+	}
+
 	-- Git
 	use {
 		'TimUntersberger/neogit',
