@@ -144,26 +144,9 @@ return require('packer').startup(function()
 		setup = function() require('feline_ibhagwan') end,
 	}
 
-
-	use { 
-		"nvim-neorg/neorg",
-		config = function()
-			require('neorg').setup {
-				-- Tell Neorg what modules to load
-				load = {
-					["core.defaults"] = {}, -- Load all the default modules
-					["core.norg.concealer"] = {}, -- Allows for use of icons
-					["core.norg.dirman"] = { -- Manage your directories with Neorg
-					config = {
-						workspaces = {
-							my_workspace = "~/neorg"
-						}
-					}
-				}
-			},
-		}
+	use {'nvim-orgmode/orgmode', config = function()
+			require('orgmode').setup{}
 		end,
-		requires = "nvim-lua/plenary.nvim"
 	}
 
 	-- Shell Check
