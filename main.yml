@@ -14,7 +14,6 @@
     - {name: neovim, tags: ['neovim']}
     - {name: vim, tags: ['vim']}
     - {name: tmux, tags: ['tmux']}
-    - {name: borg, tags: ['borg']}
   vars:
     home: '{{ ansible_user_dir }}'
     dein_dir: '{{ ansible_user_dir }}/.dein'
