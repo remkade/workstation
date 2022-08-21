@@ -7,3 +7,5 @@ require('lsp')
 require('colorscheme')
 require('which')
 require('treesitter')
+
+require('nvim-tree').setup()

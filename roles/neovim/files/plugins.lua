@@ -136,6 +136,12 @@ return require('packer').startup(function()
 		end,
 	}
 
+	-- NvimTree
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = 'kyazdani42/nvim-web-devicons',
+	}
+
 	-- Statusline
 	use {
 		'famiu/feline.nvim',
@@ -144,9 +150,26 @@ return require('packer').startup(function()
 		setup = function() require('feline_ibhagwan') end,
 	}
 
-	use {'nvim-orgmode/orgmode', config = function()
-			require('orgmode').setup{}
+	-- Neorg
+	use { 
+		"nvim-neorg/neorg",
+		config = function()
+			require('neorg').setup {
+				-- Tell Neorg what modules to load
+				load = {
+					["core.defaults"] = {}, -- Load all the default modules
+					["core.norg.concealer"] = {}, -- Allows for use of icons
+					["core.norg.dirman"] = { -- Manage your directories with Neorg
+					config = {
+						workspaces = {
+							my_workspace = "~/neorg"
+						}
+					}
+				}
+			},
+		}
 		end,
+		requires = "nvim-lua/plenary.nvim"
 	}
 
 	-- Shell Check
