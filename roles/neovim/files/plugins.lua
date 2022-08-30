@@ -29,6 +29,7 @@ return require('packer').startup(function()
 	use 'tjammer/blayu.vim'
 
 	-- Telescope
+	use 'stevearc/dressing.nvim'
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {
