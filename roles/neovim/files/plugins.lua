@@ -137,6 +137,12 @@ return require('packer').startup(function()
 		end,
 	}
 
+	-- NvimTree
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = 'kyazdani42/nvim-web-devicons',
+	}
+
 	-- Statusline
 	use {
 		'famiu/feline.nvim',
@@ -145,7 +151,7 @@ return require('packer').startup(function()
 		setup = function() require('feline_ibhagwan') end,
 	}
 
-
+	-- Neorg
 	use { 
 		"nvim-neorg/neorg",
 		config = function()

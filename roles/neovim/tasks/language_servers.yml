@@ -27,7 +27,9 @@
     extra_args: --user
 
 - name: Install go language server
-  command: go get -u golang.org/x/tools/gopls
+  ansible.builtin.command:
+    cmd: go install golang.org/x/tools/gopls@latest
+    creates: "{{ home }}/go/bin/gopls"
 
 - name: lsp configuration file
   copy:
