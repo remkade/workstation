@@ -20,7 +20,8 @@ local schemes = {
 	'sonokai',
 	'spring-night',
 	'wallaby',
-        'forest-night'
+        'forest-night',
+        'tokyonight-night'
 }
 
 local scheme = randomObjectFromTable(schemes)

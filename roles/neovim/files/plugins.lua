@@ -27,6 +27,7 @@ return require('packer').startup(function()
 	use 'sainnhe/vim-color-forest-night'
 	use 'scwood/vim-hybrid'
 	use 'tjammer/blayu.vim'
+	use 'folke/tokyonight.nvim'
 
 	-- Telescope
 	use 'stevearc/dressing.nvim'
