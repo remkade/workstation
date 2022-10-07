@@ -22,6 +22,7 @@ local on_attach = function(client, bufnr)
 			D = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type Definition', buffer=bufnr, noremap=true },
 			e = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Line Diagnostics', buffer=bufnr, noremap=true },
 			q = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Diagnostics in Location List', buffer=bufnr, noremap=true },
+			f = {'<cmd>lua vim.lsp.buf.format({async=true})<CR>', buffer=bufnr, noremap=true},
 			rn = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename Object', buffer=bufnr, noremap=true },
 			wa = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add Folder to Workspace', buffer=bufnr, noremap=true },
 			wl = { '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List workspace Folders', buffer=bufnr, noremap=true },
@@ -32,26 +33,8 @@ local on_attach = function(client, bufnr)
 		[']d'] = { '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'Previous Diagnostic', buffer=bufnr, noremap=true },
 	})
 
-	-- Set some keybinds conditional on server capabilities
-	if client.resolved_capabilities.document_formatting then
-		buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-	elseif client.resolved_capabilities.document_range_formatting then
-		buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-	end
-
-	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
-		vim.api.nvim_exec([[
-		hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-		hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-		hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-		augroup lsp_document_highlight
-		autocmd!
-		autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-		autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-		augroup END
-		]], false)
-	end
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 end
 
 -- Use a loop to conveniently both setup defined servers 
@@ -60,12 +43,14 @@ local servers = { "pylsp", "tsserver", "gopls", "cssls", "bashls", "yamlls", "so
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     flags = { debounce_text_changes = 150 }
   }
 end
 
 nvim_lsp["rust_analyzer"].setup { 
   on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {

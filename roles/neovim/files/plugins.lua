@@ -104,14 +104,14 @@ return require('packer').startup(function()
 				   updateevents = "TextChanged,TextChangedI",
 			   }
 
-			   -- require("luasnip/loaders/from_vscode").load { paths = {} }
 			   require("luasnip/loaders/from_vscode").load()
 		   end,
 	   }
 
 	-- Live errors
 	use {
-		'folke/trouble.nvim',
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
 		config = function() require('trouble').setup {} end
 	}
 
@@ -128,11 +128,11 @@ return require('packer').startup(function()
 	-- Tree sitter
 	use {
 		"nvim-treesitter/nvim-treesitter",
-		branch = "0.5-compat",
+		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
 		event = "BufRead", 
 		config = function()
-			require('nvim-treesitter.configs').setup {
-				ensure_installed = "maintained",
+			require("nvim-treesitter.configs").setup {
+				ensure_installed = "all",
 				highlight = { enable = true },
 			}
 		end,
