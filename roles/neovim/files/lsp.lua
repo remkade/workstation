@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
 			D = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type Definition', buffer=bufnr, noremap=true },
 			e = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Line Diagnostics', buffer=bufnr, noremap=true },
 			q = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Diagnostics in Location List', buffer=bufnr, noremap=true },
-			f = {'<cmd>lua vim.lsp.buf.format({async=true})<CR>', buffer=bufnr, noremap=true},
+			f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format all files', buffer=bufnr, noremap=true },
 			rn = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename Object', buffer=bufnr, noremap=true },
 			wa = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add Folder to Workspace', buffer=bufnr, noremap=true },
 			wl = { '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List workspace Folders', buffer=bufnr, noremap=true },
