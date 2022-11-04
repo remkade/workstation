@@ -66,30 +66,13 @@ return require('packer').startup(function()
 		after = "friendly-snippets",
 		config = function() require('cmp_config') end
 	}
-	use {
-		'hrsh7th/cmp-nvim-lsp',
-		after = 'nvim-cmp'
-	}
-	use {
-		'hrsh7th/cmp-buffer',
-		after = 'nvim-cmp'
-	}
-	use {
-		'hrsh7th/cmp-path',
-		after = 'nvim-cmp'
-	}
-	use {
-		'hrsh7th/cmp-cmdline',
-		after = 'nvim-cmp'
-	}
-	use {
-		'hrsh7th/cmp-vsnip',
-		after = 'nvim-cmp'
-	}
-	use {
-		'hrsh7th/vim-vsnip',
-		after = 'nvim-cmp'
-	}
+
+	use { 'hrsh7th/cmp-nvim-lsp' }
+	use { 'hrsh7th/cmp-buffer' }
+	use { 'hrsh7th/cmp-path' }
+	use { 'hrsh7th/cmp-cmdline' }
+	use { 'hrsh7th/cmp-vsnip' }
+	use { 'hrsh7th/vim-vsnip' }
 
 	use {
 		'L3MON4D3/LuaSnip',
