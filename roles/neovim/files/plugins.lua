@@ -56,15 +56,9 @@ return require('packer').startup(function()
 	-- LSP and completion
 	use 'neovim/nvim-lspconfig'
 
-	-- Completion
-	use {
-		"rafamadriz/friendly-snippets",
-		event = "InsertEnter",
-	}
 	use {
 		"hrsh7th/nvim-cmp",
-		after = "friendly-snippets",
-		config = function() require('cmp_config') end
+		config = function() require('cmp_config') end,
 	}
 
 	use { 'hrsh7th/cmp-nvim-lsp' }
