@@ -27,6 +27,7 @@
     src: "{{ item }}"
   with_items:
     - config.nu
+    - env.nu
   when: ansible_distribution == "Linux"
   become: false
 
@@ -37,5 +38,6 @@
     src: "{{ item }}"
   with_items:
     - config.nu
+    - env.nu
   when: ansible_distribution == "MacOSX"
   become: false
