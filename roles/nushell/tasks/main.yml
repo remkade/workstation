@@ -28,7 +28,7 @@
   with_items:
     - config.nu
     - env.nu
-  when: ansible_distribution == "Linux"
+  when: ansible_system == "Linux"
   become: false
 
 - name: Setup config (mac)
@@ -39,5 +39,5 @@
   with_items:
     - config.nu
     - env.nu
-  when: ansible_distribution == "MacOSX"
+  when: ansible_system == "Darwin"
   become: false
