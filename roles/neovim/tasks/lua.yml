@@ -16,7 +16,7 @@
 - name: Setup extra lua files
   copy:
     dest: "{{ neovim_dir }}/lua/{{ item }}"
-    src: '{{ item }}'
+    src: "{{ item }}"
     owner: "{{ansible_user_id}}"
     mode: 0644
   with_items:

@@ -1,10 +1,10 @@
 ---
 - name: install language server npm modules
   npm:
-    name: '{{ item }}'
+    name: "{{ item }}"
     state: latest
     global: true
-  become: '{{ need_sudo }}'
+  become: "{{ need_sudo }}"
   with_items:
     - yaml-language-server
     - vscode-json-languageserver
@@ -21,7 +21,7 @@
 - name: Install language server pip modules
   pip:
     name:
-      - 'python-lsp-server[all]'
+      - python-lsp-server[all]
     state: latest
     executable: pip3
     extra_args: --user
@@ -33,6 +33,6 @@
 
 - name: lsp configuration file
   copy:
-    dest: '{{ neovim_dir }}/lsp_settings.json'
+    dest: "{{ neovim_dir }}/lsp_settings.json"
     src: lsp_settings.json
-    owner: '{{ ansible_user_id }}'
+    owner: "{{ ansible_user_id }}"

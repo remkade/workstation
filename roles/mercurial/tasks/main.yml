@@ -4,8 +4,8 @@
   become: "{{ need_sudo }}"
 - name: install hglib
   pip: name=python-hglib state=latest executable=pip3
-  when: 'ansible_distribution == "MacOSX"'
+  when: ansible_distribution == "MacOSX"
 - name: install hglib
   package: name=python-hglib state={{ install_state }}
-  when: 'ansible_distribution != "MacOSX"'
+  when: ansible_distribution != "MacOSX"
   become: "{{ need_sudo }}"

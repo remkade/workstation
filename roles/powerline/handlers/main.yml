@@ -10,4 +10,4 @@
     user: true
     enabled: true
     state: started
-    name: "powerline.service"
+    name: powerline.service
