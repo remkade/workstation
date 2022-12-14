@@ -1,0 +1,60 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+palette = "forest"
+
+# The actual prompt
+format = "$battery$directory[](fg:#264653 bg:#2a9d8f)$git_branch[](fg:#2a9d8f bg:#e9c46a)$rust$julia$golang$ruby$php$character"
+# format = "$all"
+right_format = "$conda"
+
+[palettes.forest]
+primary = "bg:#264653 fg:#FFFFFF"
+success = "bg:#2a9d8f fg:white"
+highlight = "bg:#e9c46a fg:white"
+failure = "bg:#f4a261 fg:white"
+alt = "bg:#e76f51 fg:white"
+
+[[battery.display]]
+threshold = 75
+
+[directory]
+style = "bg:#264653 fg:#FFFFFF"
+truncation_symbol = "/"
+home_symbol = ""
+read_only = ""
+format = "[ $path ]($style)"
+
+[conda]
+disabled = false
+
+[rust]
+disabled = false
+symbol = ""
+format = "[ $symbol($version) ]($style)"
+style = "bg:#e9c46a fg:black"
+
+[julia]
+disabled = false
+symbol = ""
+format = "[ $symbol($version) ]($style)"
+style = "bg:#e9c46a fg:black"
+
+[ruby]
+disabled = false
+symbol = ""
+format = "[ $symbol($version) ]($style)"
+style = "bg:#e9c46a fg:black"
+
+[status]
+disabled = false
+
+[git_branch]
+format = "[ $symbol$branch ]($style)"
+style = "bg:#2a9d8f fg:white"
+
+[character]
+success_symbol = "[](bg:#e9c46a fg:#2a9d8f)[](fg:#2a9d8f) "
+error_symbol = "[](bg:#e9c46a fg:#e76f51)[](fg:#e76f51) "
