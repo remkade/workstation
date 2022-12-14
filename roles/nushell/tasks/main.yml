@@ -18,6 +18,7 @@
     mode: "0644"
     owner: "{{ ansible_user_id }}"
     src: starship.toml
+  become: false
 
 - name: Setup config (linux)
   ansible.builtin.copy:
@@ -27,6 +28,7 @@
   with_items:
     - config.nu
   when: ansible_distribution == "Linux"
+  become: false
 
 - name: Setup config (mac)
   ansible.builtin.copy:
@@ -36,3 +38,4 @@
   with_items:
     - config.nu
   when: ansible_distribution == "MacOSX"
+  become: false
