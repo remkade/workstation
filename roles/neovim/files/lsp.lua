@@ -2,6 +2,8 @@ local nvim_lsp = require('lspconfig')
 local wk = require('which-key')
 require('cmp_config')
 
+require("luasnip.loaders.from_vscode").lazy_load()
+
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end

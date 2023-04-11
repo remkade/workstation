@@ -65,25 +65,17 @@ return require('packer').startup(function()
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-path' }
 	use { 'hrsh7th/cmp-cmdline' }
-	use { 'hrsh7th/cmp-vsnip' }
-	use { 'hrsh7th/vim-vsnip' }
-
+	-- use { 'hrsh7th/cmp-vsnip' }
+	-- use { 'hrsh7th/vim-vsnip' }
 	use {
 		'L3MON4D3/LuaSnip',
-		config = function()
-			local present, luasnip = pcall(require, "luasnip")
-			   if not present then
-			      return
-			   end
-
-			   luasnip.config.set_config {
-				   history = true,
-				   updateevents = "TextChanged,TextChangedI",
-			   }
-
-			   require("luasnip/loaders/from_vscode").load()
-		   end,
-	   }
+		-- follow latest release.
+		tag = "v1.*",
+		-- install jsregexp (optional!:).
+		run = "make install_jsregexp"
+	}
+	use { 'saadparwaiz1/cmp_luasnip' }
+	use { 'rafamadriz/friendly-snippets' }
 
 	-- Live errors
 	use {
