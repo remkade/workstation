@@ -1,3 +1,4 @@
+-- vim: sw=2 et sts=2
 local nvim_lsp = require('lspconfig')
 local wk = require('which-key')
 require('cmp_config')
@@ -42,7 +43,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pylsp", "tsserver", "gopls", "cssls", "bashls", "yamlls", "solargraph", "intelephense", "hls" }
+local servers = { "pylsp", "gopls", "cssls", "bashls", "yamlls", "solargraph", "intelephense", "hls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -61,4 +62,11 @@ nvim_lsp["rust_analyzer"].setup {
       }
     }
   }
+}
+
+nvim_lsp["volar"].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+  flags = { debounce_text_changes = 150 }
 }

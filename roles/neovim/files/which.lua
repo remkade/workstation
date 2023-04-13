@@ -13,6 +13,10 @@ wk.register({
 			m = { '<Cmd>Telescope media_files<cr>', "Find Media Files", noremap=true },
 			r = { '<Cmd>lua require("telescope.builtin").lsp_references()<cr>', "Find references (LSP)", noremap=true },
 		},
+		r = {
+			name = 'NvimTree',
+			t = { '<Cmd>NvimTreeToggle<cr>', 'Toggle NvimTree', noremap=true },
+		},
 		t = {
 			name = 'Trouble',
 			c = { '<Cmd>TroubleClose<cr>', 'Close Trouble', noremap=true },

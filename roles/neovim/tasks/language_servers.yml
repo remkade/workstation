@@ -6,13 +6,14 @@
     global: true
   become: "{{ need_sudo }}"
   with_items:
-    - yaml-language-server
+    - '@volar/vue-language-server'
+    - intelephense
+    - javascript-typescript-langserver
     - vscode-json-languageserver
     - vscode-languageserver
-    - javascript-typescript-langserver
-    - intelephense
+    - yaml-language-server
 
-- name: install ruby language server
+- name: install solargraph
   gem:
     name: solargraph
     state: latest
@@ -25,6 +26,16 @@
     state: latest
     executable: pip3
     extra_args: --user
+  become: false
+  when: ansible_distribution != "Gentoo"
+
+- name: LSPs for Gentoo
+  package:
+    name:
+      - python-lsp-server
+    state: installed
+  become: true
+  when: ansible_distribution == "Gentoo"
 
 - name: Install go language server
   ansible.builtin.command:
@@ -34,5 +45,5 @@
 - name: lsp configuration file
   copy:
     dest: "{{ neovim_dir }}/lsp_settings.json"
-    src: lsp_settings.json
     owner: "{{ ansible_user_id }}"
+    src: lsp_settings.json
