@@ -3,6 +3,7 @@
 
 # Inserts a blank line between shell prompts
 add_newline = false
+palette = "forest"
 
 # The actual prompt
 format = "$battery$directory[](fg:#264653 bg:#2a9d8f)$git_branch[](fg:#2a9d8f bg:#e9c46a)$rust$julia$golang$ruby$php$character"
