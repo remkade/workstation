@@ -20,7 +20,6 @@ local schemes = {
 	'sonokai',
 	'spring-night',
 	'wallaby',
-        'forest-night',
         'tokyonight-night'
 }
 

@@ -15,6 +15,7 @@ return require('packer').startup(function()
 	use 'chase/focuspoint-vim'
 	use 'flrnd/candid.vim'
 	use 'flrnprz/plastic.vim'
+	use 'folke/tokyonight.nvim'
 	use 'jacoborus/tender.vim'
 	use 'lithammer/vim-eighties'
 	use 'mhartington/oceanic-next'
@@ -27,7 +28,6 @@ return require('packer').startup(function()
 	use 'sainnhe/vim-color-forest-night'
 	use 'scwood/vim-hybrid'
 	use 'tjammer/blayu.vim'
-	use 'folke/tokyonight.nvim'
 
 	-- Telescope
 	use 'stevearc/dressing.nvim'
@@ -41,6 +41,7 @@ return require('packer').startup(function()
 		config = function() require('telescope').load_extension('fzy_native') end,
 	}
 
+	-- Sessions
 	use {
 		'Shatur/neovim-session-manager',
 		requires = {'nvim-lua/plenary.nvim'},
@@ -123,6 +124,9 @@ return require('packer').startup(function()
 
 	-- Shell Check
 	use 'itspriddle/vim-shellcheck'
+
+	-- Sorting functions :Sort
+	use 'sQVe/sort.nvim'
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
