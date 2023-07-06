@@ -24,7 +24,7 @@ local on_attach = function(client, bufnr)
 		},
 		['<space>'] = {
 			D = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type Definition', buffer=bufnr, noremap=true },
-			e = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Line Diagnostics', buffer=bufnr, noremap=true },
+			e = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Line Diagnostics', buffer=bufnr, noremap=true },
 			q = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Diagnostics in Location List', buffer=bufnr, noremap=true },
 			f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format all files', buffer=bufnr, noremap=true },
 			rn = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename Object', buffer=bufnr, noremap=true },
