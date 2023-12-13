@@ -41,6 +41,12 @@ return require('packer').startup(function()
 		config = function() require('telescope').load_extension('fzy_native') end,
 	}
 
+	use {
+		'folke/todo-comments.nvim',
+		require = { 'nvim-lua/plenary.nvim' },
+		config = function() require('todo-comments').setup() end,
+	}
+
 	-- Sessions
 	use {
 		'Shatur/neovim-session-manager',
@@ -67,8 +73,6 @@ return require('packer').startup(function()
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-path' }
 	use { 'hrsh7th/cmp-cmdline' }
-	-- use { 'hrsh7th/cmp-vsnip' }
-	-- use { 'hrsh7th/vim-vsnip' }
 	use {
 		'L3MON4D3/LuaSnip',
 		-- follow latest release.
@@ -123,11 +127,28 @@ return require('packer').startup(function()
 		setup = function() require('feline_ibhagwan') end,
 	}
 
+	-- Tabnine
+	use {
+		'codota/tabnine-nvim',
+		run = './dl_binaries.sh',
+		config = function()
+		end
+	}
+
 	-- Shell Check
 	use 'itspriddle/vim-shellcheck'
 
 	-- Sorting functions :Sort
 	use 'sQVe/sort.nvim'
+
+	-- surround
+	use({
+		"kylechui/nvim-surround",
+		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+		config = function()
+			require("nvim-surround").setup({})
+		end
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

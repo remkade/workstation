@@ -12,6 +12,7 @@ wk.register({
 			h = { '<Cmd>lua require("telescope.builtin").help_tags()<cr>', "Find tags", noremap=true },
 			m = { '<Cmd>Telescope media_files<cr>', "Find Media Files", noremap=true },
 			r = { '<Cmd>lua require("telescope.builtin").lsp_references()<cr>', "Find references (LSP)", noremap=true },
+			t = { '<Cmd>TodoTelescope<cr>', "Show Todo Items", noremap=true },
 		},
 		r = {
 			name = 'NvimTree',
@@ -22,6 +23,7 @@ wk.register({
 			c = { '<Cmd>TroubleClose<cr>', 'Close Trouble', noremap=true },
 			o = { '<Cmd>TroubleOpen<cr>', 'Open Trouble', noremap=true },
 			t = { '<Cmd>TroubleToggle<cr>', 'Toggle Trouble', noremap=true },
+			d = { '<Cmd>TodoTrouble<cr>', 'Show Todo Items', noremap=true },
 		},
 		g = {
 			name = 'Neogit',
