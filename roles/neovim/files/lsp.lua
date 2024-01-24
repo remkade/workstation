@@ -42,15 +42,50 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local solargraph_cmd = function()
+  local ret_code = nil
+  local jid = vim.fn.jobstart("bundle info solargraph", { on_exit = function(_, data) ret_code = data end })
+  vim.fn.jobwait({ jid }, 5000)
+  if ret_code == 0 then
+    return { "bundle", "exec", "solargraph", "stdio" }
+  end
+  return { "solargraph", "stdio" }
+end
+
+local pylsp_cmd = function()
+  local ret_code = nil
+  local jid = vim.fn.jobstart("poetry run pylsp --version", { on_exit = function(_, data) ret_code = data end })
+  vim.fn.jobwait({ jid }, 5000)
+  if ret_code == 0 then
+    return { "poetry", "run", "pylsp" }
+  end
+  return { "pylsp" }
+end
+
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pylsp", "gopls", "cssls", "bashls", "yamlls", "intelephense", "hls", "solargraph" }
+local servers = { "gopls", "cssls", "bashls", "yamlls", "intelephense", "hls", "solargraph", "denols" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
+
+nvim_lsp["pylsp"].setup { 
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = pylsp_cmd(),
+  settings = {
+    pylsp = {
+      plugins = {
+        ruff = { enabled = true },
+        mypy = { enabled = true },
+        rope = { enabled = true }
+      }
+    }
+  }
+}
 
 nvim_lsp["rust_analyzer"].setup { 
   on_attach = on_attach,
@@ -64,12 +99,12 @@ nvim_lsp["rust_analyzer"].setup {
   }
 }
 
-nvim_lsp["volar"].setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
-  flags = { debounce_text_changes = 150 }
-}
+-- nvim_lsp["volar"].setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+--   flags = { debounce_text_changes = 150 }
+-- }
 
 -- This is temporary until neovim 0.10.0
 -- textDocument/diagnostic support until 0.10.0 is released

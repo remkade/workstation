@@ -47,3 +47,8 @@
     dest: "{{ neovim_dir }}/lsp_settings.json"
     owner: "{{ ansible_user_id }}"
     src: lsp_settings.json
+
+- name: Deno
+  ansible.builtin.command:
+    cmd: cargo install --locked deno
+    creates: "{{ home }}/.cargo/bin/deno"
