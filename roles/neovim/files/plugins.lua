@@ -35,6 +35,14 @@ plugins = {
 	'scwood/vim-hybrid',
 	'tjammer/blayu.vim',
 
+	-- Mini modules
+	{ 'echasnovski/mini.nvim', version = '*' },
+	{ 'echasnovski/mini.ai', version = '*' },
+	{ 'echasnovski/mini.operators', version = '*' },
+	{ 'echasnovski/mini.surround', version = '*' },
+	{ 'echasnovski/mini.bracketed', version = '*' },
+	{ 'echasnovski/mini.animate', version = '*' },
+
 	-- Telescope
 	'stevearc/dressing.nvim',
 	{
