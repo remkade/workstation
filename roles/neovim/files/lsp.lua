@@ -99,12 +99,12 @@ nvim_lsp["rust_analyzer"].setup {
   }
 }
 
--- nvim_lsp["volar"].setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
---   flags = { debounce_text_changes = 150 }
--- }
+local lspconfig = require 'lspconfig'
+lspconfig.beancount.setup= {
+    init_options = {
+        journal_file = "/home/kyle/SpiderOak Hive/Business/Amber Leaders Designs/Accounting",
+    };
+};
 
 -- This is temporary until neovim 0.10.0
 -- textDocument/diagnostic support until 0.10.0 is released

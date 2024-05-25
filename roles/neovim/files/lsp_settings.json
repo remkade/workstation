@@ -1,3 +1,6 @@
 {
   "rust.clippy_preference": "on"
+  "deno.config": "./tsconfig.json",
+  "deno.enable": true,
+  "deno.lint": true,
 }

@@ -52,3 +52,4 @@
   ansible.builtin.command:
     cmd: cargo install --locked deno
     creates: "{{ home }}/.cargo/bin/deno"
+  tags: [deno]

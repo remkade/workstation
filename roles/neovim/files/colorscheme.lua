@@ -5,11 +5,9 @@ end
 local schemes = {
 	'OceanicNext',
 	'atomified',
-	'blayu',
 	'candid',
 	'cryslominsa',
 	'deus',
-	'duoduo',
 	'edge',
 	'flattown',
 	'focuspoint',
@@ -19,7 +17,6 @@ local schemes = {
 	'plastic',
 	'sonokai',
 	'spring-night',
-	'wallaby',
         'tokyonight-night'
 }
 

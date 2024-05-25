@@ -1,20 +1,19 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 plugins = {
 	-- Colorschemes/Themes
 	'Siphalor/vim-atomified',
-	'Yggdroot/duoduo',
 	'ajmwagar/vim-deus',
 	'arcticicestudio/nord-vim',
 	'blerins/flattown',
@@ -26,7 +25,6 @@ plugins = {
 	'lithammer/vim-eighties',
 	'mhartington/oceanic-next',
 	'rhysd/vim-color-spring-night',
-	'rhysd/wallaby.vim',
 	'rmehri01/onenord.nvim',
 	'sainnhe/archived-colors',
 	'sainnhe/edge',
@@ -37,11 +35,10 @@ plugins = {
 
 	-- Mini modules
 	{ 'echasnovski/mini.nvim', version = '*' },
-	{ 'echasnovski/mini.ai', version = '*' },
-	{ 'echasnovski/mini.operators', version = '*' },
-	{ 'echasnovski/mini.surround', version = '*' },
-	{ 'echasnovski/mini.bracketed', version = '*' },
-	{ 'echasnovski/mini.animate', version = '*' },
+	{ 'echasnovski/mini.ai', version = '*', config = function() require('mini.ai').setup() end  },
+	{ 'echasnovski/mini.operators', version = '*', config = function() require('mini.operators').setup() end },
+	{ 'echasnovski/mini.surround', version = '*', config = function() require('mini.surround').setup() end },
+	{ 'echasnovski/mini.bracketed', version = '*', config = function() require('mini.bracketed').setup() end },
 
 	-- Telescope
 	'stevearc/dressing.nvim',
@@ -121,9 +118,14 @@ plugins = {
 		config = function()
 			require("nvim-treesitter.configs").setup {
 				ensure_installed = "all",
-				highlight = { enable = true },
+			highlight = { enable = true },
 			}
 		end
+	},
+
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = "nvim-treesitter/nvim-treesitter",
 	},
 
 	-- NvimTree
@@ -134,15 +136,12 @@ plugins = {
 
 	-- Statusline
 	{
-	    'nvim-lualine/lualine.nvim',
-	    dependencies = { 'nvim-tree/nvim-web-devicons' }
+		'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' }
 	},
 
 	-- Tabnine
-	{
-		'codota/tabnine-nvim',
-		run = './dl_binaries.sh',
-	},
+	{ 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
 
 	-- Shell Check
 	'itspriddle/vim-shellcheck',
@@ -150,12 +149,20 @@ plugins = {
 	-- Sorting functions :Sort
 	'sQVe/sort.nvim',
 
-	-- surround
+	-- Quick search
 	{
-		"kylechui/nvim-surround",
-		config = function()
-			require("nvim-surround").setup({})
-		end
-	},
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		---@type Flash.Config
+		opts = {},
+		-- stylua: ignore
+		keys = {
+			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+			{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+			{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+		},
+	}
 }
 return require('lazy').setup(plugins)
