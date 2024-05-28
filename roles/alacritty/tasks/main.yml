@@ -1,11 +1,15 @@
 ---
-- name: create alacritty config dir
-  file:
-    path: "{{ home }}/.config/alacritty"
+- name: Create alacritty config dir
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/alacritty"
     owner: "{{ ansible_user_id }}"
+    mode: "0755"
     state: directory
-- name: create alacritty.yml
-  copy:
-    dest: "{{ home }}/.config/alacritty/alacritty.yml"
+  become: false
+- name: Create alacritty.yml
+  ansible.builtin.copy:
+    dest: "{{ ansible_user_dir }}/.config/alacritty/alacritty.yml"
     src: alacritty.yml
+    mode: "0755"
     owner: "{{ ansible_user_id }}"
+  become: false

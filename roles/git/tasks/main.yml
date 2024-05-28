@@ -1,10 +1,14 @@
 ---
 - name: Install git
-  package: name=git state={{ install_state }}
+  ansible.builtin.package:
+    name: git
+    state: "{{ install_state }}"
   become: "{{ need_sudo }}"
-- name: gitconfig
-  copy:
+
+- name: Gitconfig
+  ansible.builtin.copy:
     src: gitconfig
     dest: "{{ ansible_user_dir }}/.gitconfig"
     owner: "{{ ansible_user_id }}"
     mode: "0644"
+    force: false

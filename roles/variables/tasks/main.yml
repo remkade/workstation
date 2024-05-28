@@ -1,14 +1,18 @@
 ---
-- set_fact:
+- name: "Set install_state"
+  ansible.builtin.set_fact:
     install_state: latest
 
-- set_fact:
+- name: "Set install_state: Gentoo"
+  ansible.builtin.set_fact:
     install_state: installed
   when: ansible_distribution == "Gentoo"
 
-- set_fact:
+- name: "Set need_sudo: Linux"
+  ansible.builtin.set_fact:
     need_sudo: true
 
-- set_fact:
+- name: "Set need_sudo: Mac"
+  ansible.builtin.set_fact:
     need_sudo: false
   when: ansible_distribution == "MacOSX"

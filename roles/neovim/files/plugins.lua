@@ -96,14 +96,14 @@ plugins = {
 	-- Live errors
 	{
 		"folke/trouble.nvim",
-		dependencies = "kyazdani42/nvim-web-devicons",
+		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function() require('trouble').setup {} end
 	},
 
 	-- Buffer Line
 	{
 		'akinsho/bufferline.nvim',
-		dependencies = 'kyazdani42/nvim-web-devicons',
+		dependencies = 'nvim-tree/nvim-web-devicons',
 		config = function() require("bufferline").setup() end
 	},
 
@@ -118,7 +118,7 @@ plugins = {
 		config = function()
 			require("nvim-treesitter.configs").setup {
 				ensure_installed = "all",
-			highlight = { enable = true },
+				highlight = { enable = true },
 			}
 		end
 	},
@@ -131,7 +131,7 @@ plugins = {
 	-- NvimTree
 	{
 		'kyazdani42/nvim-tree.lua',
-		dependencies = 'kyazdani42/nvim-web-devicons',
+		dependencies = 'nvim-tree/nvim-web-devicons',
 	},
 
 	-- Statusline

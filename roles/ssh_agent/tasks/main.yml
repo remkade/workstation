@@ -1,0 +1,45 @@
+---
+- name: Setup systemd directory
+  ansible.builtin.file:
+    dest: "{{ ansible_user_dir }}/.config/systemd/user"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    mode: "0755"
+  when: ansible_system == "Linux"
+  become: false
+
+- name: Add ssh-agent service file
+  ansible.builtin.copy:
+    dest: "{{ ansible_user_dir }}/.config/systemd/user/ssh-agent.service"
+    mode: "0644"
+    src: ssh-agent.service
+  when: ansible_system == "Linux"
+  become: false
+
+- name: Start ssh-agent service
+  ansible.builtin.systemd:
+    name: ssh-agent
+    enabled: true
+    scope: user
+    state: started
+  when: ansible_system == "Linux"
+  become: false
+
+- name: Environment.d dir
+  ansible.builtin.file:
+    dest: "{{ ansible_user_dir }}/.config/environment.d"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    mode: "0755"
+  become: false
+  when: ansible_system == "Linux"
+
+- name: Environment.d dir ssh-agent file
+  ansible.builtin.copy:
+    dest: "{{ ansible_user_dir }}/.config/environment.d/50-ssh-agent.conf"
+    owner: "{{ ansible_user_id }}"
+    mode: "0640"
+    content: "SSH_AGENT_SOCK={{ ansible_env['XDG_RUNTIME_DIR'] }}/ssh-agent.socket\n"
+    force: false
+  become: false
+  when: ansible_system == "Linux"

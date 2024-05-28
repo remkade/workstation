@@ -1,0 +1,15 @@
+---
+- name: Workstation setup
+  connection: local
+  hosts:
+    - localhost
+  roles:
+    - { role: variables, tags: [variables] }
+    - { role: git, tags: [git] }
+    - { role: fish, tags: [fish] }
+    - { role: nodejs, tags: [nodejs] }
+    - { role: ruby, tags: [ruby] }
+    - { role: ssh_agent, tags: [ssh_agent] }
+    - { role: neovim, tags: [neovim] }
+    - { role: tmux, tags: [tmux] }
+    - { role: nushell, tags: [nushell] }

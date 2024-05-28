@@ -12,12 +12,12 @@ def create_right_prompt [] {
 }
 
 # Use nushell functions to define your right and left prompt
-let-env PROMPT_COMMAND = { create_left_prompt }
+let-env PROMPT_COMMAND = { || create_left_prompt }
 let-env PROMPT_COMMAND_RIGHT = ""
 
 # Use nushell functions to define your right and left prompt
-let-env PROMPT_COMMAND = { create_left_prompt }
-let-env PROMPT_COMMAND_RIGHT = { create_right_prompt }
+let-env PROMPT_COMMAND = { || create_left_prompt }
+let-env PROMPT_COMMAND_RIGHT = { || create_right_prompt }
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
@@ -59,3 +59,4 @@ let-env NU_PLUGIN_DIRS = [
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 let-env PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
 let-env PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/sbin')
+let-env PATH = ($env.PATH | split row (char esep) | prepend $HOME + '/.local/bin')

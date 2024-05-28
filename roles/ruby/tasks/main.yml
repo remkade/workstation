@@ -1,12 +1,18 @@
 ---
-- name: install ruby
-  package: name=ruby state={{install_state}}
+- name: Install ruby
+  ansible.builtin.package:
+    name: ruby
+    state: "{{ install_state }}"
   become: "{{ need_sudo }}"
-- name: install bundler
-  package: name=ruby-bundler state={{install_state}}
+- name: Install bundler
+  ansible.builtin.package:
+    name: ruby-bundler
+    state: "{{ install_state }}"
   become: "{{ need_sudo }}"
   when: ansible_distribution == "Ubuntu"
 - name: Install ruby-dev
-  package: name=ruby-dev state={{install_state}}
+  ansible.builtin.package:
+    name: ruby-dev
+    state: "{{ install_state }}"
   become: "{{ need_sudo }}"
   when: ansible_distribution == "Ubuntu"

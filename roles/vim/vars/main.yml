@@ -1,0 +1,2 @@
+---
+dein_dir: "{{ ansible_user_dir }}/.local/dein"

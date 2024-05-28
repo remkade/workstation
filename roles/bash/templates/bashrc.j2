@@ -6,16 +6,12 @@ export POWERLINE_BASH_SELECT=1
 {% if ansible_distribution == "MacOSX" %}
 export GOPATH=${HOME}/Documents/go
 export PATH="${PATH}:${GOPATH}/bin:${HOME}/node_modules/.bin"
-source "$(pip show powerline-status | awk '$1 == "Location:" { print $2 }')/powerline/bindings/bash/powerline.sh"
 {% elif ansible_distribution == "Gentoo" %}
 export GOPATH=${HOME}/Documents/go
 export PATH="${HOME}/.local/bin/:${PATH}:${GOPATH}/bin:${HOME}/node_modules/.bin"
-source ~/.local/lib64/python3.6/site-packages/powerline/bindings/bash/powerline.sh
-powerline-daemon -q
 {% else %}
 export GOPATH=${HOME}/go
 export PATH="${HOME}/.local/bin/:${PATH}:${GOPATH}/bin:${HOME}/node_modules/.bin"
-source "$(pip show powerline-status | awk '$1 == "Location:" { print $2 }')/powerline/bindings/bash/powerline.sh"
 export SSH_AUTH_SOCK="/run/user/$(id -u)/ssh-agent.socket"
 {% endif %}
 
@@ -37,12 +33,6 @@ function get_ips() {
 
 count_instances() {
 	aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" | jq -r '[.Reservations[].Instances[] | { "type": .InstanceType, "state": .State.Name}] | group_by(.type) | map ({"instance": .[0].type, "count": length})'
-}
-
-gitlabmr () {
-	REV="$(git rev-parse --abbrev-ref --symbolic-full-name @\{u\} | cut -d/ -f1)"
-	URL="$(git remote show \"$REV\" | awk -F: '/Fetch URL/ { gsub(".git", "", $3); print "http://gitlab.corp.avvo.com/" $3 }')"
-	open "$URL"
 }
 
 [ -f /usr/local/bin/rbenv ] && eval "$(rbenv init -)"

@@ -1,0 +1,16 @@
+---
+- name: Install Starship
+  ansible.builtin.command:
+    cmd: "cargo install --locked starship"
+    creates: "{{ ansible_user_dir }}/.cargo/bin/starship"
+  become: false
+
+- name: Starship Pastel Preset
+  ansible.builtin.copy:
+    src: https://starship.rs/presets/toml/pastel-powerline.toml
+    dest: "{{ ansible_user_dir }}/.config/starship.toml"
+    remote_src: true
+    owner: "{{ ansible_user_id }}"
+    mode: "0644"
+    force: false
+  become: false

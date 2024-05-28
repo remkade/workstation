@@ -1,24 +1,26 @@
 ---
 - name: Setup init.lua
-  copy:
+  ansible.builtin.copy:
     dest: "{{ neovim_dir }}/init.lua"
     src: init.lua
-    owner: "{{ansible_user_id}}"
-    mode: 0644
+    owner: "{{ ansible_user_id }}"
+    mode: "0644"
+  become: false
 
 - name: Setup modules dir
-  file:
+  ansible.builtin.file:
     dest: "{{ neovim_dir }}/lua"
     state: directory
     owner: "{{ ansible_user_id }}"
-    mode: 0755
+    mode: "0755"
+  become: false
 
 - name: Setup extra lua files
-  copy:
+  ansible.builtin.copy:
     dest: "{{ neovim_dir }}/lua/{{ item }}"
     src: "{{ item }}"
-    owner: "{{ansible_user_id}}"
-    mode: 0644
+    owner: "{{ ansible_user_id }}"
+    mode: "0644"
   with_items:
     - cmp_config.lua
     - colorscheme.lua
@@ -29,8 +31,10 @@
     - tabnine_config.lua
     - treesitter.lua
     - which.lua
+  become: false
 
 - name: Remove init.vim
-  file:
+  ansible.builtin.file:
     dest: "{{ neovim_dir }}/init.vim"
     state: absent
+  become: false

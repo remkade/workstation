@@ -1,32 +1,45 @@
 ---
 - name: Install tmux
-  package: name=tmux state=present
+  ansible.builtin.package:
+    name: tmux
+    state: present
   become: "{{ need_sudo }}"
+
 - name: Configure tmux
-  template: src=tmux.conf.j2 dest={{ home }}/.tmux.conf
+  ansible.builtin.template:
+    src: tmux.conf.j2
+    mode: "0640"
+    dest: "{{ ansible_user_dir }}/.tmux.conf"
+  become: false
+
 - name: Add tmux dir
-  file:
+  ansible.builtin.file:
     state: directory
-    dest: "{{ home }}/.tmux"
+    dest: "{{ ansible_user_dir }}/.tmux"
     mode: "0755"
     owner: "{{ ansible_user_id }}"
+  become: false
+
 - name: Add tmux plugin dir
-  file:
+  ansible.builtin.file:
     state: directory
-    dest: "{{ home }}/.tmux/plugins"
+    dest: "{{ ansible_user_dir }}/.tmux/plugins"
     mode: "0755"
     owner: "{{ ansible_user_id }}"
+  become: false
 
 - name: Add tmux pane file
-  copy:
-    dest: "{{ home }}/.tmux/base.conf"
+  ansible.builtin.copy:
+    dest: "{{ ansible_user_dir }}/.tmux/base.conf"
     mode: "0644"
     src: base.conf
     owner: "{{ ansible_user_id }}"
+  become: false
 
 - name: Install TPM
-  git:
-    dest: "{{ home }}/.tmux/plugins/tpm"
+  ansible.builtin.git: # noqa: latest
+    dest: "{{ ansible_user_dir }}/.tmux/plugins/tpm"
     clone: true
-    update: true
-    repo: https://github.com/tmux-plugins/tpm
+    update: false
+    repo: https://github.com/tmux-plugins/tpm.git
+  become: false

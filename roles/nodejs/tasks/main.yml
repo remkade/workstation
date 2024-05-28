@@ -1,7 +1,13 @@
 ---
-- name: install nodejs
-  package: name=nodejs state={{install_state}}
+- name: Install nodejs
+  ansible.builtin.package:
+    name: nodejs
+    state: "{{ install_state }}"
   become: "{{ need_sudo }}"
-- name: install npm
-  package: name=npm state={{install_state}}
+
+- name: Install npm
+  ansible.builtin.package:
+    name: npm
+    state: "{{ install_state }}"
   become: "{{ need_sudo }}"
+  when: ansible_distribution != 'Gentoo'

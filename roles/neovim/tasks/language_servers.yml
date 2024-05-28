@@ -1,36 +1,36 @@
 ---
-- name: install language server npm modules
-  npm:
+- name: Install language server npm modules
+  community.general.npm:
     name: "{{ item }}"
-    state: latest
+    state: present
     global: true
-  become: "{{ need_sudo }}"
+  become: false
   with_items:
-    - '@volar/vue-language-server'
+    - "@volar/vue-language-server"
     - intelephense
     - javascript-typescript-langserver
     - vscode-json-languageserver
     - vscode-languageserver
     - yaml-language-server
 
-- name: install solargraph
-  gem:
+- name: Install solargraph
+  community.general.gem:
     name: solargraph
     state: latest
   when: false
 
 - name: Install language server pip modules
-  pip:
+  ansible.builtin.pip:
     name:
       - python-lsp-server[all]
-    state: latest
+    state: present
     executable: pip3
     extra_args: --user
   become: false
   when: ansible_distribution != "Gentoo"
 
 - name: LSPs for Gentoo
-  package:
+  ansible.builtin.package:
     name:
       - python-lsp-server
     state: installed
@@ -40,16 +40,20 @@
 - name: Install go language server
   ansible.builtin.command:
     cmd: go install golang.org/x/tools/gopls@latest
-    creates: "{{ home }}/go/bin/gopls"
+    creates: "{{ ansible_user_dir }}/go/bin/gopls"
+  become: false
 
-- name: lsp configuration file
-  copy:
+- name: Lsp configuration file
+  ansible.builtin.copy:
     dest: "{{ neovim_dir }}/lsp_settings.json"
     owner: "{{ ansible_user_id }}"
+    mode: "0644"
     src: lsp_settings.json
+  become: false
 
 - name: Deno
   ansible.builtin.command:
     cmd: cargo install --locked deno
-    creates: "{{ home }}/.cargo/bin/deno"
+    creates: "{{ ansible_user_dir }}/.cargo/bin/deno"
   tags: [deno]
+  become: false

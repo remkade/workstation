@@ -1,41 +1,77 @@
 ---
 - name: Install Fish
-  package: name=fish state={{ install_state }}
+  ansible.builtin.package:
+    name: fish
+    state: "{{ install_state }}"
   become: "{{ need_sudo }}"
+
 - name: Fish Base dir
-  file:
-    path: "{{ home }}/.config/fish"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/fish"
     owner: "{{ ansible_user_id }}"
     state: directory
     recurse: true
+  become: false
+
 - name: Fish Config File
-  template:
+  ansible.builtin.template:
     owner: "{{ ansible_user_id }}"
     mode: "0644"
     src: config.fish.j2
-    dest: "{{ home }}/.config/fish/config.fish"
+    dest: "{{ ansible_user_dir }}/.config/fish/config.fish"
+  become: false
+
 - name: Fish Functions Dir
-  file:
-    path: "{{ home }}/.config/fish/functions"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/fish/functions"
     owner: "{{ ansible_user_id }}"
     state: directory
     recurse: true
+  become: false
+
 - name: Fish Color Schemes Yaml
-  copy:
+  ansible.builtin.copy:
     owner: "{{ ansible_user_id }}"
     mode: "0644"
     src: color_schemes.yaml
-    dest: "{{ home }}/.config/fish/color_schemes.yaml"
-- name: Fish Functions
-  copy:
+    dest: "{{ ansible_user_dir }}/.config/fish/color_schemes.yaml"
+  become: false
+
+- name: Fish Prompt custom
+  ansible.builtin.copy:
     owner: "{{ ansible_user_id }}"
     mode: "0644"
     src: "{{ item }}.fish"
-    dest: "{{ home }}/.config/fish/functions/{{ item }}.fish"
+    dest: "{{ ansible_user_dir }}/.config/fish/functions/{{ item }}.fish"
+  become: false
+  when: not fish['starship']
   loop:
-    - bubble_text
     - fish_mode_prompt
     - fish_prompt
+
+- name: Include Starship
+  include_role:
+    name: starship
+  when: fish['starship']
+
+- name: Fish Prompt starship
+  ansible.builtin.copy:
+    owner: "{{ ansible_user_id }}"
+    mode: "0644"
+    dest: "{{ ansible_user_dir }}/.config/fish/functions/fish_prompt.fish"
+    content: "source (/usr/bin/starship init fish --print-full-init | psub)\n"
+  become: false
+  when: fish['starship']
+
+- name: Fish Functions
+  ansible.builtin.copy:
+    owner: "{{ ansible_user_id }}"
+    mode: "0644"
+    src: "{{ item }}.fish"
+    dest: "{{ ansible_user_dir }}/.config/fish/functions/{{ item }}.fish"
+  become: false
+  loop:
+    - bubble_text
     - genpass
     - list_instances
     - list_snapshots

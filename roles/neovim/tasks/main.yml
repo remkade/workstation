@@ -1,63 +1,69 @@
 ---
 - name: Get python3 location
-  shell: if test -f /usr/local/bin/python3; then echo /usr/local/bin/python3; else which python3; fi
+  ansible.builtin.shell: if test -f /usr/local/bin/python3; then echo /usr/local/bin/python3; else which python3; fi
   register: python_bin
+  changed_when: python_bin.rc != 0
+  when: python_bin is undefined
+  become: false
 
-- name: neovim ppa
-  apt_repository:
+- name: Neovim ppa
+  ansible.builtin.apt_repository:
     repo: ppa:neovim-ppa/unstable
   when: ansible_pkg_mgr == 'apt'
   become: true
 
-- name: install neovim
-  package:
+- name: Install neovim
+  ansible.builtin.package: # noqa: latest
     name: neovim
     state: "{{ install_state }}"
   become: "{{ need_sudo }}"
 
-- name: install ripgrep
-  package:
+- name: Install ripgrep
+  ansible.builtin.package:
     name: ripgrep
     state: "{{ install_state }}"
   become: "{{ need_sudo }}"
   when: ansible_distribution != "Ubuntu"
 
 - name: Install powerline fonts
-  package:
+  ansible.builtin.package:
     name: fonts-powerline
     state: "{{ install_state }}"
   become: "{{ need_sudo }}"
   when: ansible_distribution == "Ubuntu"
 
-- name: install neovim pip module
-  pip:
+- name: Install neovim pip module
+  ansible.builtin.pip:
     name: neovim
-    state: latest
+    state: present
     executable: pip3
   when: ansible_distribution == "MacOSX"
+  become: false
 
-- name: neovim config dir
-  file:
+- name: Neovim config dir
+  ansible.builtin.file:
     dest: "{{ neovim_dir }}"
     state: directory
-    owner: "{{ansible_user_id}}"
-    mode: 0755
+    owner: "{{ ansible_user_id }}"
+    mode: "0755"
+  become: false
 
 - name: GUI init file
-  copy:
+  ansible.builtin.copy:
     dest: "{{ neovim_dir }}/ginit.vim"
     src: ginit.vim
-    owner: "{{ansible_user_id}}"
-    mode: 0644
+    owner: "{{ ansible_user_id }}"
+    mode: "0644"
+  become: false
 
 - name: Language Servers
-  include_tasks:
+  ansible.builtin.include_tasks:
     file: language_servers.yml
   tags:
     - language_servers
 
 - name: Neovim LUA Config
-  include_tasks:
+  ansible.builtin.include_tasks:
     file: lua.yml
   tags:
     - lua
