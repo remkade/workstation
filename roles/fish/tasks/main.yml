@@ -76,3 +76,21 @@
     - list_instances
     - list_snapshots
     - random_color_scheme
+
+- name: conf.d dir
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.fish/conf.d"
+    owner: "{{ ansible_user_id }}"
+    state: directory
+    mode: "0755"
+    recurse: true
+  become: false
+
+- name: SSH_AUTH_SOCK file
+  ansible.builtin.copy:
+    owner: "{{ ansible_user_id }}"
+    dest: "{{ ansible_user_dir }}/.fish/conf.d/ssh_auth_sock.fish"
+    content: set -gx SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"\n
+    force: false
+    mode: "0644"
+  become: false

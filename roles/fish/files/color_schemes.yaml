@@ -14,6 +14,7 @@ starbucks:
 cool:
   primary: '20bf55'
   text: 'fff'
+  secondary_normal: '01baef'
   secondary_error: '757575'
   tertiary: '0b4f6c'
 default:
