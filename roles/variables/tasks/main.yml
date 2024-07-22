@@ -1,5 +1,5 @@
 ---
-- name: "Set install_state"
+- name: Set install_state
   ansible.builtin.set_fact:
     install_state: latest
 

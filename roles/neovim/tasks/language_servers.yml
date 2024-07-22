@@ -8,10 +8,8 @@
   with_items:
     - "@volar/vue-language-server"
     - intelephense
-    - javascript-typescript-langserver
-    - vscode-json-languageserver
-    - vscode-languageserver
     - yaml-language-server
+    - vscode-langservers-extracted
 
 - name: Install solargraph
   community.general.gem:

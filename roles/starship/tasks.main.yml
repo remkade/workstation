@@ -1,7 +1,7 @@
 ---
 - name: Install Starship
   ansible.builtin.command:
-    cmd: "cargo install --locked starship"
+    cmd: cargo install --locked starship
     creates: "{{ ansible_user_dir }}/.cargo/bin/starship"
   become: false
 

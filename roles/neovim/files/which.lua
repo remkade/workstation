@@ -1,33 +1,23 @@
 local wk = require('which-key')
 
-wk.register({
-	['<leader>'] = {
-		f = {
-			name = 'Telescope',
-			b = { '<Cmd>lua require("telescope.builtin").buffers()<cr>', "Find Buffer", noremap=true },
-			d = { '<Cmd>lua require("telescope.builtin").lsp_definitions()<cr>', "Find definitions (LSP)", noremap=true },
-			e = { '<Cmd>lua require("telescope.builtin").lsp_workspace_diagnostics()<cr>', "Find workspace diagnostics (LSP)", noremap=true },
-			f = { '<Cmd>lua require("telescope.builtin").find_files()<cr>', "Find files", noremap=true },
-			g = { '<Cmd>lua require("telescope.builtin").live_grep()<cr>', "Live Grep", noremap=true },
-			h = { '<Cmd>lua require("telescope.builtin").help_tags()<cr>', "Find tags", noremap=true },
-			m = { '<Cmd>Telescope media_files<cr>', "Find Media Files", noremap=true },
-			r = { '<Cmd>lua require("telescope.builtin").lsp_references()<cr>', "Find references (LSP)", noremap=true },
-			t = { '<Cmd>TodoTelescope<cr>', "Show Todo Items", noremap=true },
-		},
-		r = {
-			name = 'NvimTree',
-			t = { '<Cmd>NvimTreeToggle<cr>', 'Toggle NvimTree', noremap=true },
-		},
-		t = {
-			name = 'Trouble',
-			c = { '<Cmd>TroubleClose<cr>', 'Close Trouble', noremap=true },
-			o = { '<Cmd>TroubleOpen<cr>', 'Open Trouble', noremap=true },
-			t = { '<Cmd>TroubleToggle<cr>', 'Toggle Trouble', noremap=true },
-			d = { '<Cmd>TodoTrouble<cr>', 'Show Todo Items', noremap=true },
-		},
-		g = {
-			name = 'Neogit',
-			g = { '<Cmd>Neogit<cr>', 'Open Neogit', noremap=true },
-		},
-	},
-})
+wk.add({
+    { "<leader>f", group = "Telescope" },
+    { "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "Find Buffer", remap = false },
+    { "<leader>fd", function() require("telescope.builtin").lsp_definitions() end, desc = "Find definitions (LSP)", remap = false },
+    { "<leader>fe", function() require("telescope.builtin").lsp_workspace_diagnostics() end, desc = "Find workspace diagnostics (LSP)", remap = false },
+    { "<leader>ff", function() require("telescope.builtin").find_files() end, desc = "Find files", remap = false },
+    { "<leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live Grep", remap = false },
+    { "<leader>fh", function() require("telescope.builtin").help_tags() end, desc = "Find tags", remap = false },
+    { "<leader>fm", "<Cmd>Telescope media_files<cr>", desc = "Find Media Files", remap = false },
+    { "<leader>fr", function() require("telescope.builtin").lsp_references() end, desc = "Find references (LSP)", remap = false },
+    { "<leader>ft", "<Cmd>TodoTelescope<cr>", desc = "Show Todo Items", remap = false },
+    { "<leader>g", group = "Neogit" },
+    { "<leader>gg", "<Cmd>Neogit<cr>", desc = "Open Neogit", remap = false },
+    { "<leader>r", group = "NvimTree" },
+    { "<leader>rt", "<Cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree", remap = false },
+    { "<leader>t", group = "Trouble" },
+    { "<leader>tc", "<Cmd>TroubleClose<cr>", desc = "Close Trouble", remap = false },
+    { "<leader>td", "<Cmd>TodoTrouble<cr>", desc = "Show Todo Items", remap = false },
+    { "<leader>to", "<Cmd>TroubleOpen<cr>", desc = "Open Trouble", remap = false },
+    { "<leader>tt", "<Cmd>TroubleToggle<cr>", desc = "Toggle Trouble", remap = false },
+  })

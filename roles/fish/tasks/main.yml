@@ -50,7 +50,7 @@
     - fish_prompt
 
 - name: Include Starship
-  include_role:
+  ansible.builtin.include_role:
     name: starship
   when: fish['starship']
 
@@ -77,7 +77,7 @@
     - list_snapshots
     - random_color_scheme
 
-- name: conf.d dir
+- name: Conf.d dir
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.fish/conf.d"
     owner: "{{ ansible_user_id }}"
