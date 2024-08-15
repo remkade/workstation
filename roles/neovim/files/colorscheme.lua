@@ -4,15 +4,9 @@ end
 
 local schemes = {
 	'OceanicNext',
-	'atomified',
 	'candid',
 	'cryslominsa',
-	'deus',
-	'edge',
-	'flattown',
-	'focuspoint',
 	'hybrid',
-	'nord',
 	'onenord',
 	'plastic',
 	'sonokai',
