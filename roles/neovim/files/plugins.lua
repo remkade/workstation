@@ -40,6 +40,13 @@ plugins = {
 	{ 'echasnovski/mini.surround', version = '*', config = function() require('mini.surround').setup() end },
 	{ 'echasnovski/mini.bracketed', version = '*', config = function() require('mini.bracketed').setup() end },
 
+	-- Get better at VIM
+	{
+		"m4xshen/hardtime.nvim",
+		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		opts = {}
+	},
+
 	-- Telescope
 	'stevearc/dressing.nvim',
 	{
@@ -49,7 +56,6 @@ plugins = {
 			{'nvim-telescope/telescope-fzy-native.nvim', run='make'},
 			{'nvim-telescope/telescope-media-files.nvim'}
 		},
-		config = function() require('telescope').load_extension('fzy_native') end,
 	},
 	{
 		'folke/todo-comments.nvim',

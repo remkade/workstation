@@ -1,7 +1,7 @@
 vim.g.mapleader=" "
 vim.g.maplocalleader = " "
 vim.opt.termguicolors = true
-vim.opt.foldlevelstart = 4
+vim.wo.relativenumber = true
 
 require('plugins')
 require('lsp')
