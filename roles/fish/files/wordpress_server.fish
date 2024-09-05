@@ -1,10 +1,8 @@
 function wordpress_server
-	set -l ips (aws ec2 describe-instances \
+	random choice (aws ec2 describe-instances \
 		--filter 'Name=instance-state-name,Values=running' \
-		--fitler 'Name=tag:Application,Value=Wordpress' \
+		--filter 'Name=tag:Application,Values=Wordpress' \
 		--output text \
 		--color=off \
-		--query 'ReservationsInstances[*].Instances[0].{IP:PublicIpAddress}')
-
-	random choice $ips	
+		--query 'Reservations[*].Instances[*].PublicIpAddress')
 end
