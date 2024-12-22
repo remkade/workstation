@@ -13,3 +13,4 @@
     - { role: neovim, tags: [neovim] }
     - { role: tmux, tags: [tmux] }
     - { role: nushell, tags: [nushell] }
+    - { role: kde, tags: [kde], when: 'ansible_distribution == "Gentoo"' }

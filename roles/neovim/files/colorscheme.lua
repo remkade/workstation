@@ -3,15 +3,15 @@ function randomObjectFromTable(t)
 end
 
 local schemes = {
-	'OceanicNext',
 	'candid',
-	'cryslominsa',
-	'hybrid',
 	'onenord',
-	'plastic',
 	'sonokai',
 	'spring-night',
-        'tokyonight-night'
+        'tokyonight-night',
+	'nekonight-night',
+	'nekonight-mars',
+	'nekonight-onedark',
+	'nekonight-nord',
 }
 
 local scheme = randomObjectFromTable(schemes)

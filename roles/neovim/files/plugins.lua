@@ -13,32 +13,28 @@ vim.opt.rtp:prepend(lazypath)
 
 plugins = {
 	-- Colorschemes/Themes
-	'Siphalor/vim-atomified',
-	'ajmwagar/vim-deus',
 	'arcticicestudio/nord-vim',
 	'blerins/flattown',
-	'chase/focuspoint-vim',
 	'flrnd/candid.vim',
-	'flrnprz/plastic.vim',
 	'folke/tokyonight.nvim',
-	'jacoborus/tender.vim',
-	'lithammer/vim-eighties',
 	'mhartington/oceanic-next',
-	'rhysd/vim-color-spring-night',
 	'rmehri01/onenord.nvim',
-	'sainnhe/archived-colors',
 	'sainnhe/edge',
 	'sainnhe/sonokai',
-	'sainnhe/vim-color-forest-night',
 	'scwood/vim-hybrid',
 	'tjammer/blayu.vim',
+	'BrunoCiccarino/nekonight.nvim',
 
 	-- Mini modules
-	{ 'echasnovski/mini.nvim', version = '*' },
-	{ 'echasnovski/mini.ai', version = '*', config = function() require('mini.ai').setup() end  },
-	{ 'echasnovski/mini.operators', version = '*', config = function() require('mini.operators').setup() end },
-	{ 'echasnovski/mini.surround', version = '*', config = function() require('mini.surround').setup() end },
-	{ 'echasnovski/mini.bracketed', version = '*', config = function() require('mini.bracketed').setup() end },
+	{ 'echasnovski/mini.nvim' },
+	{ 'echasnovski/mini.ai', config = function() require('mini.ai').setup() end  }, -- Text objects
+	{ 'echasnovski/mini.comment', config = function() require('mini.comment').setup() end  },
+	{ 'echasnovski/mini.operators', config = function() require('mini.operators').setup({ exchange = { prefix = 'ge', reindent_linewise = true }}) end },
+	{ 'echasnovski/mini.surround', config = function() require('mini.surround').setup() end },
+	{ 'echasnovski/mini.bracketed', config = function() require('mini.bracketed').setup() end },
+	{ 'echasnovski/mini.notify', config = function() require('mini.notify').setup() end },
+	{ 'echasnovski/mini.pairs', config = function() require('mini.pairs').setup() end },
+	{ 'echasnovski/mini.doc', config = function() require('mini.doc').setup() end },
 
 	-- Get better at VIM
 	{
@@ -143,7 +139,10 @@ plugins = {
 	-- Statusline
 	{
 		'nvim-lualine/lualine.nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons' }
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			require('lualine').setup{ theme = 'nekonight' }
+		end
 	},
 
 	-- Tabnine
@@ -169,6 +168,9 @@ plugins = {
 			{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
 			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
 		},
-	}
+	},
+
+	-- PlantUML
+	'aklt/plantuml-syntax'
 }
 return require('lazy').setup(plugins)

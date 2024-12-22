@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/home/kyle/.local/bin/ssh-key-load.fish
+Icon=text-x-script
+Name=ssh-key-load.fish
+Type=Application
+X-KDE-AutostartScript=true

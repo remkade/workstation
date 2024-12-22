@@ -1,0 +1,25 @@
+---
+- name: SSH Key loading script
+  ansible.builtin.copy:
+    src: ssh-key-load.fish
+    dest: "{{ ansible_user_dir }}/.local/bin/ssh-key-load.fish"
+    owner: kyle
+    group: wheel
+    mode: '0755'
+  become: false
+
+- name: Autostart file for ssh key loading
+  ansible.builtin.copy:
+    src: ssh-key-load.fish.desktop
+    dest: "{{ ansible_user_dir }}/.config/autostart/ssh-key-load.fish.desktop"
+    owner: kyle
+    group: wheel
+  become: false
+
+- name: SSH Environment variables
+  ansible.builtin.copy:
+    dest: /home/kyle/.config/plasma-workspace/env/ssh.sh
+    src: ssh.sh
+    owner: kyle
+    group: wheel
+  become: false
