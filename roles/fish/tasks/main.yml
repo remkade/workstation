@@ -76,6 +76,7 @@
     - list_instances
     - list_snapshots
     - random_color_scheme
+    - upgrade
     - wordpress_server
 
 - name: Conf.d dir

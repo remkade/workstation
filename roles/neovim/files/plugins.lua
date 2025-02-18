@@ -15,13 +15,11 @@ plugins = {
 	-- Colorschemes/Themes
 	'arcticicestudio/nord-vim',
 	'blerins/flattown',
-	'flrnd/candid.vim',
 	'folke/tokyonight.nvim',
 	'mhartington/oceanic-next',
 	'rmehri01/onenord.nvim',
 	'sainnhe/edge',
 	'sainnhe/sonokai',
-	'scwood/vim-hybrid',
 	'tjammer/blayu.vim',
 	'BrunoCiccarino/nekonight.nvim',
 

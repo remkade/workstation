@@ -17,6 +17,12 @@
     state: latest
   when: false
 
+- name: Install ruby-lsp
+  community.general.gem:
+    name: ruby-lsp
+    state: latest
+  when: false
+
 - name: Install language server pip modules
   ansible.builtin.pip:
     name:

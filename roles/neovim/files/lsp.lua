@@ -63,7 +63,7 @@ end
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "bashls", "cssls", "denols", "gopls", "hls", "html", "intelephense", "jsonls", "solargraph", "texlab", "yamlls" }
+local servers = { "bashls", "cssls", "denols", "gopls", "hls", "html", "intelephense", "jsonls", "ruby_lsp", "texlab", "yamlls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -104,9 +104,3 @@ lspconfig.beancount.setup= {
         journal_file = "/home/kyle/SpiderOak Hive/Business/Amber Leaders Designs/Accounting",
     };
 };
-
--- require("lspconfig").ruby_ls.setup({
-  -- on_attach = function(client, buffer)
-    -- setup_diagnostics(client, buffer)
-  -- end,
--- })
