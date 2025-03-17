@@ -2,4 +2,4 @@
 - name: Install dein
   ansible.builtin.git: # noqa: latest
     repo: https://github.com/Shougo/dein.vim
-    dest: "{{ dein_dir }}/repos/github.com/Shougo/dein.vim"
+    dest: "{{ vim_dein_dir }}/repos/github.com/Shougo/dein.vim"

@@ -1,0 +1,6 @@
+pipelines:
+  - name: lint
+    steps:
+      - name: anible-lint
+        commands:
+          - ansible-lint

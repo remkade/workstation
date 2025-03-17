@@ -1,3 +1,2 @@
 ---
-fish:
-  starship: true
+fish_starship: true

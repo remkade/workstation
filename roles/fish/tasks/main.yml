@@ -44,7 +44,7 @@
     src: "{{ item }}.fish"
     dest: "{{ ansible_user_dir }}/.config/fish/functions/{{ item }}.fish"
   become: false
-  when: not fish['starship']
+  when: not fish['fish_starship']
   loop:
     - fish_mode_prompt
     - fish_prompt
@@ -52,7 +52,7 @@
 - name: Include Starship
   ansible.builtin.include_role:
     name: starship
-  when: fish['starship']
+  when: fish['fish_starship']
 
 - name: Fish Prompt starship
   ansible.builtin.copy:
@@ -61,7 +61,7 @@
     dest: "{{ ansible_user_dir }}/.config/fish/functions/fish_prompt.fish"
     content: "source (/usr/bin/starship init fish --print-full-init | psub)\n"
   become: false
-  when: fish['starship']
+  when: fish['fish_starship']
 
 - name: Fish Functions
   ansible.builtin.copy:
