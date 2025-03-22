@@ -151,39 +151,9 @@ plugins = {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
-			require("codecompanion").setup({
-				display = {
-					action_palette = { provider = "telescope" },
-				},
-				strategies = {
-					chat = { adapter = "qwen25coder" },
-					inline = { adapter = "qwen25coder" },
-				},
-				adapters = {
-					phi4 = function()
-						return require("codecompanion.adapters").extend("ollama", {
-							name = "phi4",
-							schema = {
-								model = { default = "phi4:latest" },
-								num_ctx = { default = 16384 },
-								num_predict = { default = -1 },
-							},
-						})
-					end,
-					qwen25coder = function()
-						return require("codecompanion.adapters").extend("ollama", {
-							name = "qwen25coder",
-							schema = {
-								model = { default = "qwen2.5-coder:32b" },
-								num_ctx = { default = 32768 },
-								num_predict = { default = -1 },
-							},
-						})
-					end,
-				},
-			})
+			require('codecompanion_config').config()
 		end
-	},
+	}
 
 	-- Shell Check
 	'itspriddle/vim-shellcheck',
