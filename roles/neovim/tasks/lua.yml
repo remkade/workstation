@@ -28,6 +28,7 @@
     - lsp.lua
     - lspkind_icons.lua
     - plugins.lua
+    - codecompanion_config.lua
     - treesitter.lua
     - which.lua
   become: false

@@ -153,7 +153,7 @@ plugins = {
 		config = function()
 			require('codecompanion_config').config()
 		end
-	}
+	},
 
 	-- Shell Check
 	'itspriddle/vim-shellcheck',
