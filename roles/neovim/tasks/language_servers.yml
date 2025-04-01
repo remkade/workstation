@@ -10,6 +10,7 @@
     - intelephense
     - yaml-language-server
     - vscode-langservers-extracted
+    - "@elm-tooling/elm-language-server"
 
 - name: Install solargraph
   community.general.gem:
