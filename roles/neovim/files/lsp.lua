@@ -35,7 +35,7 @@ local on_attach = function(client, bufnr)
     { "gd", function() vim.lsp.buf.definition() end, desc = "Goto Definition", remap = false },
     { "gi", function() vim.lsp.buf.implementation() end, desc = "Show Implementations", remap = false },
     { "gr", function() vim.lsp.buf.references() end, desc = "Show References", remap = false },
-})
+  })
 
 end
 
@@ -63,13 +63,25 @@ end
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "bashls", "cssls", "denols", "gopls", "hls", "html", "intelephense", "jsonls", "ruby_lsp", "texlab", "yamlls", "elmls" }
+local servers = { "bashls", "cssls", "denols", "gopls", "hls", "html", "intelephense", "jsonls", "texlab", "yamlls", "elmls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
+
+nvim_lsp["solargraph"].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    solargraph = {
+      auto_format = true,
+      formatting = true,
+      useBundler = true,
+    }
+  }
+}
 
 nvim_lsp["pylsp"].setup { 
   on_attach = on_attach,
@@ -100,7 +112,7 @@ nvim_lsp["rust_analyzer"].setup {
 
 local lspconfig = require 'lspconfig'
 lspconfig.beancount.setup= {
-    init_options = {
-        journal_file = "/home/kyle/SpiderOak Hive/Business/Amber Leaders Designs/Accounting",
-    };
+  init_options = {
+    journal_file = "/home/kyle/SpiderOak Hive/Business/Amber Leaders Designs/Accounting",
+  };
 };
