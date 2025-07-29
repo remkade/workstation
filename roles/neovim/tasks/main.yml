@@ -32,14 +32,6 @@
   become: "{{ need_sudo }}"
   when: ansible_distribution == "Ubuntu"
 
-- name: Install neovim pip module
-  ansible.builtin.pip:
-    name: neovim
-    state: present
-    executable: pip3
-  when: ansible_distribution == "MacOSX"
-  become: false
-
 - name: Neovim config dir
   ansible.builtin.file:
     dest: "{{ neovim_dir }}"

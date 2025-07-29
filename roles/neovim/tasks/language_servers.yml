@@ -24,23 +24,13 @@
     state: latest
   when: false
 
-- name: Install language server pip modules
-  ansible.builtin.pip:
-    name:
-      - python-lsp-server[all]
-    state: present
-    executable: pip3
-    extra_args: --user
-  become: false
-  when: ansible_distribution != "Gentoo"
-
 - name: LSPs for Gentoo
   ansible.builtin.package:
     name:
       - python-lsp-server
     state: installed
-  become: true
-  when: ansible_distribution == "Gentoo"
+  become: "{{ need_sudo }}"
+  when: ansible_distribution == "Gentoo" or ansible_distribution == "MacOSX"
 
 - name: Install go language server
   ansible.builtin.command:
