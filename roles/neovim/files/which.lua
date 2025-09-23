@@ -19,10 +19,8 @@ wk.add({
 	{ "<leader>rt", "<Cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree", remap = false },
 
 	{ "<leader>t", group = "Trouble" },
-	{ "<leader>tc", "<Cmd>TroubleClose<cr>", desc = "Close Trouble", remap = false },
-	{ "<leader>td", "<Cmd>TodoTrouble<cr>", desc = "Show Todo Items", remap = false },
-	{ "<leader>to", "<Cmd>TroubleOpen<cr>", desc = "Open Trouble", remap = false },
-	{ "<leader>tt", "<Cmd>TroubleToggle<cr>", desc = "Toggle Trouble", remap = false },
+	{ "<leader>tt", "<Cmd>Trouble todo<cr>", desc = "Show Todo Items", remap = false },
+	{ "<leader>td", "<Cmd>Trouble diagnostics<cr>", desc = "Open Trouble", remap = false },
 
 	{ "<leader>c", group="Code Companion"},
 	{ "<leader>cf", "<Cmd>CodeCompanionActions<cr>", desc = "Code Companion Actions", remap = false },
