@@ -1,5 +1,4 @@
 -- vim: sw=2 et sts=2
-local nvim_lsp = require('lspconfig')
 local wk = require('which-key')
 require('cmp_config')
 
@@ -65,13 +64,13 @@ end
 -- and map buffer local keybindings when the language server attaches
 local servers = { "bashls", "cssls", "denols", "gopls", "hls", "html", "intelephense", "jsonls", "texlab", "yamlls", "elmls" }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  vim.lsp.config[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
 
-nvim_lsp["solargraph"].setup {
+vim.lsp.config["solargraph"].setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -83,7 +82,7 @@ nvim_lsp["solargraph"].setup {
   }
 }
 
-nvim_lsp["pylsp"].setup { 
+vim.lsp.config["pylsp"].setup { 
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = pylsp_cmd(),
@@ -98,7 +97,7 @@ nvim_lsp["pylsp"].setup {
   }
 }
 
-nvim_lsp["rust_analyzer"].setup { 
+vim.lsp.config["rust_analyzer"].setup { 
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
