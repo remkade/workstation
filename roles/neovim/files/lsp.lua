@@ -64,15 +64,10 @@ end
 -- and map buffer local keybindings when the language server attaches
 local servers = { "bashls", "cssls", "denols", "gopls", "hls", "html", "intelephense", "jsonls", "texlab", "yamlls", "elmls" }
 for _, lsp in ipairs(servers) do
-  vim.lsp.config[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  vim.lsp.enable(lsp)
 end
 
-vim.lsp.config["solargraph"].setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+vim.lsp.enable("solargraph", {
   settings = {
     solargraph = {
       auto_format = true,
@@ -80,11 +75,9 @@ vim.lsp.config["solargraph"].setup {
       useBundler = true,
     }
   }
-}
+})
 
-vim.lsp.config["pylsp"].setup { 
-  on_attach = on_attach,
-  capabilities = capabilities,
+vim.lsp.enable("pylsp", {
   cmd = pylsp_cmd(),
   settings = {
     pylsp = {
@@ -95,11 +88,9 @@ vim.lsp.config["pylsp"].setup {
       }
     }
   }
-}
+})
 
-vim.lsp.config["rust_analyzer"].setup { 
-  on_attach = on_attach,
-  capabilities = capabilities,
+vim.lsp.enable("rust_analyzer", {
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {
@@ -107,11 +98,10 @@ vim.lsp.config["rust_analyzer"].setup {
       }
     }
   }
-}
+})
 
-local lspconfig = require 'lspconfig'
-lspconfig.beancount.setup= {
+vim.lsp.enable("beancount", {
   init_options = {
     journal_file = "/home/kyle/SpiderOak Hive/Business/Amber Leaders Designs/Accounting",
   };
-};
+})
