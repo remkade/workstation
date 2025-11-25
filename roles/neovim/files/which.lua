@@ -1,6 +1,10 @@
 local wk = require('which-key')
 
 wk.add({
+	{ "<leader>c", group="Code Companion"},
+	{ "<leader>cc", function() require("codecompanion").chat() end, desc = "Code Companion Chat", remap = false },
+	{ "<leader>cf", "<Cmd>CodeCompanionActions<cr>", desc = "Code Companion Actions", remap = false },
+
 	{ "<leader>f", group = "Telescope" },
 	{ "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "Find Buffer", remap = false },
 	{ "<leader>fd", function() require("telescope.builtin").lsp_definitions() end, desc = "Find definitions (LSP)", remap = false },
@@ -14,15 +18,11 @@ wk.add({
 
 	{ "<leader>g", group = "Neogit" },
 	{ "<leader>gg", "<Cmd>Neogit<cr>", desc = "Open Neogit", remap = false },
-	
+
 	{ "<leader>r", group = "NvimTree" },
 	{ "<leader>rt", "<Cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree", remap = false },
 
 	{ "<leader>t", group = "Trouble" },
-	{ "<leader>tt", "<Cmd>Trouble todo<cr>", desc = "Show Todo Items", remap = false },
-	{ "<leader>td", "<Cmd>Trouble diagnostics<cr>", desc = "Open Trouble", remap = false },
-
-	{ "<leader>c", group="Code Companion"},
-	{ "<leader>cf", "<Cmd>CodeCompanionActions<cr>", desc = "Code Companion Actions", remap = false },
-	{ "<leader>cc", function() require("codecompanion").chat() end, desc = "Code Companion Chat", remap = false },
+	{ "<leader>tt", "<Cmd>Trouble diagnostics<cr>", desc = "Open Trouble Diagnostics", remap = false },
+	{ "<leader>td", "<Cmd>Trouble todo<cr>", desc = "Show Todo Items", remap = false },
 })
