@@ -4,8 +4,10 @@ function config()
 			action_palette = { provider = "telescope" },
 		},
 		strategies = {
-			chat = { adapter = "qwen3coder" },
-			inline = { adapter = "qwen3coder" },
+			chat = { adapter = "devstral2" },
+			inline = { adapter = "devstral2" },
+			cmd = { adapter = "devstral2" },
+			background = { adapter = "devstral2" },
 		},
 		adapters = {
 			http = {
@@ -29,16 +31,16 @@ function config()
 						},
 					})
 				end,
-				deepseek = function()
+				devstral2 = function()
 					return require("codecompanion.adapters").extend("ollama", {
-						name = "deepseek",
+						name = "devstral2",
 						schema = {
-							model = { default = "deepseek-r1:32b" },
-							num_ctx = { default = 128000 },
+							model = { default = "devstral-small-2:24b" },
+							num_ctx = { default = 262144 },
 							num_predict = { default = -1 },
 						},
 					})
-				end,
+				end
 			},
 		},
 	})

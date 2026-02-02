@@ -25,7 +25,7 @@
     - cmp_config.lua
     - colorscheme.lua
     - feline_ibhagwan.lua
-    - lsp.lua
+    - lsp_setup.lua
     - lspkind_icons.lua
     - plugins.lua
     - codecompanion_config.lua

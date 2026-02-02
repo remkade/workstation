@@ -1,8 +1,5 @@
 -- vim: sw=2 et sts=2
 local wk = require('which-key')
-require('cmp_config')
-
-require("luasnip.loaders.from_vscode").lazy_load()
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -38,8 +35,6 @@ local on_attach = function(client, bufnr)
 
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 local solargraph_cmd = function()
   local ret_code = nil
   local jid = vim.fn.jobstart("bundle info solargraph", { on_exit = function(_, data) ret_code = data end })
@@ -62,11 +57,13 @@ end
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "bashls", "cssls", "denols", "gopls", "hls", "html", "intelephense", "jsonls", "texlab", "yamlls", "elmls" }
-vim.lsp.enable(servers)
+local servers = { "bashls", "cssls", "denols", "gopls", "hls", "html", "intelephense", "jsonls", "texlab", "yamlls", "elmls", "beancount" }
 
-vim.lsp.enable("solargraph", {
-  cmd = solargraph_cmd(),
+for _, s in ipairs(servers) do
+  vim.lsp.enable(s)
+end
+
+vim.lsp.config("solargraph", {
   settings = {
     ["solargraph"] = {
       auto_format = true,
@@ -76,7 +73,7 @@ vim.lsp.enable("solargraph", {
   }
 })
 
-vim.lsp.enable("pylsp", {
+vim.lsp.config("pylsp", {
   cmd = pylsp_cmd(),
   settings = {
     ["pylsp" ] = {
@@ -89,7 +86,7 @@ vim.lsp.enable("pylsp", {
   }
 })
 
-vim.lsp.enable("rust_analyzer", {
+vim.lsp.config("rust_analyzer", {
   settings = {
     ["rust-analyzer"] = {
       formatOnSave = true,
@@ -98,10 +95,4 @@ vim.lsp.enable("rust_analyzer", {
       }
     }
   }
-})
-
-vim.lsp.enable("beancount", {
-  init_options = {
-    journal_file = "/home/kyle/SpiderOak Hive/Business/Amber Leaders Designs/Accounting",
-  };
 })
