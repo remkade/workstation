@@ -72,7 +72,50 @@ plugins = {
 	},
 
 	-- Automatic formatter
-	{'stevearc/conform.nvim', opts = {}},
+	{
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		-- This will provide type hinting with LuaLS
+		---@module "conform"
+		---@type conform.setupOpts
+		opts = {
+			-- Define your formatters
+			formatters_by_ft = {
+				fish = { "fish_indent" },
+				gleam = { "gleam" },
+				go = { "gofmt" },
+				hledger = { "hledger-fmt" },
+				javascript = { "deno_fmt", "prettierd", "prettier", stop_after_first = true },
+				typescript = { "deno_fmt" },
+				justfile = { "just" },
+				lua = { "stylua" },
+				python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
+				ruby = { "rubocop" },
+				rust = { "rustfmt" },
+				sh = { "shellcheck" },
+				bash = { "shellcheck" },
+				terraform = { "tofu_fmt" },
+				tofu = { "tofu_fmt" },
+			},
+			-- Set default options
+			default_format_opts = {
+				lsp_format = "fallback",
+			},
+			-- Set up format-on-save
+			format_on_save = { timeout_ms = 500 },
+			-- Customize formatters
+			formatters = {
+				shfmt = {
+					append_args = { "-i", "2" },
+				},
+			},
+		},
+		init = function()
+			-- If you want the formatexpr, here is the place to set it
+			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+		end,
+	}
 
 	-- LSP and completion
 	{

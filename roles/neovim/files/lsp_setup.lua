@@ -16,7 +16,6 @@ local on_attach = function(client, bufnr)
     { "<leader>D", function() vim.lsp.buf.type_definition() end,  desc = "Type Definition", remap = false },
     { "<leader>ca", function() vim.lsp.buf.code_action() end,  desc = "Code Action", remap = true },
     { "<leader>e", function() vim.diagnostic.open_float() end,  desc = "Line Diagnostics", remap = false },
-    { "<leader>F", function() vim.lsp.buf.format() end,  desc = "Format all files", remap = true },
     { "<leader>q", function() vim.lsp.diagnostic.set_loclist() end,  desc = "Diagnostics in Location List", remap = false },
     { "<leader>r", group = "Code Action: Rename" },
     { "<leader>ro", function() vim.lsp.buf.rename() end,  desc = "Rename Object", remap = false },
