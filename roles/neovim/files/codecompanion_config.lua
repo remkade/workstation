@@ -40,7 +40,7 @@ function config()
 							num_predict = { default = -1 },
 						},
 					})
-				end
+				end,
 			},
 		},
 	})

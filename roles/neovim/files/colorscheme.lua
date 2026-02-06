@@ -3,23 +3,23 @@ function randomObjectFromTable(t)
 end
 
 local schemes = {
-	'OceanicNext',
-	'edge',
-	'nekonight-deep-ocean',
-	'nekonight-mars',
-	'nekonight-material-theme',
-	'nekonight-night',
-	'nekonight-noctis-uva',
-	'nekonight-nord',
-	'nekonight-onedark',
-	'nekonight-storm',
-	'onenord',
-	'slate',
-	'sonokai',
-	'sorbet',
-	'tokyonight-night',
+	"OceanicNext",
+	"edge",
+	"everforest",
+	"nekonight-deep-ocean",
+	"nekonight-mars",
+	"nekonight-material-theme",
+	"nekonight-night",
+	"nekonight-noctis-uva",
+	"nekonight-nord",
+	"nekonight-onedark",
+	"nekonight-storm",
+	"onenord",
+	"sonokai",
+	"sorbet",
+	"tokyonight-night",
 }
 
 local scheme = randomObjectFromTable(schemes)
 
-vim.cmd('colorscheme ' .. scheme)
+vim.cmd("colorscheme " .. scheme)

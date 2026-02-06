@@ -13,62 +13,109 @@ vim.opt.rtp:prepend(lazypath)
 
 plugins = {
 	-- Colorschemes/Themes
-	'arcticicestudio/nord-vim',
-	'blerins/flattown',
-	'folke/tokyonight.nvim',
-	'mhartington/oceanic-next',
-	'rmehri01/onenord.nvim',
-	'sainnhe/edge',
-	'sainnhe/sonokai',
-	'tjammer/blayu.vim',
-	'BrunoCiccarino/nekonight.nvim',
+	"arcticicestudio/nord-vim",
+	"blerins/flattown",
+	"folke/tokyonight.nvim",
+	"mhartington/oceanic-next",
+	"rmehri01/onenord.nvim",
+	"sainnhe/edge",
+	"sainnhe/everforest",
+	"sainnhe/sonokai",
+	"tjammer/blayu.vim",
+	"BrunoCiccarino/nekonight.nvim",
 
 	-- Mini modules
-	{ 'echasnovski/mini.nvim' },
-	{ 'echasnovski/mini.ai', config = function() require('mini.ai').setup() end  }, -- Text objects
-	{ 'echasnovski/mini.comment', config = function() require('mini.comment').setup() end  },
-	{ 'echasnovski/mini.operators', config = function() require('mini.operators').setup({ exchange = { prefix = 'ge', reindent_linewise = true }}) end },
-	{ 'echasnovski/mini.surround', config = function() require('mini.surround').setup() end },
-	{ 'echasnovski/mini.bracketed', config = function() require('mini.bracketed').setup() end },
-	{ 'echasnovski/mini.notify', config = function() require('mini.notify').setup() end },
-	{ 'echasnovski/mini.pairs', config = function() require('mini.pairs').setup() end },
-	{ 'echasnovski/mini.doc', config = function() require('mini.doc').setup() end },
+	{ "echasnovski/mini.nvim" },
+	{
+		"echasnovski/mini.ai",
+		config = function()
+			require("mini.ai").setup()
+		end,
+	}, -- Text objects
+	{
+		"echasnovski/mini.comment",
+		config = function()
+			require("mini.comment").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.operators",
+		config = function()
+			require("mini.operators").setup({ exchange = { prefix = "ge", reindent_linewise = true } })
+		end,
+	},
+	{
+		"echasnovski/mini.surround",
+		config = function()
+			require("mini.surround").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.bracketed",
+		config = function()
+			require("mini.bracketed").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.notify",
+		config = function()
+			require("mini.notify").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.pairs",
+		config = function()
+			require("mini.pairs").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.doc",
+		config = function()
+			require("mini.doc").setup()
+		end,
+	},
 
 	-- Get better at VIM
 	{
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-		opts = { disable_mouse = false }
+		opts = { disable_mouse = false },
 	},
 
 	-- Telescope
-	'stevearc/dressing.nvim',
+	"stevearc/dressing.nvim",
 	{
-		'nvim-telescope/telescope.nvim',
+		"nvim-telescope/telescope.nvim",
 		dependencies = {
-			{'nvim-lua/plenary.nvim'},
-			{'nvim-telescope/telescope-fzy-native.nvim', run='make'},
-			{'nvim-telescope/telescope-media-files.nvim'}
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope-fzy-native.nvim", run = "make" },
+			{ "nvim-telescope/telescope-media-files.nvim" },
 		},
 	},
 	{
-		'folke/todo-comments.nvim',
-		require = { 'nvim-lua/plenary.nvim' },
-		config = function() require('todo-comments').setup() end,
+		"folke/todo-comments.nvim",
+		require = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("todo-comments").setup()
+		end,
 	},
 
 	-- Sessions
 	{
-		'Shatur/neovim-session-manager',
-		dependencies = {'nvim-lua/plenary.nvim'},
-		config = function() require('session_manager').setup({}) end,
+		"Shatur/neovim-session-manager",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("session_manager").setup({})
+		end,
 	},
 
 	-- Git
 	{
-		'TimUntersberger/neogit',
-		dependencies = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'},
-		config = function() require('neogit').setup {} end,
+		"TimUntersberger/neogit",
+		dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
+		config = function()
+			require("neogit").setup({})
+		end,
 	},
 
 	-- Automatic formatter
@@ -119,12 +166,12 @@ plugins = {
 
 	-- LSP and completion
 	{
-		'saghen/blink.cmp',
+		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
-		dependencies = { 'rafamadriz/friendly-snippets' },
+		dependencies = { "rafamadriz/friendly-snippets" },
 
 		-- use a release tag to download pre-built binaries
-		version = '1.*',
+		version = "1.*",
 		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 		-- build = 'cargo build --release',
 		-- If you use nix, you can build from source using latest nightly rust with:
@@ -145,12 +192,12 @@ plugins = {
 			-- C-k: Toggle signature help (if signature.enabled = true)
 			--
 			-- See :h blink-cmp-config-keymap for defining your own keymap
-			keymap = { preset = 'default' },
+			keymap = { preset = "default" },
 
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 				-- Adjusts spacing to ensure icons are aligned
-				nerd_font_variant = 'mono'
+				nerd_font_variant = "mono",
 			},
 
 			-- (Default) Only show the documentation popup when manually triggered
@@ -159,7 +206,7 @@ plugins = {
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { 'lsp', 'path', 'snippets', 'buffer' },
+				default = { "lsp", "path", "snippets", "buffer" },
 			},
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -167,47 +214,53 @@ plugins = {
 			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
 			--
 			-- See the fuzzy documentation for more information
-			fuzzy = { implementation = "prefer_rust_with_warning" }
+			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
-		opts_extend = { "sources.default" }
+		opts_extend = { "sources.default" },
 	},
 	{
-		'L3MON4D3/LuaSnip',
+		"L3MON4D3/LuaSnip",
 		-- follow latest release.
 		version = "v1.*",
 		-- install jsregexp (optional!:).
-		run = "make install_jsregexp"
+		run = "make install_jsregexp",
 	},
-	{ 'rafamadriz/friendly-snippets' },
+	{ "rafamadriz/friendly-snippets" },
 
 	-- Live errors
 	{
 		"folke/trouble.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function() require('trouble').setup {} end
+		config = function()
+			require("trouble").setup({})
+		end,
 	},
 
 	-- Buffer Line
 	{
-		'akinsho/bufferline.nvim',
-		dependencies = 'nvim-tree/nvim-web-devicons',
-		config = function() require("bufferline").setup() end
+		"akinsho/bufferline.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("bufferline").setup()
+		end,
 	},
 
 	-- Help for commands
-	{"folke/which-key.nvim"},
+	{ "folke/which-key.nvim" },
 
 	-- Tree sitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-		event = "BufRead", 
+		run = function()
+			require("nvim-treesitter.install").update({ with_sync = true })
+		end,
+		event = "BufRead",
 		config = function()
-			require("nvim-treesitter.configs").setup {
+			require("nvim-treesitter.configs").setup({
 				ensure_installed = "all",
 				highlight = { enable = true },
-			}
-		end
+			})
+		end,
 	},
 
 	{
@@ -217,17 +270,17 @@ plugins = {
 
 	-- NvimTree
 	{
-		'kyazdani42/nvim-tree.lua',
-		dependencies = 'nvim-tree/nvim-web-devicons',
+		"kyazdani42/nvim-tree.lua",
+		dependencies = "nvim-tree/nvim-web-devicons",
 	},
 
 	-- Statusline
 	{
-		'nvim-lualine/lualine.nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			require('lualine').setup{ theme = 'nekonight' }
-		end
+			require("lualine").setup({ theme = "nekonight" })
+		end,
 	},
 
 	-- AI CodeCompanion
@@ -238,15 +291,15 @@ plugins = {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
-			require('codecompanion_config').config()
-		end
+			require("codecompanion_config").config()
+		end,
 	},
 
 	-- Shell Check
-	'itspriddle/vim-shellcheck',
+	"itspriddle/vim-shellcheck",
 
 	-- Sorting functions :Sort
-	'sQVe/sort.nvim',
+	"sQVe/sort.nvim",
 
 	-- Quick search
 	{
@@ -265,6 +318,6 @@ plugins = {
 	},
 
 	-- PlantUML
-	'aklt/plantuml-syntax'
+	"aklt/plantuml-syntax",
 }
-return require('lazy').setup(plugins)
+return require("lazy").setup(plugins)

@@ -3,7 +3,7 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 ]])
 
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
 	textobjects = {
 		select = {
 			enable = true,
@@ -28,9 +28,9 @@ require'nvim-treesitter.configs'.setup {
 			-- and should return the mode ('v', 'V', or '<c-v>') or a table
 			-- mapping query_strings to modes.
 			selection_modes = {
-				['@parameter.outer'] = 'v', -- charwise
-				['@function.outer'] = 'V', -- linewise
-				['@class.outer'] = '<c-v>', -- blockwise
+				["@parameter.outer"] = "v", -- charwise
+				["@function.outer"] = "V", -- linewise
+				["@class.outer"] = "<c-v>", -- blockwise
 			},
 			-- If you set this to `true` (default is `false`) then any textobject is
 			-- extended to include preceding or succeeding whitespace. Succeeding
@@ -45,7 +45,7 @@ require'nvim-treesitter.configs'.setup {
 		},
 		lsp_interop = {
 			enable = true,
-			border = 'none',
+			border = "none",
 			floating_preview_opts = {},
 			peek_definition_code = {
 				["<leader>df"] = "@function.outer",
@@ -88,7 +88,7 @@ require'nvim-treesitter.configs'.setup {
 			},
 			goto_previous = {
 				["[d"] = "@conditional.outer",
-			}
+			},
 		},
 		swap = {
 			enable = true,
@@ -100,4 +100,4 @@ require'nvim-treesitter.configs'.setup {
 			},
 		},
 	},
-}
+})
