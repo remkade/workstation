@@ -223,7 +223,7 @@ vim.lsp.config("pylsp", {
 
 vim.lsp.config("rust_analyzer", {
 	settings = {
-		["rust-analyzer"] = {
+		["rust_analyzer"] = {
 			formatOnSave = true,
 			check = {
 				command = "clippy",

@@ -165,6 +165,7 @@ plugins = {
 	},
 
 	-- LSP and completion
+	{ "neovim/nvim-lspconfig" },
 	{
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
