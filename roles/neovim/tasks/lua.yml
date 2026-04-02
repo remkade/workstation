@@ -23,12 +23,13 @@
     mode: "0644"
   with_items:
     - cmp_config.lua
+    - codecompanion_config.lua
     - colorscheme.lua
+    - conform_config.lua
     - feline_ibhagwan.lua
     - lsp_setup.lua
     - lspkind_icons.lua
     - plugins.lua
-    - codecompanion_config.lua
     - treesitter.lua
     - which.lua
   become: false

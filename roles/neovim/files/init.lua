@@ -8,6 +8,7 @@ require("plugins")
 require("lsp_setup")
 require("colorscheme")
 require("which")
+require("conform_config")
 require("treesitter")
 
 require("nvim-tree").setup()

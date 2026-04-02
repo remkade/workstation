@@ -15,12 +15,141 @@ vim.api.nvim_create_user_command("Format", function(args)
 end, { range = true })
 
 wk.add({
+	{
+		"<C-k>",
+		function()
+			vim.lsp.buf.signature_help()
+		end,
+		desc = "Signature Help",
+		remap = false,
+	},
+	{ "<leader>d", group = "Code Definitions" },
+	{
+		"<leader>D",
+		function()
+			vim.lsp.buf.type_definition()
+		end,
+		desc = "Type Definition",
+		remap = false,
+	},
+	{
+		"<leader>ca",
+		function()
+			vim.lsp.buf.code_action()
+		end,
+		desc = "Code Action",
+		remap = true,
+	},
+	{
+		"<leader>e",
+		function()
+			vim.diagnostic.open_float()
+		end,
+		desc = "Line Diagnostics",
+		remap = false,
+	},
+	{
+		"<leader>q",
+		function()
+			vim.lsp.diagnostic.set_loclist()
+		end,
+		desc = "Diagnostics in Location List",
+		remap = false,
+	},
+	{ "<leader>r", group = "Code Action: Rename" },
+	{
+		"<leader>ro",
+		function()
+			vim.lsp.buf.rename()
+		end,
+		desc = "Rename Object",
+		remap = false,
+	},
+	{ "<leader>w", group = "Workspace" },
+	{
+		"<leader>wa",
+		function()
+			vim.lsp.buf.add_workspace_folder()
+		end,
+		desc = "Add Folder to Workspace",
+		remap = false,
+	},
+	{
+		"<leader>wl",
+		function()
+			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		end,
+		desc = "List workspace Folders",
+		remap = false,
+	},
+	{
+		"<leader>wr",
+		function()
+			vim.lsp.buf.remove_workspace_folder()
+		end,
+		desc = "Remove Workspace Folder",
+		remap = false,
+	},
+	{
+		"K",
+		function()
+			vim.lsp.buf.hover()
+		end,
+		desc = "LSP Hover",
+		remap = false,
+	},
+	{
+		"[d",
+		function()
+			vim.lsp.diagnostic.goto_prev()
+		end,
+		desc = "Next Diagnostic",
+		remap = false,
+	},
+	{
+		"]d",
+		function()
+			vim.lsp.diagnostic.goto_next()
+		end,
+		desc = "Previous Diagnostic",
+		remap = false,
+	},
+	{
+		"gD",
+		function()
+			vim.lsp.buf.declaration()
+		end,
+		desc = "Goto Declaration",
+		remap = false,
+	},
+	{
+		"gd",
+		function()
+			vim.lsp.buf.definition()
+		end,
+		desc = "Goto Definition",
+		remap = false,
+	},
+	{
+		"gi",
+		function()
+			vim.lsp.buf.implementation()
+		end,
+		desc = "Show Implementations",
+		remap = false,
+	},
+	{
+		"gr",
+		function()
+			vim.lsp.buf.references()
+		end,
+		desc = "Show References",
+		remap = false,
+	},
 	{ "<leader>c", group = "Code Companion" },
 	{
 		"<leader>cc",
-		function()
-			require("codecompanion").chat()
-		end,
+		"<Cmd>CodeCompanionChat<cr>",
 		desc = "Code Companion Chat",
 		remap = false,
 	},

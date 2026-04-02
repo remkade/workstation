@@ -133,7 +133,7 @@ plugins = {
 				gleam = { "gleam" },
 				go = { "gofmt" },
 				hledger = { "hledger-fmt" },
-				javascript = { "deno_fmt", "prettierd", "prettier", stop_after_first = true },
+				javascript = { "prettierd", "prettier", "deno_fmt", stop_after_first = true },
 				typescript = { "deno_fmt" },
 				justfile = { "just" },
 				lua = { "stylua" },
@@ -150,7 +150,13 @@ plugins = {
 				lsp_format = "fallback",
 			},
 			-- Set up format-on-save
-			format_on_save = { timeout_ms = 500 },
+			format_on_save = function(bufnr)
+				-- Disable with a global or buffer-local variable
+				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+					return
+				end
+				return { timeout_ms = 500, lsp_format = "fallback" }
+			end,
 			-- Customize formatters
 			formatters = {
 				shfmt = {
@@ -160,7 +166,7 @@ plugins = {
 		},
 		init = function()
 			-- If you want the formatexpr, here is the place to set it
-			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+			vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
 		end,
 	},
 
@@ -252,16 +258,8 @@ plugins = {
 	-- Tree sitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			require("nvim-treesitter.install").update({ with_sync = true })
-		end,
-		event = "BufRead",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = "all",
-				highlight = { enable = true },
-			})
-		end,
+		lazy = false,
+		build = ":TSUpdate",
 	},
 
 	{
